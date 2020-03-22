@@ -1,0 +1,418 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="">
+        <title>Pathshala - Responsive Education Template</title>
+
+        <!-- Styles -->
+        <link href="{%  static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{%  static 'css/owl.carousel.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{%  static 'css/owl.theme.default.min.css' %}" rel="stylesheet" media="screen">
+        <link href="{%  static 'css/style.css' %}" rel="stylesheet" media="screen">
+
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="{%  static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+
+    </head>
+    <body>
+         <div class="row nav-row trans-menu">
+            <div class="container nav-container">
+				<div class="top-navbar">
+					<div class = "pull-right">
+						<div class="top-nav-social pull-left">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+						</div>
+						<div class="top-nav-login-btn pull-right">
+							<a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i>LOGIN</a>
+						</div>
+						<!--<div class="top-navbar-search pull-right">
+							<i class="fa fa-search"></i>
+							<input type = "text" placeholder = "Search"/>
+						</div>-->
+					</div>
+					<div class = "clearfix"></div>
+				</div> 
+				<div class = "clearfix"></div>
+                <nav id="pathshalaNavbar" class="navbar navbar-default" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pathshalaNavbarCollapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">PATHSHALA</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
+							<li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-graduation-cap"></i>ACADEMICS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="academic.html"><i class="fa fa-certificate"></i>UPPER</a></li>
+                                    <li><a href="academic.html"><i class="fa fa-child"></i>MIDDLE</a></li>
+									<li><a href="academic.html"><i class="fa fa-puzzle-piece"></i>LOWER</a></li>
+									<li><a href="preschool.html"><i class="fa fa-cube"></i>PRESCHOOL</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
+							<li class="dropdown">
+                                <a href="events.html" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-calendar-check-o"></i>EVENTS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="events.html"><i class="fa fa-calendar"></i>EVENTS</a></li>
+                                    <li><a href="event-single.html"><i class="fa fa-calendar-o"></i>EVENT SINGLE</a></li>
+                                </ul>
+                            </li>
+							<li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-dashboard"></i>DASHBOARD <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="dashboard/admin-dashboard.html"><i class="fa fa-user-secret"></i>ADMIN</a></li>
+									<li><a href="dashboard/teacher-dashboard.html"><i class="fa fa-user"></i>TEACHER</a></li>
+                                    <li><a href="dashboard/student-dashboard.html"><i class="fa fa-child"></i>STUDENT</a></li>
+                                </ul>
+                            </li>
+							<li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-file"></i>PAGES <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="gallery.html"><i class="fa fa-picture-o"></i>CAMPUS GALLERY</a></li>
+									<li><a href="about.html"><i class="fa fa-info-circle"></i>ABOUT</a></li>
+                                    <li><a href="contact.html"><i class="fa fa-phone-square"></i>CONTACT US</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div>
+        </div>
+		
+		<!-- Page Title Section -->
+		<div class="row page-title page-title-events">
+			<div class="container">
+				<h2><i class="fa fa-trophy"></i>ACADEMIC - ATHLETICS</h2>
+			</div>
+		</div>
+		
+		<!-- Academics Section -->
+		<div class="row section-row">
+			<div class="container">
+				<div class="col-sm-4 col-md-3">
+					<div class="academic-nav-box">
+						<h5><i class="fa fa-code"></i>QUICK LINKS</h5>
+						<div class="academic-nav-inner-box">
+							<a href="academic-arts.html"><i class="fa fa-paint-brush"></i>Arts</a>
+							<a href="academic-athletics.html"><i class="fa fa-trophy"></i>Athletics</a>
+							<a href="academic-curriculum.html"><i class="fa fa-book"></i>Curriculum</a>
+							<a href="academic-calendar.html"><i class="fa fa-calendar"></i>Calendar</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8 col-md-9">
+					<div class="academic-content-box">
+						<h3>WELCOME TO ATHLETICS PAGE</h3>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+						<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						<img class="curriculum-img" src="{%  static 'img/curriculum/athletics.jpg' %}" alt="preschool" />
+						<div class="section-divider"></div>
+						<div id="pathshalaAccordion" class="pathshala-accordion">
+							<h4 class="accordion-header"><i class="fa fa-futbol-o"></i>FOOTBALL</h4>
+							<div class="accordion-inner">
+								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+								</p>
+								<img src="{%  static 'img/curriculum/football.jpg' %}" alt="fine-arts" />
+								<h5>FOOTBALL COACH AT PATHSHALA</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>LENORE DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Head Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix visible-sm"></div>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>JOHN DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Assistant Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<h5>PATHSHALA FOOTBALL SCHEDULE</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<table class="academic-calendar">
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Sep 29, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Inter School Football Match
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 21, 2017 - Sat, Apr 22, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Football Match Preperation Camp
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 23, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											School Football Teacm Selection
+										</td>
+									</tr>
+									
+								</table>
+							</div>
+							<h4><i class="fa fa-grav"></i>BASEBALL</h4>
+							<div class="accordion-inner">
+								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+								</p>
+								<img src="{%  static 'img/curriculum/baseball.jpg' %}" alt="fine-arts" />
+								<h5>BASEBALL COACH AT PATHSHALA</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>LENORE DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Head Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix visible-sm"></div>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>JOHN DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Assistant Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<h5>PATHSHALA FOOTBALL SCHEDULE</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<table class="academic-calendar">
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Sep 29, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Inter School Football Match
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 21, 2017 - Sat, Apr 22, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Football Match Preperation Camp
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 23, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											School Football Teacm Selection
+										</td>
+									</tr>
+									
+								</table>
+							</div>
+							<h4><i class="fa fa-trophy"></i>TENNIS</h4>
+							<div class="accordion-inner">
+								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+								</p>
+								<img src="{%  static 'img/curriculum/football.jpg' %}" alt="fine-arts" />
+								<h5>FOOTBALL COACH AT PATHSHALA</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>LENORE DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Head Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix visible-sm"></div>
+								<div class="col-md-6 clear-padding academic-teachers">
+									<div class="col-sm-4 teacher-img">
+										<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
+									</div>
+									<div class="col-sm-8 teacher-info">
+										<h5><i class="fa fa-user"></i>JOHN DOE</h5>
+										<p><i class="fa fa-graduation-cap"></i>Assistant Coach</p>
+										<p><i class="fa fa-phone"></i>+1 9876543210</p>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<h5>PATHSHALA FOOTBALL SCHEDULE</h5>
+								<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								<table class="academic-calendar">
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Sep 29, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Inter School Football Match
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 21, 2017 - Sat, Apr 22, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Football Match Preperation Camp
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<i class="fa fa-calendar"></i>Mon, Apr 23, 2017
+										</td>
+									</tr>
+									<tr>
+										<td>
+											School Football Teacm Selection
+										</td>
+									</tr>
+									
+								</table>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Footer Section -->
+		<div class="row footer-row">
+			<div class="container">
+				<div class="school-logo">
+					<i class="fa fa-graduation-cap"></i>
+					<h3>PATHSHALA</h3>
+					<h6>BETTER WAY TO LEARN & GROW</h6>
+				</div>
+				<div class="col-md-4 col-sm-6 footer-item">
+					<h5>CONTACT US</h5>
+					<p><i class="fa fa-map-marker"></i>3768 Seabury Ct, Burlington, NC, 27215</p>
+					<p><i class="fa fa-mobile"></i> +1 8910000891</p>
+					<p><i class="fa fa-envelope"></i>email@pathshala.com</p>
+				</div>
+				<div class="col-md-2 col-sm-6 footer-item">
+					<h5>QUICK LINKS</h5>
+					<div class="quick-link-box">
+						<a href="#"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
+						<a href="#"><i class="fa fa-users"></i>ADMISSION</a>
+						<a href="#"><i class="fa fa-calendar"></i>EVENTS</a>
+						<a href="#"><i class="fa fa-thumbs-up"></i>CAMPUS LIFE</a>
+					</div>
+				</div>
+				<div class="clearfix visible-sm"></div>
+				<div class="col-md-3 col-sm-6 footer-item">
+					<h5>SCHOOL TIMINGS</h5>
+					<p><i class="fa fa-clock-o"></i> MON - FRI 9:00 AM - 3:00 PM</p>
+					<p><i class="fa fa-clock-o"></i> SAT 9:00 AM - 1:00 PM</p>
+				</div>
+				<div class="col-md-3 col-sm-6 footer-item">
+					<h5>SUBSCRIBE</h5>
+					<div class="footer-subscribe">
+						<i class="fa fa-envelope"></i></a><input type="text" placeholder="example@pathshala.com" />
+					</div>
+					<a href="#" class="subscribe-link"><i class="fa fa-paper-plane"></i>SUBMIT</a>
+				</div>
+			</div>
+			<div class="footer-social-row">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-google-plus"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+			</div>
+		</div>
+		
+		<!-- Login Modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="loginModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content login-modal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"><i class="fa fa-sign-in"></i>LOGIN</h4>
+					</div>
+					<div class="modal-body">
+						<div>
+							<label><i class="fa fa-user"></i>USERNAME/EMAIL</label>
+							<input class="form-control" type="text" placeholder="Username/Email">
+						</div>
+						<div>
+							<label><i class="fa fa-key"></i>PASSWORD</label>
+							<input class="form-control" type="password" placeholder="Password">
+						</div>
+						<a href="#" class="forgot-link">FORGOT PASSWORD?</a>
+						<a href="#" class="login-link"><i class="fa fa-sign-in"></i>LOGIN</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+        <!-- Scripts -->
+        <script src="{%  static 'js/jQuery_v3_2_0.min.js' %}"></script>
+		<script src="{%  static 'js/jquery-ui.min.js' %}"></script>
+        <script src="{%  static 'js/bootstrap.min.js' %}"></script>
+		<script src="{%  static 'plugins/owl.carousel.min.js' %}"></script>
+        <script src="{%  static 'js/js.js' %}"></script>
+		
+    </body>
+</html>
