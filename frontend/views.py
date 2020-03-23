@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import EventsNews
 from .models import FeaturedEventsNews
 from .models import Teachers
-from .models import News
+from .models import News, AcademicCalendar
 def index(request):
     eventnews = EventsNews.objects.all()
     eventtypes = EventsNews.objects.all().distinct('eventtype')
@@ -12,7 +12,8 @@ def index(request):
     news = News.objects.all()
     return render(request, "index.html", {'eventnews': eventnews,'news': news, 'eventtypes': eventtypes,'featuredevent':featuredevent, 'teachers': teachers})
 def academic(request):
-    return render(request,"academic.html")
+    teachers = Teachers.objects.all();
+    return render(request,"academic.html", {'teachers':teachers})
 def preschool(request):
     return render(request,"preschool.html")
 def preschoolsummer(request):
@@ -44,7 +45,8 @@ def academic_curriculum(request):
 
 
 def academic_calendar(request):
-    return render(request, 'academic-calendar.html')
+    calendar = AcademicCalendar.objects.all()
+    return render(request, 'academic-calendar.html', {'calendar':calendar})
 
 
 def curriculum(request):

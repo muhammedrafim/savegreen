@@ -58,22 +58,13 @@
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
-							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-graduation-cap"></i>ACADEMICS <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="academic.html"><i class="fa fa-certificate"></i>UPPER</a></li>
-                                    <li><a href="academic.html"><i class="fa fa-child"></i>MIDDLE</a></li>
-									<li><a href="academic.html"><i class="fa fa-puzzle-piece"></i>LOWER</a></li>
-									<li><a href="preschool.html"><i class="fa fa-cube"></i>PRESCHOOL</a></li>
-                                </ul>
+							<li>
+                                <a href="academic.html"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
                             </li>
                             <li><a href="admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
-							<li class="dropdown">
-                                <a href="events.html" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-calendar-check-o"></i>EVENTS <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="events.html"><i class="fa fa-calendar"></i>EVENTS</a></li>
-                                    <li><a href="event-single.html"><i class="fa fa-calendar-o"></i>EVENT SINGLE</a></li>
-                                </ul>
+							<li>
+                                <a href="events.html"><i class="fa fa-calendar-check-o"></i>EVENTS</a>
+
                             </li>
 							<li class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-dashboard"></i>DASHBOARD <b class="caret"></b></a>
@@ -100,7 +91,7 @@
 		<!-- Page Title Section -->
 		<div class="row page-title page-title-preschool">
 			<div class="container">
-				<h2><i class="fa fa-child"></i>PRESCHOOL</h2>
+				<h2><i class="fa fa-child"></i>CALENDAR</h2>
 			</div>
 		</div>
 		
@@ -122,171 +113,25 @@
 					<div class="academic-content-box">
 						<h3>PRESCHOOL ACADEMIC CALENDAR</h3>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-						<img class="curriculum-img" src="{$ static 'img/curriculum/preschool.jpg' %}" alt="preschool" />
+						<img class="curriculum-img" src="{% static 'img/curriculum/preschool.jpg' %}" alt="preschool" />
 						<div class="section-divider"></div>
 						<h3>ACADEMIC CALENDAR</h3>
 						<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 						<table class="academic-calendar">
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Mar 31, 2017 - Sat, Apr 20, 2017
+                            {% for foo in calendar %}
+                            <tr>
+								 <td>
+									<i class="fa fa-calendar"></i>{% if foo.start_date == foo.end_date %} {{ foo.start_date|date:"D" }},{{ foo.start_date|date:"M" }} {{ foo.start_date.day }},{{ foo.start_date.year }}
+                                 {% else %}
+                                 {{ foo.start_date|date:"D" }},{{ foo.start_date|date:"M" }} {{ foo.start_date.day }},{{ foo.start_date.year }} - {{ foo.end_date|date:"D" }},{{ foo.end_date|date:"M" }} {{ foo.end_date.day }},{{ foo.end_date.year }} {% endif %}
 								</td>
 							</tr>
-							<tr>
+                            <tr>
 								<td>
-									Admission for the Session 2017 - 2018.
+									{{ foo.title }}
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Apr 21, 2017 - Sat, Apr 22, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Freshman Induction Program for newly joined student.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Apr 23, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Commencement of the classes for 2017 - 2018 session
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, May 20, 2017 - Sat, May 25, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Summer camp for all the students.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, May 26, 2017 - Sat, Jul 25, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Summer break (School will remain closed)
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Jul 26, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Resume school after summer break
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Aug 20, 2017 - Sat, Sep 01, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Mid Term Examination.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Sep 02, 2017 - Sat, Sep 05, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Holidays (School will remain closed)
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Mar 31, 2017 - Sat, Apr 20, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Admission for the Session 2017 - 2018.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Apr 21, 2017 - Sat, Apr 22, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Freshman Induction Program for newly joined student.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Apr 23, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Commencement of the classes for 2017 - 2018 session
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, May 20, 2017 - Sat, May 25, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Summer camp for all the students.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, May 26, 2017 - Sat, Jul 25, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Summer break (School will remain closed)
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Jul 26, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Resume school after summer break
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Aug 20, 2017 - Sat, Sep 01, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Mid Term Examination.
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<i class="fa fa-calendar"></i>Mon, Sep 02, 2017 - Sat, Sep 05, 2017
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Holidays (School will remain closed)
-								</td>
-							</tr>
+                        {% endfor %}
 						</table>
 						<a href="#" class="download-calendar"><i class="fa fa-download"></i>DOWNLOAD CALENDAR</a>
 					</div>
@@ -365,11 +210,11 @@
 		</div>
 		
         <!-- Scripts -->
-        <script src="{$ static 'js/jQuery_v3_2_0.min.js' %}"></script>
-		<script src="{$ static 'js/jquery-ui.min.js' %}"></script>
-        <script src="{$ static 'js/bootstrap.min.js' %}"></script>
-		<script src="{$ static 'plugins/owl.carousel.min.js' %}"></script>
-        <script src="{$ static 'js/js.js' %}"></script>
+        <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
+		<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'plugins/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/js.js' %}"></script>
 		
     </body>
 </html>

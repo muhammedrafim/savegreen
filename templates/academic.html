@@ -132,49 +132,22 @@
 						<div class="section-divider"></div>
 						<h3>PATHSHALA TEACHERS</h3>
 						<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-						<div class="col-md-6 clear-padding academic-teachers">
+						{% for teacher in teachers %}
+                        <div class="col-md-6 clear-padding academic-teachers">
 							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
+								<img src= "{{ teacher.image.url }}" style="width: 120px; max-height: 120px;" alt="teacher"/>
 							</div>
 							<div class="col-sm-8">
-								<h5><i class="fa fa-user"></i>LENORE DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
+								<h5><i class="fa fa-user"></i>{{teacher.name.upper}}</h5>
+								<p><i class="fa fa-graduation-cap"></i>{{teacher.qualification}}</p>
+								<p><i class="fa fa-phone"></i>{{teacher.mobile}}</p>
 							</div>
 						</div>
 						<div class="clearfix visible-sm"></div>
-						<div class="col-md-6 clear-padding academic-teachers">
-							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
-							</div>
-							<div class="col-sm-8">
-								<h5><i class="fa fa-user"></i>JOHN DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
-							</div>
-						</div>
-						<div class="col-md-6 clear-padding academic-teachers">
-							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
-							</div>
-							<div class="col-sm-8">
-								<h5><i class="fa fa-user"></i>JOHN DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
-							</div>
-						</div>
+                         {% endfor %}
+
 						<div class="clearfix visible-sm"></div>
-						<div class="col-md-6 clear-padding academic-teachers">
-							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
-							</div>
-							<div class="col-sm-8">
-								<h5><i class="fa fa-user"></i>LENORE DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
-							</div>
-						</div>
-					</div>
+                    </div>
 				</div>
 			</div>
 		</div>
