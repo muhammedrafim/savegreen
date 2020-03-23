@@ -21,7 +21,9 @@ def preschoolsummer(request):
 def admission(request):
     return render(request,"admission.html")
 def events(request):
-    return render(request,"events.html")
+    events = EventsNews.objects.all()
+    featuredevent = FeaturedEventsNews.objects.all()
+    return render(request,"events.html", {'events' : events, 'featuredevent': featuredevent})
 def eventssingle(request):
     return render(request, "event-single.html")
 def gallery(request):

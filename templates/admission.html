@@ -19,7 +19,78 @@
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{%  static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+        <style>
+            .register-now {
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	padding: 10px 35px;
+                background: #27AE60;
+	border-radius: 5px;
+	transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
 
+}
+.register-now:hover {
+	background: #0b0b0b;
+	color: #27AE60;
+}
+.register-now  i {
+	margin-right: 5px;
+}
+           .flip-box {
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  border: 2px solid #f1f1f1;
+               border-radius: 15px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-box-front {
+  background-color: #bbb;
+  color: black;
+    border-radius: 15px;
+}
+
+/* Style the back side */
+.flip-box-back {
+  background-color: #ebebeb;
+color: #686868;
+  padding: 5px;
+    font-family: Roboto;
+  transform: rotateY(180deg);
+    border-radius: 15px;
+}
+        </style>
     </head>
     <body>
          <div class="row nav-row trans-menu">
@@ -167,28 +238,72 @@
 				</div>
 			</div>
 		</div>
-         <div class="row section-row">
-             <div class="container">
-                    <form>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1" class="col-sm-2">Email address</label>
-                        <input type="email" class="form-control col-sm-6" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+         <!-- Admision form -->
+            <div class="admission-form" style="height: 700px; width: 400px; padding: 10px;" >
+			<div class="container" style="padding: 10px">
+                <div class="col-sm-12 col-md-8" style="padding: 40px 30px 0px 0px;">
+                <div class="flip-box">
+                              <div class="flip-box-inner">
+                                 <div class="flip-box-front">
+                                    <img src="{% static 'img/curriculum/event-045-1024x402-1.jpg' %}" alt="Paris" style="width:100%; height: 100%; border-radius: 15px">
+                                     <div style="position: absolute;top: 50%; left: 50%;transform: translate(-50%, -50%);"><h2 style="font-size: 30px;font-weight: bold">Register Form</h2></div>
+                                 </div>
+                                  <div class="flip-box-back">
+                                 <h2 style="text-align: center;font-size: 30px;color: #0b0b0b">Registration Form</h2>
+                                <p style="color: #686868;font-size: 15px">This academic year (2019-20) we are admitting students to Play Class, Kindergarten and Standards 1 to 8. We follow EYFS System in KG classes &amp; CBSE curriculum for Grade 1 to 8. Please fill in the registration form below for us to get in touch with you.</p>
+                                </div>
+                              </div>
+                     </div>
+                    </div>
+                <div class="col-sm-12 col-md-8" style="padding: 0px 30px 0px 0px;">
+                <form>
+                      <div class="form-group" style="border-radius: 5px;margin-top: 5px">
+                          <input type="text" class="form-control" style="background: #eeeeee"  aria-describedby="emailHelp" placeholder="Enter Your Name">
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <div class="form-group" style="border-radius: 5px;">
+                          <input type="email" class="form-control" style="background: #eeeeee" placeholder="Your Emial">
                       </div>
-                      <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                             <div class="form-group" style="border-radius: 5px;">
+                          <input type="text" class="form-control" style="background: #eeeeee"  placeholder="Enter Your Number">
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                             <div class="form-group" style="border-radius: 5px;">
+                          <input type="Text" class="form-control" style="background: #eeeeee" placeholder="Enter Your Child Name">
+                      </div>
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label>Specify the class to which admission is sought :</label>
+                        </div>
+                            <div class="form-group" style="margin-bottom: 35px">
+                                <label class="radio-inline">
+                          <input type="radio" name="optradio" >Play school
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="optradio">Kinder Garden
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="optradio">Grade 1
+                        </label>
+                                   <label class="radio-inline">
+                          <input type="radio" name="optradio" checked>Grade 2
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="optradio">Grade 3
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="optradio">Grade 5
+                        </label>
+                                   <label class="radio-inline">
+                          <input type="radio" name="optradio" >Grade 6
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="optradio">grade 7
+                        </label>
+                                </div>
+                    <a class="register-now" href="#"><i class="fa fa-edit"></i>REGISTER NOW</a>
                     </form>
+            </div>
+                </div>
+            </div>
 
-             </div>
-
-         </div>
 		
 		<!-- Teachers row -->
 		<div class="row section-row">

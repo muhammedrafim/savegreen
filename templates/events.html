@@ -98,18 +98,19 @@
 		<div class="row section-row evets-row">
 			<div class="container">
 				<div class="col-md-8 left-event-items">
-					<div class="event-item">
+                    {% for event in events %}
+                    <div class="event-item">
 						<div class="col-sm-7">
 							<div class="event-date">
-								<p><span>10</span> SEP</p>
+								<p><span>{{ event.date.day }}</span> {{ event.date|date:"M" }}</p>
 							</div>
-							<h3>Annual Science Fest</h3>
-							<h6><i class="fa fa-map-marker"></i>Sciene Building</h6>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+							<h3>{{ event.title }}</h3>
+							<h6><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
+							<p>{{ event.description }}</p>
 						</div>
 						<div class="col-sm-5 event-item-img">
 							<div class="event-img">
-								<img src="{%  static 'img/news/news-sm1.jpg' %}" alt="event" />
+								<img src="{{ event.image.url }}" alt="event" />
 								<div class="event-detail-link">
 									<a href="#">VIEW DETAILS</a>
 								</div>
@@ -117,82 +118,7 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="event-item">
-						<div class="col-sm-7">
-							<div class="event-date">
-								<p><span>21</span> AUG</p>
-							</div>
-							<h3>Inter School Sports Meet</h3>
-							<h6><i class="fa fa-map-marker"></i>Playground</h6>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col-sm-5 event-item-img">
-							<div class="event-img">
-								<img src="{%  static 'img/news/news-sm2.jpg' %}" alt="event" />
-								<div class="event-detail-link">
-									<a href="#">VIEW DETAILS</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="event-item">
-						<div class="col-sm-7">
-							<div class="event-date">
-								<p><span>01</span> AUG</p>
-							</div>
-							<h3>Rugby Match</h3>
-							<h6><i class="fa fa-map-marker"></i>Rugby</h6>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col-sm-5 event-item-img">
-							<div class="event-img">
-								<img src="{%  static 'img/news/news-sm3.jpg' %}" alt="event" />
-								<div class="event-detail-link">
-									<a href="#">VIEW DETAILS</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="event-item">
-						<div class="col-sm-7">
-							<div class="event-date">
-								<p><span>29</span> JUL</p>
-							</div>
-							<h3>Inter School Sports Meet</h3>
-							<h6><i class="fa fa-map-marker"></i>Playground</h6>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col-sm-5 event-item-img">
-							<div class="event-img">
-								<img src="{%  static 'img/news/news-sm1.jpg' %}" alt="event" />
-								<div class="event-detail-link">
-									<a href="#">VIEW DETAILS</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="event-item">
-						<div class="col-sm-7">
-							<div class="event-date">
-								<p><span>20</span> JUL</p>
-							</div>
-							<h3>Annual Science Fest</h3>
-							<h6><i class="fa fa-map-marker"></i>Sciene Building</h6>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col-sm-5 event-item-img">
-							<div class="event-img">
-								<img src="{%  static 'img/news/news-sm2.jpg' %}" alt="event" />
-								<div class="event-detail-link">
-									<a href="#">VIEW DETAILS</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+                    {% endfor %}
 					<div class="event-control-box">
 						<div class="pull-left">
 							<a href="#">
@@ -210,18 +136,20 @@
 					</div>
 				</div>
 				<div class="col-md-4 right-event-items">
+                    {% for event in featuredevent %}
 					<div class="event-item">
 						<img src="{%  static 'img/news/news-lg3.jpg' %}" alt="event" />
 					</div>
 					<div class="featured-event">
 						<div class="event-date">
-							<p><span>10</span> SEP</p>
+							<p><span>{{event.date.day}}</span> {{ event.date|date:"M" }}</p>
 						</div>
-						<h3>Inter School Sports Meet</h3>
-						<h6><i class="fa fa-map-marker"></i>Playground</h6>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+						<h3>{{ event.title }}</h3>
+						<h6><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
+						<p>{{ event.description }}</p>
 						<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
 					</div>
+                    {% endfor %}
 					<div class="event-item categories-list">
 						<div class="sidebar-box">
 							<h5><i class="fa fa-list"></i>CATEGORIES</h5>
