@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import EventsNews
-from .models import FeaturedEventsNews
-from .models import Teachers
-from .models import News, AcademicCalendar
+from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail
+from django.core.paginator import Paginator
+
+
 def index(request):
     eventnews = EventsNews.objects.all()
     eventtypes = EventsNews.objects.all().distinct('eventtype')
@@ -20,12 +20,18 @@ def preschoolsummer(request):
     return render(request,"preschool-summer-camp.html")
 def admission(request):
     return render(request,"admission.html")
+
 def events(request):
-    events = EventsNews.objects.all()
+    events = EventDetail.objects.all()
     featuredevent = FeaturedEventsNews.objects.all()
-    return render(request,"events.html", {'events' : events, 'featuredevent': featuredevent})
+    paginator = Paginator(events, 3)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request,"events.html", {'posts' : posts, 'featuredevent': featuredevent})
+
 def eventssingle(request):
     return render(request, "event-single.html")
+
 def gallery(request):
     return render(request, "gallery.html")
 def about(request):
@@ -53,3 +59,9 @@ def academic_calendar(request):
 
 def curriculum(request):
     return render(request, 'curriculum.html')
+
+
+def eventdetail(request, event_id):
+    event = EventDetail.objects.get(id=event_id)
+    images = Imagegallery.objects.all().filter(event_id=event_id)
+    return render(request , 'event-single.html', {"events": event ,"images" : images })

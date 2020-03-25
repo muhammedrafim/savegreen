@@ -98,42 +98,48 @@
 		<div class="row section-row evets-row">
 			<div class="container">
 				<div class="col-md-8 left-event-items">
-                    {% for event in events %}
+                    {% for event in posts %}
                     <div class="event-item">
 						<div class="col-sm-7">
 							<div class="event-date">
-								<p><span>{{ event.date.day }}</span> {{ event.date|date:"M" }}</p>
+								<p><span>{{ event.datetime.day }}</span> {{ event.datetime|date:"M" }}</p>
 							</div>
 							<h3>{{ event.title }}</h3>
 							<h6><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
-							<p>{{ event.description }}</p>
+							<p>{{ event.details }}</p>
 						</div>
 						<div class="col-sm-5 event-item-img">
 							<div class="event-img">
-								<img src="{{ event.image.url }}" alt="event" />
+								<img src="{{ event.displayImage.url }}" style="max-height: 210px; width: 100%" alt="event" />
 								<div class="event-detail-link">
-									<a href="#">VIEW DETAILS</a>
+									<a href="{% url 'event' event.id %}" method="POST">VIEW DETAILS</a>
 								</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
                     {% endfor %}
-					<div class="event-control-box">
-						<div class="pull-left">
-							<a href="#">
-								<i class="fa fa-arrow-left"></i>
-								PREVIOUS
-							</a>
+                    <div class="event-control-box" style="text-align: center;">
+                        <div class="pull-left">
+							 {% if posts.has_previous %}
+                                <a href="?page=1">&laquo; FIRST</a>
+                                <a href="?page={{ posts.previous_page_number }}"><i class="fa fa-arrow-left"></i>PREVIOUS</a>
+                         {% endif %}
+
 						</div>
-						<div class="pull-right">
-							<a href="#">
-								NEXT
-								<i class="fa fa-arrow-right"></i>
-							</a>
+                        <div class="pull-right">
+                            {% if posts.has_next %}
+                     <a href="?page={{ posts.next_page_number }}">NEXT <i class="fa fa-arrow-right"></i></a>
+                          <a href="?page={{ posts.paginator.num_pages }}">LAST &raquo;</a>
+                             {% endif %}
 						</div>
 						<div class="clearfix"></div>
 					</div>
+
+
+                    <div class="pull-mid" style="text-align: center;margin: auto">
+                       Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                    </div>
 				</div>
 				<div class="col-md-4 right-event-items">
                     {% for event in featuredevent %}
@@ -150,19 +156,7 @@
 						<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
 					</div>
                     {% endfor %}
-					<div class="event-item categories-list">
-						<div class="sidebar-box">
-							<h5><i class="fa fa-list"></i>CATEGORIES</h5>
-							<div class="inner-content-box">
-								<ul class="list-group">
-									<li class="list-group-item"><a href="#"><i class="fa fa-graduation-cap"></i>ACADEMICS</a><span class="badge">12</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-users"></i>ADMISSION</a><span class="badge">20</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-trophy"></i>SPORTS</a><span class="badge">12</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-code"></i>MISCELLANEOUS</a><span class="badge">12</span></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+
 				</div>
 				<div class="clearfix"></div>
 			</div>

@@ -18,6 +18,15 @@
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+        <style>
+            .left-event-items .grid .event-item {
+	padding: 30px 0;
+	border-bottom: 1px solid #b6b6b6;
+}
+            .left-event-items .grid .event-item:last-child {
+	border: 0;
+}
+        </style>
 
     </head>
     <body>
@@ -170,10 +179,10 @@
 						<div class="pull-mid">
 							<ul class="nav nav-tabs">
                                 {% for type in eventtypes %}
-								<li data-filter=".{{type.eventtype}}">
-									<a data-toggle="tab"><i class="{% if type.eventtype == 'academics' %} fa fa-graduation-cap {%endif %}
-                                        {% if type.eventtype == 'admission' %} fa fa-users{% endif %}
-                                        {% if type.eventtype == 'sports' %}fa fa-trophy {% endif %} "></i><span> {{type.eventtype.upper}} </span></a>
+								<li data-filter=".{{type.eventtype }}">
+									<a data-toggle="tab"><i class="{% if type.eventtype == 'ACADEMIC' %} fa fa-graduation-cap {%endif %}
+                                        {% if type.eventtype == 'ADMISSION' %} fa fa-users{% endif %}
+                                        {% if type.eventtype == 'SPORTS' %}fa fa-trophy {% endif %} "></i><span> {{type.eventtype}} </span></a>
 								</li>
                                 {% endfor %}
 							</ul>
@@ -199,9 +208,9 @@
 									</div>
 									<div class="col-sm-5 event-item-img">
 										<div class="event-img">
-											<img src="{{ event.image.url }}"  alt="event" />
+											<img src="{{ event.image.url }}"  style="max-height: 210px;width: 100%" alt="event" />
 											<div class="event-detail-link">
-												<a href="#">VIEW DETAILS</a>
+												<a href="events.html">VIEW DETAILS</a>
 											</div>
 										</div>
 									</div>

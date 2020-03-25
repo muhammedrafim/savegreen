@@ -239,8 +239,11 @@ color: #686868;
 			</div>
 		</div>
          <!-- Admision form -->
-            <div class="admission-form" style="height: 700px; width: 400px; padding: 10px;" >
-			<div class="container" style="padding: 10px">
+            <div class="admission-form" style="height: 600px; min-width: 400px;" >
+			<div class="container">
+                <div class="col-md-3" style="padding: 40px 30px 0px 0px";>
+                    
+                </div>
                 <div class="col-sm-12 col-md-8" style="padding: 40px 30px 0px 0px;">
                 <div class="flip-box">
                               <div class="flip-box-inner">
@@ -255,24 +258,26 @@ color: #686868;
                               </div>
                      </div>
                     </div>
+                      <div class="col-md-3">
+                      </div>
                 <div class="col-sm-12 col-md-8" style="padding: 0px 30px 0px 0px;">
                 <form>
                       <div class="form-group" style="border-radius: 5px;margin-top: 5px">
-                          <input type="text" class="form-control" style="background: #eeeeee"  aria-describedby="emailHelp" placeholder="Enter Your Name">
+                          <input type="text" class="form-control" required style="background: #eeeeee;border: 0px;"  aria-describedby="emailHelp" placeholder="Enter Your Name">
                       </div>
                       <div class="form-group" style="border-radius: 5px;">
-                          <input type="email" class="form-control" style="background: #eeeeee" placeholder="Your Emial">
+                          <input type="email" class="form-control" required style="background: #eeeeee;border: 0px;" placeholder="Your Emial">
                       </div>
                              <div class="form-group" style="border-radius: 5px;">
-                          <input type="text" class="form-control" style="background: #eeeeee"  placeholder="Enter Your Number">
+                          <input type="text" class="form-control" required style="background: #eeeeee;border: 0px;"  placeholder="Enter Your Number">
                       </div>
                              <div class="form-group" style="border-radius: 5px;">
-                          <input type="Text" class="form-control" style="background: #eeeeee" placeholder="Enter Your Child Name">
+                          <input type="Text" class="form-control" required style="background: #eeeeee;border: 0px;" placeholder="Enter Your Child Name">
                       </div>
                         <div class="form-group" style="margin-bottom: 0px">
                             <label>Specify the class to which admission is sought :</label>
                         </div>
-                            <div class="form-group" style="margin-bottom: 35px">
+                            <div class="form-group" style="margin-bottom: 5px">
                                 <label class="radio-inline">
                           <input type="radio" name="optradio" >Play school
                         </label>
@@ -298,7 +303,9 @@ color: #686868;
                           <input type="radio" name="optradio">grade 7
                         </label>
                                 </div>
-                    <a class="register-now" href="#"><i class="fa fa-edit"></i>REGISTER NOW</a>
+                    <div class="form-group">
+                    <input class="register-now" style="border-radius: 10px;margin-top: 5px" type="submit" value="REGISTER NOW">
+                        </div>
                     </form>
             </div>
                 </div>

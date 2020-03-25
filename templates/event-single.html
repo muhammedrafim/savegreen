@@ -18,7 +18,102 @@
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{%  static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+        <style>
+            * {box-sizing:border-box}
 
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+        </style>
     </head>
     <body>
         <div class="row nav-row trans-menu">
@@ -56,23 +151,14 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
+                            <li><a href="http://localhost:8000/home/"><i class="fa fa-home"></i>HOME</a></li>
 							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-graduation-cap"></i>ACADEMICS <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="academic.html"><i class="fa fa-certificate"></i>UPPER</a></li>
-                                    <li><a href="academic.html"><i class="fa fa-child"></i>MIDDLE</a></li>
-									<li><a href="academic.html"><i class="fa fa-puzzle-piece"></i>LOWER</a></li>
-									<li><a href="preschool.html"><i class="fa fa-cube"></i>PRESCHOOL</a></li>
-                                </ul>
+                                <a href="http://localhost:8000/home/academic.html" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
+
                             </li>
-                            <li><a href="admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
+                            <li><a href="http://localhost:8000/home/admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
 							<li class="dropdown">
-                                <a href="events.html" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-calendar-check-o"></i>EVENTS <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="events.html"><i class="fa fa-calendar"></i>EVENTS</a></li>
-                                    <li><a href="event-single.html"><i class="fa fa-calendar-o"></i>EVENT SINGLE</a></li>
-                                </ul>
+                                <a href="http://localhost:8000/home/events.html" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-calendar-check-o"></i>EVENTS</a>
                             </li>
 							<li class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-dashboard"></i>DASHBOARD <b class="caret"></b></a>
@@ -108,70 +194,44 @@
 			<div class="container">
 				<div class="col-md-8 left-event-items">
 					<div class="col-xs-12 event-single-wrapper">
-						<h3>ANNUAL FINE ARTS WORKSHOP</h3>
+						<h3>{{ events.title }}</h3>
 						<h5>
-							<span><i class="fa fa-calendar"></i>21 JUN, 2017</span>
-							<span><i class="fa fa-clock-o"></i>11:00 - 14:00</span>
-							<span><i class="fa fa-map-marker"></i>Main Auditorium</span>
+							<span><i class="fa fa-calendar"></i>{{ events.datetime.day }} {{ events.datetime|date:"M" }}, {{ events.datetime.year }}</span>
+							<span><i class="fa fa-clock-o"></i>{{ events.datetime.hour }}:{{ events.datetime.minute }}</span>
+							<span><i class="fa fa-map-marker"></i>{{events.location}}</span>
 						</h5>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-						<img class="featured-img" src="{%  static 'img/curriculum/fine-arts.jpg' %}" alt="event-single">
-						<div class="section-divider"></div>
-						<h3>MAIN ARTISTS IN EVENT</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-						<div class="col-md-6 clear-padding academic-teachers">
-							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent1.jpg' %}" alt="teacher"/>
-							</div>
-							<div class="col-sm-8 teacher-info">
-								<h5><i class="fa fa-user"></i>LENORE DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
-							</div>
-						</div>
-						<div class="clearfix visible-sm"></div>
-						<div class="col-md-6 clear-padding academic-teachers">
-							<div class="col-sm-4 teacher-img">
-								<img src= "{%  static 'img/parent/parent2.jpg' %}" alt="teacher"/>
-							</div>
-							<div class="col-sm-8 teacher-info">
-								<h5><i class="fa fa-user"></i>JOHN DOE</h5>
-								<p><i class="fa fa-graduation-cap"></i>BSc. Science</p>
-								<p><i class="fa fa-phone"></i>+1 9876543210</p>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<div class="section-divider"></div>
-						<h3>EVENT SCHEDULE</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-						<div id="pathshalaAccordion" class="pathshala-accordion">
-							<h4 class="accordion-header"><i class="fa fa-clock-o"></i>DAY 1</h4>
-							<div class="accordion-inner">
-								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-								</p>
-							</div>
-							<h4 class="accordion-header"><i class="fa fa-clock-o"></i>DAY 2</h4>
-							<div class="accordion-inner">
-								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-								</p>
-							</div>
-							<h4 class="accordion-header"><i class="fa fa-clock-o"></i>DAY 3</h4>
-							<div class="accordion-inner">
-								<p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-								</p>
-							</div>
-						</div>
-					</div>
+						<p> {{events.description}}</p>
+						<!-- Slideshow container -->
+                                <div class="slideshow-container">
+                                {% for image in images %}
+                                  <!-- Full-width images with number and caption text -->
+                                  <div class="mySlides">
+                                    <div class="numbertext" style="color: #0b0b0b">{{ forloop.counter }}/ {{ images.count }}</div>
+                                    <img src="{{image.image.url}}" style="width:100%;max-height: 600px;">
+                                    <div class="text">Caption Text</div>
+                                  </div>
+                                    {% endfor %}
+
+
+                                  <!-- Next and previous buttons -->
+                                  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                </div>
+                                <br>
+
+                                <!-- The dots/circles -->
+
+
+                                <div style="text-align:center">
+
+                                    {% for image in images%}
+                                  <span class="dot" onclick="currentSlide({{forloop.counter}})"></span>
+                                    {% endfor %}
+
+                                </div>
+                        <div class="clearfix"></div>
+
+                    </div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="col-md-4 right-event-items">
@@ -187,19 +247,7 @@
 						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 						<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
 					</div>
-					<div class="event-item categories-list">
-						<div class="sidebar-box">
-							<h5><i class="fa fa-list"></i>CATEGORIES</h5>
-							<div class="inner-content-box">
-								<ul class="list-group">
-									<li class="list-group-item"><a href="#"><i class="fa fa-graduation-cap"></i>ACADEMICS</a><span class="badge">12</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-users"></i>ADMISSION</a><span class="badge">20</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-trophy"></i>SPORTS</a><span class="badge">12</span></li>
-									<li class="list-group-item"><a href="#"><i class="fa fa-code"></i>MISCELLANEOUS</a><span class="badge">12</span></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -281,6 +329,36 @@
         <script src="{%  static 'js/bootstrap.min.js' %}"></script>
 		<script src="{%  static 'plugins/owl.carousel.min.js' %}"></script>
         <script src="{%  static 'js/js.js' %}"></script>
-		
+		<script type="text/javascript">
+            var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+        </script>
     </body>
 </html>

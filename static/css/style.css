@@ -749,9 +749,13 @@ img {
 	padding: 30px 0;
 	border-bottom: 1px solid #b6b6b6;
 }
+
+
+
 .left-event-items .event-item:last-child {
 	border: 0;
 }
+
 .event-item h3 {
 	margin: 15px 0;
 	font-weight: 600;
