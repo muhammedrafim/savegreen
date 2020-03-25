@@ -49,3 +49,10 @@ class EventDetail(models.Model):
 class Imagegallery(models.Model):
     image = models.ImageField(upload_to='pics')
     event = models.ForeignKey(EventDetail, on_delete=models.CASCADE)
+
+class Gallery(models.Model):
+    title = models.TextField()
+    displayimage = models.ImageField(upload_to='gallery')
+class maingalleryimages(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery')

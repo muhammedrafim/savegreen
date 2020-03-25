@@ -19,6 +19,7 @@ urlpatterns = [
     path('academic-curriculum.html', views.academic_curriculum),
     path('academic-calendar.html', views.academic_calendar),
     path('curriculum.html', views.curriculum),
-    path('event/<event_id>/',views.eventdetail, name='event')
+    path('event/<event_id>/',views.eventdetail, name='event'),
+    path('gallery/<gallery_id>/', views.showgallery, name='gallery')
 
 ]

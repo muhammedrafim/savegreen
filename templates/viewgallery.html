@@ -41,7 +41,7 @@
 						</div>-->
 					</div>
 					<div class = "clearfix"></div>
-				</div> 
+				</div>
 				<div class = "clearfix"></div>
                 <nav id="pathshalaNavbar" class="navbar navbar-default" role="navigation">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,13 +57,13 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
+                            <li><a href="http://localhost:8000/home"><i class="fa fa-home"></i>HOME</a></li>
 							    <li>
-                                <a href="academic.html"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
+                                <a href="http://localhost:8000/home/academic.html"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
                                   </li>
-                            <li><a href="admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
+                            <li><a href="http://localhost:8000/home/admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
 							<li>
-                                <a href="events.html"><i class="fa fa-calendar-check-o"></i>EVENTS</a>
+                                <a href="http://localhost:8000/home/events.html"><i class="fa fa-calendar-check-o"></i>EVENTS</a>
 
                             </li>
 							<li class="dropdown">
@@ -77,9 +77,9 @@
 							<li class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-file"></i>PAGES <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="gallery.html"><i class="fa fa-picture-o"></i>CAMPUS GALLERY</a></li>
-									<li><a href="about.html"><i class="fa fa-info-circle"></i>ABOUT</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-phone-square"></i>CONTACT US</a></li>
+                                    <li><a href="http://localhost:8000/home/gallery.html"><i class="fa fa-picture-o"></i>CAMPUS GALLERY</a></li>
+									<li><a href="http://localhost:8000/home/about.html"><i class="fa fa-info-circle"></i>ABOUT</a></li>
+                                    <li><a href="http://localhost:8000/home/contact.html"><i class="fa fa-phone-square"></i>CONTACT US</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -87,41 +87,40 @@
                 </nav>
             </div>
         </div>
-		
+
 		<!-- Page Title Section -->
 		<div class="row page-title page-title-about">
 			<div class="container">
 				<h2><i class="fa fa-picture-o"></i>CAMPUS GALLERY</h2>
 			</div>
 		</div>
-		
+
 		<!-- START: GALLERY -->
 		<div class="row gallery-row">
 			<div class="container clear-padding">
 				<div class="image-set">
-                    {% for item in gallery %}
+                    {% for item in images %}
 					<div class="col-md-4 col-sm-4">
 						<div class="image-wrapper">
-							<img src="{{ item.displayimage.url }}" alt="Cruise">
-                            <div style="position: absolute;top: 50%; left: 50%;transform: translate(-50%, -50%);"><h2 style="color:#003366;font-size: 30px;">{{ item.title }}</h2></div>
+							<img src="{{ item.image.url }}" alt="Cruise">
                             <div class="img-caption">
 								<div class="link">
-                                    <a title="Fine Arts" href="{%  url 'gallery' item.id %}">
-										<i class="fa fa-picture-o"></i>
+                                    <a title="{{ item.gallery.title }}" href="{{ item.image.url }}">
+										<i class="fa fa-plus"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
-                    {% if forloop.counter|divisibleby:3 %}
+                        {% if forloop.counter|divisibleby:3 %}
                     <div class="clearfix"></div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
 			</div>
 		</div>
 		<!-- END: GALLERY -->
-			
+
 		<!-- Know More Info & Admission apply row -->
 		<div class="row apply-know-row">
 			<div class="container">
@@ -139,7 +138,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Footer Section -->
 		<div class="row footer-row">
 			<div class="container">
@@ -184,7 +183,7 @@
 				<a href="#"><i class="fa fa-linkedin"></i></a>
 			</div>
 		</div>
-		
+
 		<!-- Login Modal -->
 		<!-- Modal -->
 		<div class="modal fade" id="loginModal" role="dialog">
@@ -209,13 +208,22 @@
 				</div>
 			</div>
 		</div>
-		
+
         <!-- Scripts -->
         <script src="{%  static 'js/jQuery_v3_2_0.min.js' %}"></script>
         <script src="{%  static 'js/bootstrap.min.js' %}"></script>
 		<script src="{%  static 'plugins/owl.carousel.min.js' %}"></script>
 		<script src="{%  static 'plugins/jquery.magnific-popup.min.js' %}"></script>
         <script src="{%  static 'js/js.js' %}"></script>
-
+		<script>
+			jQuery(document).ready(function($) {
+				"use strict";
+				$('.image-set').magnificPopup({
+					  delegate: 'a',
+					  type: 'image',
+					  gallery: {enabled:true}
+				});
+			});
+		</script>
     </body>
 </html>

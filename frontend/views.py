@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail
+from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail ,Gallery,maingalleryimages
 from django.core.paginator import Paginator
 
 
@@ -33,7 +33,8 @@ def eventssingle(request):
     return render(request, "event-single.html")
 
 def gallery(request):
-    return render(request, "gallery.html")
+    _gallery = Gallery.objects.all()
+    return render(request, "gallery.html" , {"gallery": _gallery})
 def about(request):
     return render(request, "about.html")
 def contact(request):
@@ -65,3 +66,10 @@ def eventdetail(request, event_id):
     event = EventDetail.objects.get(id=event_id)
     images = Imagegallery.objects.all().filter(event_id=event_id)
     return render(request , 'event-single.html', {"events": event ,"images" : images })
+
+
+def showgallery(request, gallery_id):
+    gallery = Gallery.objects.get(id=gallery_id)
+    images = maingalleryimages.objects.all().filter(gallery_id =gallery_id)
+    print(images)
+    return render(request, 'viewgallery.html', {"images": images} )
