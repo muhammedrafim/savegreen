@@ -15,7 +15,7 @@ urlpatterns = [
     path('dashboard/admin-add-subject.html', views.admin_add_subject),
     path('dashboard/admin-create-timetable.html', views.admin_create_timetable),
     path('dashboard/admin-class-timetable.html', views.admin_class_tintetable),
-    path('dashboard/teacher-attendence-report.html', views.admin_attendace),
-    path('dashboard/teacher-marks-report.html', views.admin_marks),
+    path('dashboard/admin-attendence-report.html', views.admin_attendace),
+    path('dashboard/admin-marks-report.html', views.admin_marks),
 
 ]
