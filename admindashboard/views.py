@@ -1,10 +1,12 @@
 from django.shortcuts import render
-
+from studentdashboard.models import Student,parent
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
 
-
+def add_student(request):
+    val1 = request.POST['address']
+    print(val1)
 def admin_add_student(request):
     return render(request, 'admin-add-student.html')
 
