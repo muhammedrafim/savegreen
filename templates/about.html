@@ -188,24 +188,23 @@
 					<h1>MEET OUR TEACHERS</h1>
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
 				</div>
-				<div class="teacher-item col-sm-4 teacher-about-row">
+                {% for teacher in teachers %}
+				<div class="teacher-item col-sm-4 teacher-about-row {% if forloop.counter > 3  %} test {% endif %}" style="{% if forloop.counter > 3 %}display: none; {% endif %} padding: 15px">
 					<div class="teacher-about-row-inner">
-						<h5><i class="fa fa-flask"></i>ORGANIC CHEMISTRY</h5>
+						<h5><i class="fa fa-heartbeat"></i>{{ teacher.subject }}</h5>
 						<div class="teacher-item-inner">
-							<p class="teacher-desc">
-								It is a long established fact that a reader will be distracted by the readable content 
-								of a page when looking at its layout.
+							<p class="teacher-desc">{{ teacher.description }}
 							</p>
 							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{%  static 'img/parent/parent2.jpg' %}" alt="teacher" />
+								<img src="{{ teacher.image.url }}" style="height: 76px;width: 100%;" alt="teacher" />
 							</div>
 							<div class="col-xs-8 teacher-details">
-								<p><strong>John Doe</strong></p>
-								<p><i>MSc. Chemistry</i></p>
+								<p><strong>{{ teacher.name }}</strong></p>
+								<p><i>{{ teacher.qualification }}</i></p>
 								<p>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-									<a href="#"><i class="fa fa-linkedin"></i></a>
+									<a href="{{ teacher.facebook }}"><i class="fa fa-facebook"></i></a>
+									<a href="{{ teacher.google }}"><i class="fa fa-google-plus"></i></a>
+									<a href="{{ teacher.linkedin }}"><i class="fa fa-linkedin"></i></a>
 								</p>
 							</div>
 							<div class="clearfix"></div>
@@ -215,59 +214,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="teacher-item col-sm-4 teacher-about-row">
-					<div class="teacher-about-row-inner">
-						<h5><i class="fa fa-flash"></i>ELECTROSTATICS</h5>
-						<div class="teacher-item-inner">
-							<p class="teacher-desc">
-								It is a long established fact that a reader will be distracted by the readable content 
-								of a page when looking at its layout.
-							</p>
-							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{%  static 'img/parent/parent1.jpg' %}" alt="teacher" />
-							</div>
-							<div class="col-xs-8 teacher-details">
-								<p><strong>Lenore Doe</strong></p>
-								<p><i>Ph.D. Physics</i></p>
-								<p>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-									<a href="#"><i class="fa fa-linkedin"></i></a>
-								</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="teacher-know-more-link">
-							<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
-						</div>
-					</div>
-				</div>
-				<div class="teacher-item col-sm-4 teacher-about-row">
-					<div class="teacher-about-row-inner">
-						<h5><i class="fa fa-heartbeat"></i>HUMAN BIOLOGY</h5>
-						<div class="teacher-item-inner">
-							<p class="teacher-desc">
-								It is a long established fact that a reader will be distracted by the readable content 
-								of a page when looking at its layout.
-							</p>
-							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{%  static 'img/parent/parent2.jpg' %}" alt="teacher" />
-							</div>
-							<div class="col-xs-8 teacher-details">
-								<p><strong>John Doe</strong></p>
-								<p><i>Ph.D. Biology</i></p>
-								<p>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-									<a href="#"><i class="fa fa-linkedin"></i></a>
-								</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="teacher-know-more-link">
-							<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
-						</div>
-					</div>
+                {% endfor %}
+                <div class="clearfix visible-lg visible-md visible-sm"></div>
+				<div class="view-all-link" id="show">
+					<a><i class="fa fa-paper-plane"></i>VIEW ALL</a>
 				</div>
 			</div>
 		</div>
@@ -365,6 +315,24 @@
         <script src="{%  static 'js/bootstrap.min.js' %}"></script>
 		<script src="{%  static 'plugins/owl.carousel.min.js' %}"></script>
         <script src="{%  static 'js/js.js' %}"></script>
-		
+
+                    <script type="text/javascript">
+
+                                $("#show a").click(function () {
+                                    var a = $("#show a").text();
+                                    var b = "VIEW ALL";
+                                    var n = a.localeCompare(b);
+                                    if( n == 0 ) {
+                                        $(".test").show();
+                                        $("#show a").text(" HIDE ")
+                                    }
+                                    else{
+                                        $(".test").hide();
+                                        $("#show a").text("VIEW ALL");
+                                    }
+
+                                });
+
+                    </script>
     </body>
 </html>

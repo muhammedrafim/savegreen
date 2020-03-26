@@ -36,7 +36,8 @@ def gallery(request):
     _gallery = Gallery.objects.all()
     return render(request, "gallery.html" , {"gallery": _gallery})
 def about(request):
-    return render(request, "about.html")
+    teachers = Teachers.objects.all()
+    return render(request, "about.html",{"teachers" : teachers})
 def contact(request):
     return render(request, "contact.html")
 

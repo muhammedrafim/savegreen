@@ -1,5 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html>
     <head>
 
@@ -14,8 +13,6 @@
 		<link href="{% static 'css/chartist.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" media="screen">
-		<link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet" media="screen">
-		<link href="{% static 'css/responsive.dataTables.min.css' %}" rel="stylesheet" media="screen">
         <link href="{% static 'css/styledash.css' %}" rel="stylesheet" media="screen">
 
 		<!-- Fonts -->
@@ -236,135 +233,232 @@
 					</li>
 				</ul>
 			</div>
+			
 			<!-- MAIN CONTENT -->
 			<div class="main-content" id="content-wrapper">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<h5 class="page-title"><i class="fa fa-bar-chart"></i>PERFORMANCE REPORT</h5>
+							<h5 class="page-title"><i class="fa fa-home"></i>HOME</h5>
 							<div class="section-divider"></div>
+							<div class="dashboard-stats">
+								<div class="col-sm-6 col-md-3">
+									<div class="stat-item">
+										<div class="stats">
+											<div class="col-xs-8 count">
+												<h1>999</h1>
+												<p>ASSIGNMENTS</p>
+											</div>
+											<div class="col-xs-4 icon">
+												<i class="fa fa-code ex-icon"></i>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="status">
+											<p class="text-ex"><i class="fa fa-pencil-square-o"></i>1 Submission Tomorrow</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-3">
+									<div class="stat-item">
+										<div class="stats">
+											<div class="col-xs-8 count">
+												<h1>65.8%</h1>
+												<p>ATTENDENCE</p>
+											</div>
+											<div class="col-xs-4 icon">
+												<i class="fa fa-line-chart danger-icon"></i>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="status">
+											<p class="text-danger"><i class="fa fa-exclamation-triangle"></i>Below 70%</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="clearfix visible-sm"></div>
+								<div class="col-sm-6 col-md-3">
+									<div class="stat-item">
+										<div class="stats">
+											<div class="col-xs-8 count">
+												<h1>900</h1>
+												<p>EVENTS</p>
+											</div>
+											<div class="col-xs-4 icon">
+												<i class="fa fa-flag look-icon"></i>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="status">
+											<p class="text-look"><i class="fa fa-clock-o"></i>1 Event tomorrow</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-3">
+									<div class="stat-item">
+										<div class="stats">
+											<div class="col-xs-8 count">
+												<h1>799</h1>
+												<p>MESSAGES</p>
+											</div>
+											<div class="col-xs-4 icon">
+												<i class="fa fa-envelope-o success-icon"></i>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="status">
+											<p class="text-success"><i class="fa fa-folder-open-o"></i>10 Unread messages</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<div class="col-lg-12">
-								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
-									<div class="inner-item dash-search-form">
-										<div class="col-md-3 col-sm-6">
-											<label>CLASS</label>
-											<select>
-												<option>5th STD</option>
-												<option>6th STD</option>
-												<option>7th STD</option>
-											</select>
+							<div class="col-sm-8">
+								<div>
+									<div class="my-msg dash-item">
+										<h6 class="item-title"><i class="fa fa-bar-chart"></i>TODAY'S STUDENT ATTENDENCE</h6>
+										<div class="inner-item">
+											<div class="summary-chart">
+												<canvas id="studentAttendenceBar"></canvas>
+												<div class="chart-legends">
+													<span class="red">ABSENT</span>
+													<span class="orange">ON LEAVE</span>
+													<span class="green">PRESENT</span>
+												</div>
+												<div class="chart-title">
+													<h6 class="bottom-title">STUDENT ATTENDENCE BAR</h6>
+												</div>
+											</div>
 										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>SECTION</label>
-											<select>
-												<option>PTH05A</option>
-												<option>PTH05B</option>
-											</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div>
+									<div class="my-msg dash-item">
+										<h6 class="item-title"><i class="fa fa-calendar"></i>TODAY'S TIMETABLE</h6>
+										<div class="inner-item">
+											<div class="timetable-item">
+												<div class="col-xs-3 clear-padding">
+													<p><span class="time">10 AM</span></p>
+												</div>
+												<div class="col-xs-9">
+													<p class="title">Mathematics (MTH101)</p>
+													<p class="sent-by"><i class="fa fa-map-marker"></i> ROOM NO - 601</p>
+													<p class="class-teacher"><i class="fa fa-user"></i> JOHN DOE</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="timetable-item">
+												<div class="col-xs-3 clear-padding">
+													<p><span class="time">11 AM</span></p>
+												</div>
+												<div class="col-xs-9">
+													<p class="title">Physics (PHY202)</p>
+													<p class="sent-by"><i class="fa fa-map-marker"></i> ROOM NO - 601</p>
+													<p class="class-teacher"><i class="fa fa-user"></i> JOHN DOE</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="timetable-item">
+												<div class="col-xs-3 clear-padding">
+													<p><span class="time">12 PM</span></p>
+												</div>
+												<div class="col-xs-9">
+													<p class="title">Biology (BIO101)</p>
+													<p class="sent-by"><i class="fa fa-map-marker"></i> ROOM NO - 601</p>
+													<p class="class-teacher"><i class="fa fa-user"></i> JOHN DOE</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="timetable-item">
+												<div class="col-xs-3 clear-padding">
+													<p><span class="time">01 PM</span></p>
+												</div>
+												<div class="col-xs-9">
+													<p class="title">MATH (MTH101)</p>
+													<p class="sent-by"><i class="fa fa-map-marker"></i> ROOM NO - 601</p>
+													<p class="class-teacher"><i class="fa fa-user"></i> JOHN DOE</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											
 										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label>ROLL NO</label>
-											<select>
-												<option>ALL</option>
-												<option>PTH01A01</option>
-												<option>PTH01A02</option>
-												<option>PTH01A03</option>
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>COURSE CODE</label>
-											<select>
-												<option>MTH101</option>
-												<option>MTH102</option>
-												<option>MTH103</option>
-												<option>MTH104</option>
-											</select>
-										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label class="top-margin">TYPE</label>
-											<select>
-												<option>Class Assessment</option>
-												<option>MTE</option>
-												<option>ETE</option>
-											</select>
-										</div>
-										<div class="clearfix"></div>
-										<div class="col-sm-3">
-											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
-										</div>
-										<div class="clearfix"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<div class="col-md-6">
-								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-line-chart"></i>GRAPH REPORT</h6>
-									<div class="inner-item">
-										<div class="summary-chart">
-											<canvas id="studentAttendenceLine"></canvas>
-											<div class="chart-legends">
-												<span class="red">ABSENT</span>
-												<span class="orange">FAIL</span>
-												<span class="green">PASS</span>
+						<div class="col-lg-12 clear-padding-xs">
+							<div class="col-md-8">
+								<div class="my-msg dash-item">
+									<h6 class="item-title"><i class="fa fa-bullhorn"></i>ANNOUNCEMENTS</h6>
+									<div class="inner-item dashboard-tabs">
+										<ul class="nav nav-tabs">
+											<li class="active">
+												<a  href="#1" data-toggle="tab"><i class="fa fa-graduation-cap"></i><span>ACADEMICS</span></a>
+											</li>
+											<li>								
+												<a href="#2" data-toggle="tab"><i class="fa fa-users"></i><span>ADMISSIONS</span></a>
+											</li>
+											<li>								
+												<a href="#3" data-toggle="tab"><i class="fa fa-trophy"></i><span>SPORTS</span></a>
+											</li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="1">
+												<div class="announcement-item">
+													<h5>Guest lecture on fine arts by Smith.<span class="new">New</span></h5>
+													<h6><i class="fa fa-clock-o"></i>06-24-2017, 13:34</h6>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+													<div class="posted-by">
+														<p>Thanks,</p>
+														<h6>John Doe, Principal</h6>
+													</div>
+												</div>
+												<div class="announcement-item">
+													<h5>Guest lecture on fine arts by Smith</h5>
+													<h6><i class="fa fa-clock-o"></i>06-24-2017, 13:34</h6>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+													<div class="posted-by">
+														<p>Thanks,</p>
+														<h6>John Doe, Principal</h6>
+													</div>
+												</div>
 											</div>
-											<div class="chart-title">
-												<h6 class="bottom-title">STUDENT PERFORMANCE REPORT</h6>
+											<div class="tab-pane" id="2">
+												<div class="announcement-item">
+													<h5>2</h5>
+												</div>
+											</div>
+											<div class="tab-pane" id="3">
+												<div class="announcement-item">
+													<h5>3</h5>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-list"></i>TABLE REPORT</h6>
-									<div class="inner-item">
-										<div>
-											<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
-												<thead>
-													<tr>
-														<th><i class="fa fa-puzzle-piece"></i>ROLL #</th>
-														<th><i class="fa fa-cogs"></i>TYPE</th>
-														<th><i class="fa fa-exclamation"></i>MARKS</th>
-														<th><i class="fa fa-check"></i>STATUS</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>PTH05A01</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A012</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A03</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A04</td>
-														<td>MTE</td>
-														<td>25</td>
-														<td>FAIL</td>
-													</tr>
-												</tbody>
-											</table>
+							<div class="col-md-4">
+								<div>
+									<div class="my-msg dash-item">
+										<h6 class="item-title"><i class="fa fa-pie-chart"></i>STUDENTS</h6>
+										<div class="chart-item">
+											<canvas id="studentPie" height = 200px></canvas>
+											<div class="chart-legends">
+												<span class="red">ABSENT</span>
+												<span class="orange">PRESENT</span>
+												<span class="green">LEAVE</span>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -391,6 +485,5 @@
 		<script src="{% static 'plugins/dataTables.responsive.min.js' %}"></script>
         <script src="{% static 'js/jsdash.js' %}"></script>
 
-		
     </body>
 </html>

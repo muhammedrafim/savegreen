@@ -102,12 +102,12 @@
                     {% for item in gallery %}
 					<div class="col-md-4 col-sm-4">
 						<div class="image-wrapper">
-							<img src="{{ item.displayimage.url }}" alt="Cruise">
-                            <div style="position: absolute;top: 50%; left: 50%;transform: translate(-50%, -50%);"><h2 style="color:#003366;font-size: 30px;">{{ item.title }}</h2></div>
+							<img src="{{ item.displayimage.url }}" style="max-height: 195px;width: 100%" alt="Cruise">
+                            <div style="position: absolute;top: 50%; left: 50%;transform: translate(-50%, -50%);"><h2 style="color:black;font-size: 25px;font-family: 'cursive';font-weight: bold">{{ item.title }}</h2></div>
                             <div class="img-caption">
 								<div class="link">
-                                    <a title="Fine Arts" href="{%  url 'gallery' item.id %}">
-										<i class="fa fa-picture-o"></i>
+                                    <a title="View" href="{%  url 'gallery' item.id %}">
+										<i class="fa fa-plus"></i>
 									</a>
 								</div>
 							</div>

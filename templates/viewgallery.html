@@ -102,7 +102,7 @@
                     {% for item in images %}
 					<div class="col-md-4 col-sm-4">
 						<div class="image-wrapper">
-							<img src="{{ item.image.url }}" alt="Cruise">
+							<img src="{{ item.image.url }}" style="max-height: 300px; width: 100%" alt="Cruise">
                             <div class="img-caption">
 								<div class="link">
                                     <a title="{{ item.gallery.title }}" href="{{ item.image.url }}">

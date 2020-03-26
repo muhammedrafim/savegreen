@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,8 +13,6 @@
 		<link href="{% static 'css/chartist.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" media="screen">
-		<link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet" media="screen">
-		<link href="{% static 'css/responsive.dataTables.min.css' %}" rel="stylesheet" media="screen">
         <link href="{% static 'css/styledash.css' %}" rel="stylesheet" media="screen">
 
 		<!-- Fonts -->
@@ -170,32 +167,32 @@
 			<div class="sidebar-nav-wrapper" id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li>
-						<a href="admin-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
+						<a href="teacher-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-users menu-icon"></i> STUDENTS <span class="caret"></span>
+							<i class="fa fa-file-code-o menu-icon"></i> ASSIGNMENTS <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li>							
-								<a href="admin-add-student.html"><i class="fa fa-caret-right"></i>ADD</a>
+								<a href="teacher-create-assignment.html"><i class="fa fa-caret-right"></i>CREATE</a>
 							</li>
 							<li>
-								<a href="admin-student-list.html"><i class="fa fa-caret-right"></i>ALL STUDENT  </a>
+								<a href="teacher-assignment-download.html"><i class="fa fa-caret-right"></i>DOWNLOAD</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-user-secret menu-icon"></i> TEACHERS <span class="caret"></span>
+							<i class="fa fa-bar-chart menu-icon"></i> ATTENDENCE <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li>							
-								<a href="admin-add-teacher.html"><i class="fa fa-caret-right"></i>ADD</a>
+								<a href="teacher-mark-student-attendence.html"><i class="fa fa-caret-right"></i>MARK</a>
 							</li>
 							<li>
-								<a href="admin-teacher-list.html"><i class="fa fa-caret-right"></i>ALL TEACHER</a>
+								<a href="teacher-view-student-attendence.html"><i class="fa fa-caret-right"></i>VIEW</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -203,56 +200,22 @@
 					<li>
 						<a href="message.html"><i class="fa fa-envelope menu-icon"></i> MY MESSAGES</a>
 					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-address-card menu-icon"></i> MARKS <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>							
+								<a href="teacher-add-student-marks.html"><i class="fa fa-caret-right"></i>CREATE</a>
+							</li>
+							<li>
+								<a href="teacher-view-student-marks.html"><i class="fa fa-caret-right"></i>VIEW</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</li>
 					<li>
-						<a href="admin-add-announcement.html"><i class="fa fa-bullhorn menu-icon"></i> ANNOUNCEMENTS</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-file-o menu-icon"></i> CLASSES <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-class.html"><i class="fa fa-caret-right"></i>ADD CLASS</a>
-							</li>
-							<li>
-								<a href="admin-add-section.html"><i class="fa fa-caret-right"></i>ADD SECTION</a>
-							</li>
-							<li>
-								<a href="admin-add-class.html"><i class="fa fa-caret-right"></i>VIEW SECTIONS</a>
-							</li>
-							<li>
-								<a href="admin-add-section.html"><i class="fa fa-caret-right"></i>VIEW CLASSES</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-book menu-icon"></i> SUBJECTS <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-subject.html"><i class="fa fa-caret-right"></i>ADD</a>
-							</li>
-							<li>
-								<a href="admin-add-subject.html"><i class="fa fa-caret-right"></i>VIEW SUBJECTS</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-calendar menu-icon"></i> TIMETABLE <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-create-timetable.html"><i class="fa fa-caret-right"></i>CREATE</a>
-							</li>
-							<li>
-								<a href="admin-class-timetable.html"><i class="fa fa-caret-right"></i>VIEW</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
+						<a href="teacher-timetable.html"><i class="fa fa-calendar menu-icon"></i> TIME TABLE</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -270,78 +233,56 @@
 					</li>
 				</ul>
 			</div>
-			
 			<!-- MAIN CONTENT -->
 			<div class="main-content" id="content-wrapper">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<h5 class="page-title"><i class="fa fa-clock-o"></i>TIME SLOTS</h5>
+							<h5 class="page-title"><i class="fa fa-code"></i>CREATE ASSIGNMENT</h5>
 							<div class="section-divider"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD SLOT</h6>
+									<h6 class="item-title"><i class="fa fa-edit"></i>CREATE NEW ASSIGNMENT</h6>
 									<div class="inner-item">
 										<div class="dash-form">
 											<div class="col-sm-3">
-												<label class="clear-top-margin"><i class="fa fa-calendar"></i>DAY</label>
+												<label class="clear-top-margin"><i class="fa fa-user-circle-o"></i>CLASS</label>
 												<select>
-													<option>-- Select --</option>
-													<option>Monday</option>
-													<option>Tuesday</option>
+													<option>5th STD</option>
+													<option>6th STD</option>
+													<option>7th STD</option>
+													<option>8th STD</option>
 												</select>
 											</div>
 											<div class="col-sm-3">
-												<label class="clear-top-margin"><i class="fa fa-clock-o"></i>SLOT</label>
+												<label class="clear-top-margin"><i class="fa fa-user-circle-o"></i>SECTION</label>
 												<select>
-													<option>-- Select --</option>
-													<option>09-10 AM</option>
-													<option>10-11 PM</option>
+													<option>PTH05A</option>
+													<option>PTH05B</option>
 												</select>
 											</div>
 											<div class="col-sm-3">
-												<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
+												<label class="clear-top-margin"><i class="fa fa-code"></i>COURSE</label>
 												<select>
-													<option>-- Select --</option>
-													<option>STD 5</option>
-													<option>STD 6</option>
-												</select>
-											</div>
-											<div class="col-sm-3">
-												<label class="clear-top-margin"><i class="fa fa-users"></i>SECTION</label>
-												<select>
-													<option>-- Select --</option>
-													<option>STD 5</option>
-													<option>STD 6</option>
-												</select>
-											</div>
-											<div class="col-sm-3">
-												<label><i class="fa fa-code"></i>SUBJECT</label>
-												<select>
-													<option>-- Select --</option>
-													<option>PHY101</option>
 													<option>MTH101</option>
+													<option>MTH102</option>
 												</select>
 											</div>
 											<div class="col-sm-3">
-												<label><i class="fa fa-user"></i>TEACHER</label>
-												<select>
-													<option>-- Select --</option>
-													<option>John Doe</option>
-													<option>Lennore Doe</option>
-												</select>
+												<label class="clear-top-margin"><i class="fa fa-calendar"></i>SUBMIT BY</label>
+												<input type="text" placeholder="MM/DD/YYYY" id="startDate" />
 											</div>
-											<div class="col-sm-3">
-												<label><i class="fa fa-home"></i>CLASS ROOM</label>
-												<select>
-													<option>-- Select --</option>
-													<option>101</option>
-													<option>103</option>
-												</select>
+											<div class="col-sm-12">
+												<label><i class="fa fa-edit"></i>REMARKS</label>
+												<textarea placeholder="REMARKS"></textarea>
+											</div>
+											<div class="col-sm-12">
+												<label><i class="fa fa-file-code-o"></i>UPLOAD FILE</label>
+												<input class="file-input" type="file" name="Upload File" />
 											</div>
 											<div class="col-sm-12">
 												<a href="#"><i class="fa fa-paper-plane"></i> CREATE</a>
@@ -350,43 +291,6 @@
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="col-sm-12">
-								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-sliders"></i>ALL SLOTS</h6>
-									<div class="inner-item">
-										<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
-											<thead>
-												<tr>
-													<th><i class="fa fa-calendar"></i>DAY</th>
-													<th><i class="fa fa-clock-o"></i>SLOT</th>
-													<th><i class="fa fa-book"></i>CLASS</th>
-													<th><i class="fa fa-cogs"></i>SECTION</th>
-													<th><i class="fa fa-code"></i>SUBJECT</th>
-													<th><i class="fa fa-user"></i>TEACHER</th>
-													<th><i class="fa fa-home"></i>ROOM</th>
-													<th><i class="fa fa-sliders"></i>ACTION</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Monday</td>
-													<td>09-10 AM</td>
-													<td>5 STD</td>
-													<td>A</td>
-													<td>MTH101</td>
-													<td>John Doe</td>
-													<td>101</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												
-											</tbody>
-										</table>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -398,75 +302,11 @@
 				<div class="dash-footer col-lg-12">
 					<p>Copyright Pathshala</p>
 				</div>
-				
-				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"><i class="fa fa-trash"></i>DELETE SECTION</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
-									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT SECTION DETAILS</h4>
-							</div>
-							<div class="modal-body dash-form">
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-book"></i>SECTION</label>
-									<input type="text" placeholder="SECTION" value="A" />
-								</div>
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-code"></i>SECTION CODE</label>
-									<input type="text" placeholder="SECTION CODE" value="PTH05A" />
-								</div>
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>SECTION CLASS</label>
-									<select>
-										<option>-- Select --</option>
-										<option>5 STD</option>
-										<option>6 STD</option>
-									</select>
-								</div>
-								<div class="clearfix"></div>
-								<div class="col-sm-12">
-									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-									<textarea placeholder="Enter Description Here"></textarea>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="modal-footer">
-								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
-									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
 			</div>
 		</div>
 	
 		<!-- Scripts -->
-        <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
+           <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
 		<script src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'plugins/owl.carousel.min.js' %}"></script>
@@ -474,6 +314,6 @@
 		<script src="{% static 'plugins/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'plugins/dataTables.responsive.min.js' %}"></script>
         <script src="{% static 'js/jsdash.js' %}"></script>
-		
+
     </body>
 </html>

@@ -193,8 +193,7 @@
 				<div class="tab-content">
 
 					 <div class="tab-pane active" >
-                        <div class="col-md-8 left-event-items">
-                            <div class="grid">
+                        <div class="col-md-8 left-event-items grid">
                             {% for event in eventnews %}
                                 <div class="event-item {{event.eventtype}}" >
 									<div class="col-sm-7">
@@ -204,7 +203,7 @@
 										</div>
 										<h3>{{ event.title }}</h3>
 										<h6><i class="fa fa-map-marker"></i>{{event.location}}</h6>
-										<p>{{type.description}}</p>
+										<p>{{event.description}}</p>
 									</div>
 									<div class="col-sm-5 event-item-img">
 										<div class="event-img">
@@ -259,21 +258,21 @@
 							<p class="teacher-desc">{{ teacher.description }}
 							</p>
 							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{{ teacher.image.url }}" style="height: 170px" alt="teacher" />
+								<img src="{{ teacher.image.url }}" style="height: 73px;width: 100%" alt="teacher" />
 							</div>
 							<div class="col-xs-8 teacher-details">
 								<p><strong>{{ teacher.name }}</strong></p>
 								<p><i>{{ teacher.qualification }}</i></p>
 								<p>
 									<a href="{{ teacher.facebook }}"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-									<a href="#"><i class="fa fa-linkedin"></i></a>
+									<a href="{{ teacher.google }}"><i class="fa fa-google-plus"></i></a>
+									<a href="{{ teacher.linkedin }}"><i class="fa fa-linkedin"></i></a>
 								</p>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="teacher-know-more-link">
-							<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
+							<a href="about.html"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
 						</div>
 					</div>
                     {% endfor %}
@@ -302,7 +301,7 @@
 						<div class="news-item" style="height: 220px">
 							<h5>{{ news.title }}</h5>
 							<p style="max-height: 100px;max-width: 250px;font-size: 12px">{{news.description}}</p>
-							<a href="#"><i class="fa fa-paper-plane"></i>VIEW DETAILS</a>
+							<a href="events.html"><i class="fa fa-paper-plane"></i>VIEW DETAILS</a>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html>
     <head>
 
@@ -170,18 +169,18 @@
 			<div class="sidebar-nav-wrapper" id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li>
-						<a href="teacher-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
+						<a href="student-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-file-code-o menu-icon"></i> ASSIGNMENTS <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>							
-								<a href="teacher-create-assignment.html"><i class="fa fa-caret-right"></i>CREATE</a>
+							<li>
+								<a href="student-assignment-download.html"><i class="fa fa-caret-right"></i>DOWNLOAD</a>
 							</li>
 							<li>
-								<a href="teacher-assignment-download.html"><i class="fa fa-caret-right"></i>DOWNLOAD</a>
+								<a href="student-assignment-upload.html"><i class="fa fa-caret-right"></i>UPLOAD</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -192,10 +191,10 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>							
-								<a href="teacher-mark-student-attendence.html"><i class="fa fa-caret-right"></i>MARK</a>
+								<a href="student-attendence.html"><i class="fa fa-caret-right"></i>SUMMARY</a>
 							</li>
 							<li>
-								<a href="teacher-view-student-attendence.html"><i class="fa fa-caret-right"></i>VIEW</a>
+								<a href="student-attendence-detailed.html"><i class="fa fa-caret-right"></i>DETAILED</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -205,43 +204,50 @@
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-address-card menu-icon"></i> MARKS <span class="caret"></span>
+							<i class="fa fa-address-card menu-icon"></i> VIEW MARKS <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li>							
-								<a href="teacher-add-student-marks.html"><i class="fa fa-caret-right"></i>CREATE</a>
+								<a href="student-marks.html"><i class="fa fa-caret-right"></i>CLASS ASSESSMENT</a>
 							</li>
 							<li>
-								<a href="teacher-view-student-marks.html"><i class="fa fa-caret-right"></i>VIEW</a>
+								<a href="student-marks.html"><i class="fa fa-caret-right"></i>MID TERM</a>
+							</li>
+							<li>
+								<a href="student-marks.html"><i class="fa fa-caret-right"></i>END TERM</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</li>
 					<li>
-						<a href="teacher-timetable.html"><i class="fa fa-calendar menu-icon"></i> TIME TABLE</a>
+						<a href="student-timetable.html"><i class="fa fa-calendar menu-icon"></i> TIME TABLE</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-address-card menu-icon"></i> REPORTS <span class="caret"></span>
+							<i class="fa fa-book menu-icon"></i> EXAMINATION <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li>							
-								<a href="teacher-attendence-report.html"><i class="fa fa-caret-right"></i>ATTENDENCE</a>
+								<a href="student-exam-plan.html"><i class="fa fa-caret-right"></i>SEATING PLAN</a>
 							</li>
 							<li>
-								<a href="teacher-marks-report.html"><i class="fa fa-caret-right"></i>MARKS</a>
+								<a href="student-exam-schedule.html"><i class="fa fa-caret-right"></i>EXAM SCHEDULE</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</li>
+					<li>
+						<a href="student-fees.html"><i class="fa fa-money menu-icon"></i> FEE DETAILS</a>
+					</li>
 				</ul>
 			</div>
+			
 			<!-- MAIN CONTENT -->
 			<div class="main-content" id="content-wrapper">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<h5 class="page-title"><i class="fa fa-bar-chart"></i>PERFORMANCE REPORT</h5>
+							<h5 class="page-title"><i class="fa fa-book"></i>EXAM SCHEDULE</h5>
 							<div class="section-divider"></div>
 						</div>
 					</div>
@@ -249,122 +255,154 @@
 						<div class="col-lg-12 clear-padding-xs">
 							<div class="col-lg-12">
 								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
-									<div class="inner-item dash-search-form">
-										<div class="col-md-3 col-sm-6">
-											<label>CLASS</label>
-											<select>
-												<option>5th STD</option>
-												<option>6th STD</option>
-												<option>7th STD</option>
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>SECTION</label>
-											<select>
-												<option>PTH05A</option>
-												<option>PTH05B</option>
-											</select>
-										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label>ROLL NO</label>
-											<select>
-												<option>ALL</option>
-												<option>PTH01A01</option>
-												<option>PTH01A02</option>
-												<option>PTH01A03</option>
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>COURSE CODE</label>
-											<select>
-												<option>MTH101</option>
-												<option>MTH102</option>
-												<option>MTH103</option>
-												<option>MTH104</option>
-											</select>
-										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label class="top-margin">TYPE</label>
-											<select>
-												<option>Class Assessment</option>
-												<option>MTE</option>
-												<option>ETE</option>
-											</select>
-										</div>
-										<div class="clearfix"></div>
-										<div class="col-sm-3">
-											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
-										</div>
-										<div class="clearfix"></div>
+									<h6 class="item-title"><i class="fa fa-calendar"></i>5th STANDARD EXAM SCHEDULE</h6>
+									<div class="inner-item">
+										<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
+											<thead>
+												<tr>
+													<th><i class="fa fa-calendar"></i>DATE</th>
+													<th><i class="fa fa-clock-o"></i>TIMING</th>
+													<th><i class="fa fa-code"></i>COURSE CODE</th>
+													<th><i class="fa fa-info-circle"></i>DESCRIPTION</th>
+													<th><i class="fa fa-cogs"></i>TYPE</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>20 Sep 2017</td>
+													<td>09-11 AM</td>
+													<td>MTH101</td>
+													<td>Basic Mathematics</td>
+													<td>Mid Term Exam</td>
+												</tr>
+												<tr>
+													<td>22 Sep 2017</td>
+													<td>09-11 AM</td>
+													<td>MTH101</td>
+													<td>Basic Mathematics</td>
+													<td>Mid Term Exam</td>
+												</tr>
+												<tr>
+													<td>24 Sep 2017</td>
+													<td>09-11 AM</td>
+													<td>MTH101</td>
+													<td>Basic Mathematics</td>
+													<td>Mid Term Exam</td>
+												</tr>
+												<tr>
+													<td>26 Sep 2017</td>
+													<td>09-11 AM</td>
+													<td>MTH101</td>
+													<td>Basic Mathematics</td>
+													<td>Mid Term Exam</td>
+												</tr>
+												<tr>
+													<td>28 Sep 2017</td>
+													<td>09-11 AM</td>
+													<td>MTH101</td>
+													<td>Basic Mathematics</td>
+													<td>Mid Term Exam</td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="col-md-6">
+						<div class="col-lg-12 clear-padding-xs">
+							<div class="col-lg-12">
 								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-line-chart"></i>GRAPH REPORT</h6>
+									<h6 class="item-title"><i class="fa fa-book"></i>COURSE DETAILS</h6>
 									<div class="inner-item">
-										<div class="summary-chart">
-											<canvas id="studentAttendenceLine"></canvas>
-											<div class="chart-legends">
-												<span class="red">ABSENT</span>
-												<span class="orange">FAIL</span>
-												<span class="green">PASS</span>
+										<div class="item-header">
+											<div class="col-xs-2">
+												<h6>COURSE CODE</h6>
 											</div>
-											<div class="chart-title">
-												<h6 class="bottom-title">STUDENT PERFORMANCE REPORT</h6>
+											<div class="col-xs-4">
+												<h6>DESCRIPTION</h6>
 											</div>
+											<div class="col-xs-2">
+												<h6>LECTURE</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>PRACTICLE</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>CREDITS</h6>
+											</div>
+											<div class="clearfix"></div>
 										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-list"></i>TABLE REPORT</h6>
-									<div class="inner-item">
-										<div>
-											<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
-												<thead>
-													<tr>
-														<th><i class="fa fa-puzzle-piece"></i>ROLL #</th>
-														<th><i class="fa fa-cogs"></i>TYPE</th>
-														<th><i class="fa fa-exclamation"></i>MARKS</th>
-														<th><i class="fa fa-check"></i>STATUS</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>PTH05A01</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A012</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A03</td>
-														<td>MTE</td>
-														<td>45</td>
-														<td>PASS</td>
-													</tr>
-													<tr>
-														<td>PTH05A04</td>
-														<td>MTE</td>
-														<td>25</td>
-														<td>FAIL</td>
-													</tr>
-												</tbody>
-											</table>
+										<div class="tbl-row">
+											<div class="col-xs-2">
+												<h6>MTH101</h6>
+											</div>
+											<div class="col-xs-4">
+												<h6>Basic Mathematics</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>3</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>2</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>4</h6>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="tbl-row">
+											<div class="col-xs-2">
+												<h6>PHY101</h6>
+											</div>
+											<div class="col-xs-4">
+												<h6>Current & Electricity</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>3</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>2</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>4</h6>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="tbl-row">
+											<div class="col-xs-2">
+												<h6>MTH101</h6>
+											</div>
+											<div class="col-xs-4">
+												<h6>Basic Mathematics</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>3</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>2</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>4</h6>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="tbl-row">
+											<div class="col-xs-2">
+												<h6>PHY101</h6>
+											</div>
+											<div class="col-xs-4">
+												<h6>Current & Electricity</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>3</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>2</h6>
+											</div>
+											<div class="col-xs-2">
+												<h6>4</h6>
+											</div>
+											<div class="clearfix"></div>
 										</div>
 									</div>
 								</div>
