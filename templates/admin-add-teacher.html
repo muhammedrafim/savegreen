@@ -21,6 +21,25 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
 
+        <style>
+            .dash-form .add_teacher_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+.dash-form .add_teacher_submit:hover {
+    color: #27AE60;
+    background: transparent;
+    border: 1px solid #27AE60;
+}
+        </style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -281,25 +300,27 @@
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
 							<div class="col-md-12">
+                                <form action="add_teacher" enctype="multipart/form-data" method="post">
+                                    {% csrf_token %}
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-user"></i>TEACHER INFO</h6>
 									<div class="inner-item">
 										<div class="dash-form">
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-user-circle-o"></i>FIRST NAME</label>
-												<input type="text" placeholder="JOHN" />
+												<input type="text" name="firstname" placeholder="JOHN" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-user-circle-o"></i>MIDDLE NAME</label>
-												<input type="text" placeholder="FIDLER" />
+												<input type="text" name="middlename" placeholder="FIDLER" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-user-circle-o"></i>LAST NAME</label>
-												<input type="text" placeholder="DOE" />
+												<input type="text" name="lastname" placeholder="DOE" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-venus"></i>GENDER</label>
-												<select>
+												<select name="gender">
 													<option>-- Select --</option>
 													<option>Male</option>
 													<option>Female</option>
@@ -308,29 +329,25 @@
 											<div class="clearfix"></div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-calendar"></i>DATE OF BIRTH</label>
-												<input type="text" id="studentDOB" placeholder="MM/DD/YYYY" />
-											</div>
-											<div class="col-sm-3">
-												<label><i class="fa fa-phone"></i>PHONE #</label>
-												<input type="text" placeholder="1234567890" />
+												<input type="text" name="dob" id="teacherDOB" placeholder="MM/DD/YYYY" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-envelope-o"></i>EMAIL</label>
-												<input type="text" placeholder="john@pathshala.com" />
+												<input type="text" name="email" placeholder="john@pathshala.com" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-bell-o"></i>RELIGION</label>
-												<select>
+												<select name="religion">
 													<option>-- Select --</option>
-													<option>Buddhism</option>
 													<option>Christian</option>
+													<option>Muslim</option>
 													<option>Hinduism</option>
 												</select>
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-file-picture-o"></i>UPLOAD PHOTO</label>
-												<input type="file" placeholder="90890" />
+												<input type="file" name="photo" placeholder="90890" />
 											</div>
 										</div>
 										<div class="clearfix"></div>
@@ -343,41 +360,33 @@
 										<div class="dash-form">
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-home"></i>ADDRESS 1</label>
-												<input type="text" placeholder="H/N 42 Street# 10" />
+												<input type="text" name="address" placeholder="H/N 42 Street# 10" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-home"></i>ADDRESS 2</label>
-												<input type="text" placeholder="H/N 42 Street# 10" />
+												<input type="text" name="address_alternate" placeholder="H/N 42 Street# 10" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-flag"></i>COUNTRY</label>
-												<select>
-													<option>-- Select --</option>
-													<option>Canada</option>
-													<option>India</option>
-													<option>Japan</option>
-												</select>
+												<input type="text" name="country" value="India" >
+
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-id-card"></i>STATE</label>
-												<select>
-													<option>-- Select --</option>
-													<option>British Columbia</option>
-													<option>Ontario</option>
-												</select>
+												<input type="text" name="state" value="Kerala">
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-code"></i>ZIP</label>
-												<input type="text" placeholder="90890" />
+												<input type="text" name="pincode" placeholder="90890" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-phone"></i>PHONE #</label>
-												<input type="text" placeholder="1234567890" />
+												<input type="text" name="phone" placeholder="1234567890" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-phone"></i>ALTERNATE PHONE #</label>
-												<input type="text" placeholder="1234567890" />
+												<input type="text" name="alternate_phone" placeholder="1234567890" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-envelope-o"></i>EMAIL</label>
@@ -395,62 +404,47 @@
 										<div class="dash-form">
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-graduation-cap"></i>HIGHEST DEGREE</label>
-												<input type="text" placeholder="PhD" />
+												<input type="text" name="highest_degree" placeholder="PhD" />
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-building"></i>UNIVERSITY/COLLEGE</label>
-												<select>
-													<option>-- Select --</option>
-													<option>IIT</option>
-													<option>Harvard</option>
-												</select>
+												<input type="text" name="highest_college" placeholder="Mea">
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-calaendar"></i>YEAR PASSED</label>
-												<select>
-													<option>-- Select --</option>
-													<option>2005</option>
-													<option>2006</option>
-												</select>
+												<input type="text" name="highest_year" placeholder="2015">
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-puzzle-piece"></i>CGPA</label>
-												<input type="text" placeholder="08.65" />
+												<input type="text" name="highest_cgpa" placeholder="08.65" />
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-graduation-cap"></i>OTHER DEGREE</label>
-												<input type="text" placeholder="MSc" />
+												<input type="text" name="degree" placeholder="MSc" />
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-building"></i>UNIVERSITY/COLLEGE</label>
-												<select>
-													<option>-- Select --</option>
-													<option>IIT</option>
-													<option>Harvard</option>
-												</select>
+												<input type="text" name="college" placeholder="MEA">
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-calaendar"></i>YEAR PASSED</label>
-												<select>
-													<option>-- Select --</option>
-													<option>2005</option>
-													<option>2006</option>
-												</select>
+												<input type="text" placeholder="2015" name="year"/>
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-puzzle-piece"></i>CGPA</label>
-												<input type="text" placeholder="08.65" />
+												<input type="text" name="cgpa" placeholder="08.65" />
 											</div>
 											<div class="clearfix"></div>
 											<div class="col-sm-12">
-												<a href="#"><i class="fa fa-paper-plane"></i> SAVE</a>
+												<input type="submit" class="add_teacher_submit" value="SAVE" />
 											</div>
 										</div>
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
 								</div>
+                                </form>
 							</div>
 						</div>
 					</div>

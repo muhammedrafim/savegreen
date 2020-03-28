@@ -19,6 +19,7 @@ urlpatterns = [
     path('dashboard/admin-marks-report.html', views.admin_marks),
     path('dashboard/add_student', views.add_student),
     path('dashboard/edit_student/<student_id>/', views.edit_student , name='edit_student'),
-    path('dashboard/delete_student/<student_id>', views.delete_student, name='delete_student')
+    path('dashboard/delete_student/<student_id>', views.delete_student, name='delete_student'),
+    path('dashboard/add_teacher', views.add_teacher),
 
 ]

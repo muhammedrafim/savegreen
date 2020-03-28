@@ -23,6 +23,25 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
 
+        <style>
+             .add_teacher_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+.add_teacher_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+        </style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -300,32 +319,21 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for teacher in teachers %}
 												<tr>
-													<td>JOHN DOE</td>
-													<td>PhD</td>
-													<td>IIT Delhi</td>
-													<td>2008</td>
-													<td>08.65</td>
-													<td>1234567890</td>
-													<td>john@gmail.com</td>
+													<td>{{ teacher.firstname.upper }} {{ teacher.middlename.upper }} {{ teacher.lastname.upper }}</td>
+													<td>{{ teacher.highest_degree }}</td>
+													<td>{{ teacher.highest_degree_university }}</td>
+													<td>{{ teacher.highest_degree_yearpassed }}</td>
+													<td>{{ teacher.highest_degree_cgpa }}</td>
+													<td>{{ teacher.phone_number }}</td>
+													<td>{{ teacher.email }}</td>
 													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editteacher_{{ teacher.id }}"><i class="fa fa-edit"></i></a>
+														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteteacher_{{ teacher.id }}"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												<tr>
-													<td>LENNORE DOE</td>
-													<td>MSc</td>
-													<td>Harvard</td>
-													<td>2006</td>
-													<td>07.65</td>
-													<td>0999878775</td>
-													<td>lennore@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
+												{% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -364,7 +372,8 @@
 				
 				
 				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
+                {% for teacher in teachers %}
+				<div id="editteacher_{{ teacher.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -375,48 +384,49 @@
 							<div class="modal-body dash-form">
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>FIRST NAME</label>
-									<input type="text" placeholder="First Name" value="John" />
+									<input type="text" name="firstname" placeholder="First Name" value="{{ teacher.firstname }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>MIDDLE NAME</label>
-									<input type="text" placeholder="Middle Name" value="Fidler" />
+									<input type="text" name="middlename" placeholder="Middle Name" value="{{ teacher.middlename }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>LAST NAME</label>
-									<input type="text" placeholder="Last Name" value="Doe" />
+									<input type="text" name="lastname" placeholder="Last Name" value="{{ teacher.lastname }}" />
 								</div>
 								<div class="col-sm-3">
-									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-									<input type="text" placeholder="Standard" value="5 STD" />
+									<label class="clear-top-margin"><i class="fa fa-book"></i>ADDRESS</label>
+									<input type="text" name="address" placeholder="Standard" value="{{ teacher.address }}" />
 								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-3">
-									<label><i class="fa fa-cogs"></i>SECTION</label>
-									<input type="text" placeholder="Section" value="PTH05A" />
+									<label><i class="fa fa-cogs"></i>HIGHEST DEGREE</label>
+									<input type="text" name="degree" placeholder="Section" value="{{ teacher.highest_degree }}" />
 								</div>
 								<div class="col-sm-3">
-									<label><i class="fa fa-puzzle-piece"></i>ROLL #</label>
-									<input type="text" placeholder="Roll Number" value="Fidler" />
+									<label><i class="fa fa-puzzle-piece"></i>COLLEGE</label>
+									<input type="text" name="college" placeholder="Roll Number" value="{{ teacher.highest_degree_university }}" />
 								</div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-phone"></i>CONTACT #</label>
-									<input type="text" placeholder="Contact Number" value="1234567890" />
+									<input type="text" name="contact" placeholder="Contact Number" value="1234567890" />
 								</div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-envelope-o"></i>EMAIL</label>
-									<input type="text" placeholder="Email" value="john@gmail.com" />
+									<input type="text" placeholder="Email" name="email" value="john@gmail.com" />
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="modal-footer">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+									<input type="submit" class="add_teacher_submit" value="SAVE">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 			</div>
 		</div>
 	

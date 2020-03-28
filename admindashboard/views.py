@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from studentdashboard.models import Student,parent
+from teacherdashboard.models import teachers
 import datetime
 # Create your views here.
 def admindashboard(request):
@@ -78,10 +79,9 @@ def edit_student(request, student_id):
     student = Student.objects.all()
     return render(request,'admin-student-list.html',{"students" : student})
 
-    return HttpResponse(content="ok")
+
 def admin_add_student(request):
-    s = Student.objects.all()
-    return render(request, 'admin-add-student.html',{'student' : s[1]})
+    return render(request, 'admin-add-student.html')
 
 
 def admin_studentlist(request):
@@ -94,7 +94,8 @@ def admin_add_teacher(request):
 
 
 def admin_teacherlist(request):
-    return render(request, 'admin-teacher-list.html')
+    teacher = teachers.objects.all()
+    return render(request, 'admin-teacher-list.html', {'teachers' : teacher})
 
 
 def admin_messages(request):
@@ -138,3 +139,39 @@ def delete_student(request, student_id):
     s.delete()
     student = Student.objects.all()
     return render(request, 'admin-student-list.html', {'students': student} )
+
+def add_teacher(request):
+    firstname = request.POST['firstname']
+    middlename = request.POST['middlename']
+    lastname = request.POST['lastname']
+    gender = request.POST['gender']
+    dob = request.POST.get('dob')
+    phone = request.POST['phone']
+    email = request.POST['email']
+    religion = request.POST['religion']
+    photo = request.FILES['photo']
+    alternate_phone = request.POST['alternate_phone']
+    address = request.POST['address']
+    address_alternate = request.POST['address_alternate']
+    country = request.POST['country']
+    state = request.POST['state']
+    pincode = request.POST['pincode']
+    highest_degree = request.POST['highest_degree']
+    highest_college = request.POST['highest_college']
+    highest_year = request.POST['highest_year']
+    highest_cgpa = request.POST['highest_cgpa']
+    degree = request.POST['degree']
+    college = request.POST['college']
+    year = request.POST['year']
+    cgpa = request.POST['cgpa']
+
+
+    dob_ = datetime.datetime.strptime(dob, '%d/%m/%Y').strftime('%Y-%m-%d')
+    t = teachers(firstname=firstname, middlename= middlename, lastname=lastname, gender=gender, email=email,dateofbirth=dob_, religion=religion,
+                 phone_number=phone, alternate_phone=alternate_phone, address=address, address_alternate=address_alternate, image=photo,
+                 country=country, state=state, pincode=pincode, highest_degree=highest_degree, highest_degree_university=highest_college,
+                 highest_degree_cgpa=highest_cgpa, highest_degree_yearpassed=highest_year,degree=degree,university=college,
+                 yearpassed=year,cgpa=cgpa)
+    t.save()
+    teacher = teachers.objects.all()
+    return render(request, "admin-teacher-list.html", {'teachers':teacher})
