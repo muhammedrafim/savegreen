@@ -22,6 +22,29 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+           <style>
+             .add_student_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+.add_student_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+.dash-form label i,
+.dash-form .add_student_submit i {
+	margin-right: 5px;
+}
+        </style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -300,111 +323,22 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for student in students %}
 												<tr>
-													<td>JOHN DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>1234567890</td>
-													<td>john@gmail.com</td>
+													<td>{{ student.firstname.upper }} {{ student.middlename.upper }} {{ student.lastname.upper }} </td>
+													<td>{{ student.registration_id }}</td>
+													<td>{{ student.class_name }}</td>
+													<td>{{ student.class_division }}</td>
+													<td>{{ student.roll_number }}</td>
+													<td>{{ student.phone_number }}</td>
+													<td>{{ student.email }}</td>
 													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+														<a class="edit" href="#" title="Edit" data-toggle="modal"   data-target="#edit_{{ student.id }}"><i class="fa fa-edit"></i></a>
+														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#delete_{{ student.id }}"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												<tr>
-													<td>LENNORE DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>0999878775</td>
-													<td>lennore@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>JOHN DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>1234567890</td>
-													<td>john@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>LENNORE DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>0987654321</td>
-													<td>lennore@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>JOHN DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>1234567890</td>
-													<td>john@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>LENNORE DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 5</td>
-													<td>PTH05A</td>
-													<td>PTH05A01</td>
-													<td>0987654321</td>
-													<td>lennore@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>JOHN DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 3</td>
-													<td>PTH03A</td>
-													<td>PTH05A01</td>
-													<td>1234567890</td>
-													<td>john@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>LENNORE DOE</td>
-													<td>PTH2017001</td>
-													<td>STD 8</td>
-													<td>PTH08A</td>
-													<td>PTH05A01</td>
-													<td>0987654321</td>
-													<td>lennore@gmail.com</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-											</tbody>
+                                            {% endfor %}
+                                            </tbody>
 										</table>
 									</div>
 								</div>
@@ -421,7 +355,8 @@
 				
 				
 				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
+            {% for student in students %}
+				<div id="delete_{{ student.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -431,7 +366,7 @@
 							</div>
 							<div class="modal-body">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
+									<a href="{% url 'delete_student' student.id %}" class="save"><i class="fa fa-check"></i>YES</a>
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 								<div class="clearfix"></div>
@@ -439,10 +374,12 @@
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 				
 				
 				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
+            {% for student in students %}
+				<div id="edit_{{student.id}}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -450,53 +387,57 @@
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT STUDENT DETAILS</h4>
 							</div>
+                            <form action="{% url 'edit_student' student.id %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
 							<div class="modal-body dash-form">
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>FIRST NAME</label>
-									<input type="text" placeholder="First Name" value="John" />
+									<input type="text" name="firstname_student" placeholder="First Name" value="{{ student.firstname }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>MIDDLE NAME</label>
-									<input type="text" placeholder="Middle Name" value="Fidler" />
+									<input type="text" name="middlename_student" placeholder="Middle Name" value="{{ student.middlename }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user"></i>LAST NAME</label>
-									<input type="text" placeholder="Last Name" value="Doe" />
+									<input type="text" name="lastname_student" placeholder="Last Name" value="{{ student.lastname }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-									<input type="text" placeholder="Standard" value="5 STD" />
+									<input type="text" name="class" placeholder="Standard" value="{{ student.class_name }}" />
 								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-cogs"></i>SECTION</label>
-									<input type="text" placeholder="Section" value="PTH05A" />
+									<input type="text" name="class_division" placeholder="Section" value="{{ student.class_division }}" />
 								</div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-puzzle-piece"></i>ROLL #</label>
-									<input type="text" placeholder="Roll Number" value="Fidler" />
+									<input type="text" name="roll_no" placeholder="Roll Number" value="{{ student.roll_number }}" />
 								</div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-phone"></i>CONTACT #</label>
-									<input type="text" placeholder="Contact Number" value="1234567890" />
+									<input type="text" name="contact" placeholder="Contact Number" value="{{ student.phone_number }}" />
 								</div>
 								<div class="col-sm-3">
 									<label><i class="fa fa-envelope-o"></i>EMAIL</label>
-									<input type="text" placeholder="Email" value="john@gmail.com" />
+									<input type="text" name="email" placeholder="Email" value="{{ student.email }}" />
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="modal-footer">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+									<input type="submit" class="add_student_submit" value="SAVE">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 							</div>
+                            </form>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 			</div>
-		</div>
+        </div>
 	
 		<!-- Scripts -->      <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
 		<script src="{% static 'js/jquery-ui.min.js' %}"></script>
@@ -506,6 +447,6 @@
 		<script src="{% static 'plugins/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'plugins/dataTables.responsive.min.js' %}"></script>
         <script src="{% static 'js/jsdash.js' %}"></script>
-		
+
     </body>
 </html>

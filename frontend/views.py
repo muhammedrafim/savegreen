@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail ,Gallery,maingalleryimages
 from django.core.paginator import Paginator
-
+from studentdashboard.models import Student
 
 def index(request):
     eventnews = EventsNews.objects.all()
@@ -12,10 +12,11 @@ def index(request):
     news = News.objects.all()
     return render(request, "index.html", {'eventnews': eventnews,'news': news, 'eventtypes': eventtypes,'featuredevent':featuredevent, 'teachers': teachers})
 def academic(request):
-    teachers = Teachers.objects.all();
+    teachers = Teachers.objects.all()
     return render(request,"academic.html", {'teachers':teachers})
 def preschool(request):
-    return render(request,"preschool.html")
+    st = Student.objects.all()
+    return render(request,"preschool.html", {'student': st[1]})
 def preschoolsummer(request):
     return render(request,"preschool-summer-camp.html")
 def admission(request):
