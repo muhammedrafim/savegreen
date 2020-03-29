@@ -25,3 +25,13 @@ class Subject(models.Model):
     teacher = models.TextField()
     subject_class = models.TextField()
     description = models.TextField()
+
+class TimeTable(models.Model):
+    day = models.TextField()
+    time_slot = models.TextField()
+    class_name = models.TextField()
+    class_section = models.TextField()
+    subject_name = models.TextField()
+    teacher = models.TextField()
+    classroom = models.TextField()
+

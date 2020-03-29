@@ -32,6 +32,9 @@ urlpatterns = [
     path('dashboard/add_subject', views.add_subject , name='add_subject'),
     path('dashboard/edit_subject', views.edit_subject, name = 'edit_subject'),
     path('dashboard/delete_subject', views.delete_subject, name='delete_subject'),
+    path('dashboard/add_timetable', views.add_timetable, name='add_subject'),
+    path('dashboard/edit_timetable', views.edit_timetable, name = 'edit_subject'),
+    path('dashboard/delete_timetable', views.delete_timetable, name='delete_subject'),
 
 
 ]

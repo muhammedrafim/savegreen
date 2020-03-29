@@ -22,7 +22,25 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
-
+   <style>
+           .add_timetable_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+ .add_timetable_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+</style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -286,67 +304,82 @@
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD SLOT</h6>
 									<div class="inner-item">
+                                        <form action="add_timetable" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
 										<div class="dash-form">
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-calendar"></i>DAY</label>
-												<select>
+												<select name="day">
 													<option>-- Select --</option>
 													<option>Monday</option>
 													<option>Tuesday</option>
+                                                    <option>Wednesday</option>
+                                                    <option>Thursday</option>
+                                                    <option>Friday</option>
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-clock-o"></i>SLOT</label>
-												<select>
+												<select name="slot">
 													<option>-- Select --</option>
 													<option>09-10 AM</option>
-													<option>10-11 PM</option>
+													<option>10-11 AM</option>
+                                                    <option>11-12 PM</option>
+                                                    <option>01-02 PM</option>
+                                                    <option>02-03 PM</option>
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-												<select>
+												<select name="class">
 													<option>-- Select --</option>
-													<option>STD 5</option>
-													<option>STD 6</option>
+													{% for class in classes %}
+                                                    <option>{{ class.class_name }}</option>
+                                                    {% endfor %}
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-users"></i>SECTION</label>
-												<select>
+												<select name="section">
 													<option>-- Select --</option>
-													<option>STD 5</option>
-													<option>STD 6</option>
+													{% for section in sections %}
+                                                    <option>{{ section.section_name }}</option>
+                                                    {% endfor %}
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-code"></i>SUBJECT</label>
-												<select>
+												<select name="subject">
 													<option>-- Select --</option>
-													<option>PHY101</option>
-													<option>MTH101</option>
+													{% for subject in subjects %}
+                                                    <option>{{ subject.code }}</option>
+													{% endfor %}
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-user"></i>TEACHER</label>
-												<select>
+												<select name="teacher">
 													<option>-- Select --</option>
-													<option>John Doe</option>
-													<option>Lennore Doe</option>
+													{% for teacher in teachers %}
+                                                    <option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+													{% endfor %}
 												</select>
 											</div>
 											<div class="col-sm-3">
 												<label><i class="fa fa-home"></i>CLASS ROOM</label>
-												<select>
+												<select name="room">
 													<option>-- Select --</option>
 													<option>101</option>
 													<option>103</option>
+                                                    <option>104</option>
+                                                    <option>105</option>
 												</select>
 											</div>
 											<div class="col-sm-12">
-												<a href="#"><i class="fa fa-paper-plane"></i> CREATE</a>
+												<input type="submit" value="CREATE" style="width: 125px;" class="add_timetable_submit">
 											</div>
 										</div>
+                                        </form>
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
@@ -370,20 +403,21 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for timetable in timetables %}
 												<tr>
-													<td>Monday</td>
-													<td>09-10 AM</td>
-													<td>5 STD</td>
-													<td>A</td>
-													<td>MTH101</td>
-													<td>John Doe</td>
-													<td>101</td>
+													<td>{{ timetable.day }}</td>
+													<td>{{ timetable.time_slot }}</td>
+													<td>{{ timetable.class_name }}</td>
+													<td>{{ timetable.class_section }}</td>
+													<td>{{ timetable.subject_name }}</td>
+													<td>{{ timetable.teacher }}</td>
+													<td>{{ timetable.classroom }}</td>
 													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#edittime_{{ timetable.id }}"><i class="fa fa-edit"></i></a>
+														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deletetime_{{ timetable.id }}"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												
+												{% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -400,7 +434,8 @@
 				</div>
 				
 				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
+            {% for timetable in timetables %}
+				<div id="deletetime_{{ timetable.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -409,58 +444,116 @@
 								<h4 class="modal-title"><i class="fa fa-trash"></i>DELETE SECTION</h4>
 							</div>
 							<div class="modal-body">
+                                <form method="post" action="delete_timetable" enctype="multipart/form-data">
+                                {% csrf_token %}
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
+									<input type="hidden" value="{{ timetable.id }}" name="timetable_id">
+                                    <input type="submit" value="YES" class="add_timetable_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
+                                </form>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 				
 				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
+            {% for timetable in timetables %}
+				<div id="edittime_{{ timetable.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
-						<div class="modal-content">
+                        <form action="edit_timetable" method="post" enctype="multipart/form-data">
+                            {%  csrf_token %}
+                            <input type="hidden" value="{{ timetable.id }}" name="timetable_id">
+                            <div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT SECTION DETAILS</h4>
+								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT TIMETABLE DETAILS</h4>
 							</div>
 							<div class="modal-body dash-form">
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-book"></i>SECTION</label>
-									<input type="text" placeholder="SECTION" value="A" />
-								</div>
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-code"></i>SECTION CODE</label>
-									<input type="text" placeholder="SECTION CODE" value="PTH05A" />
-								</div>
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>SECTION CLASS</label>
-									<select>
-										<option>-- Select --</option>
-										<option>5 STD</option>
-										<option>6 STD</option>
-									</select>
-								</div>
-								<div class="clearfix"></div>
-								<div class="col-sm-12">
-									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-									<textarea placeholder="Enter Description Here"></textarea>
-								</div>
-								<div class="clearfix"></div>
+								<div class="col-sm-3">
+												<label class="clear-top-margin"><i class="fa fa-calendar"></i>DAY</label>
+												<select name="day">
+													<option>{{ timetable.day }}</option>
+													<option>Monday</option>
+													<option>Tuesday</option>
+                                                    <option>Wednesday</option>
+                                                    <option>Thursday</option>
+                                                    <option>Friday</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label class="clear-top-margin"><i class="fa fa-clock-o"></i>SLOT</label>
+												<select name="slot">
+													<option>{{ timetable.time_slot }}</option>
+													<option>09-10 AM</option>
+													<option>10-11 AM</option>
+                                                    <option>11-12 PM</option>
+                                                    <option>01-02 PM</option>
+                                                    <option>02-03 PM</option>
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
+												<select name="class">
+													<option>{{ timetable.class_name }}</option>
+													{% for class in classes %}
+                                                    <option>{{ class.class_name }}</option>
+                                                    {% endfor %}
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label class="clear-top-margin"><i class="fa fa-users"></i>SECTION</label>
+												<select name="section">
+													<option>{{ timetable.class_section }}</option>
+													{% for section in sections %}
+                                                    <option>{{ section.section_name }}</option>
+                                                    {% endfor %}
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label><i class="fa fa-code"></i>SUBJECT</label>
+												<select name="subject">
+													<option>{{ timetable.subject_name }}</option>
+													{% for subject in subjects %}
+                                                    <option>{{ subject.code }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label><i class="fa fa-user"></i>TEACHER</label>
+												<select name="teacher">
+													<option>{{ timetable.teacher }}</option>
+													{% for teacher in teachers %}
+                                                    <option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+													{% endfor %}
+												</select>
+											</div>
+											<div class="col-sm-3">
+												<label><i class="fa fa-home"></i>CLASS ROOM</label>
+												<select name="room">
+													<option>{{ timetable.classroom }}</option>
+													<option>101</option>
+													<option>103</option>
+                                                    <option>104</option>
+                                                    <option>105</option>
+												</select>
+											</div>
+                                <div class="clearfix"></div>
 							</div>
 							<div class="modal-footer">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+									<input type="submit" value="SAVE" class="add_timetable_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 							</div>
 						</div>
+                        </form>
 					</div>
 				</div>
+            {% endfor %}
 				
 			</div>
 		</div>

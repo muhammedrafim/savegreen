@@ -356,7 +356,7 @@
 												<tr>
 													<td>{{ subject.name }}</td>
 													<td>{{ subject.code }}</td>
-													<td>{{ subject.class }}</td>
+													<td>{{ subject.subject_class }}</td>
 													<td>{{ subject.teacher }}</td>
 													<td>{{ subject.description }}</td>
 													<td class="action-link">
@@ -421,11 +421,11 @@
 							<div class="modal-body dash-form">
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>NAME</label>
-									<input type="text" name="name" placeholder="Name" value="Mathematics" />
+									<input type="text" name="name" placeholder="Name" value="{{ subject.name }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-code"></i>CODE</label>
-									<input type="text" name="code" placeholder="Code" value="MTH101" />
+									<input type="text" name="code" placeholder="Code" value="{{ subject.code }}" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>

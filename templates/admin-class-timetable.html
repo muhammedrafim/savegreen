@@ -288,19 +288,17 @@
 									<div class="inner-item dash-search-form">
 										<div class="col-sm-4">
 											<label>CLASS</label>
-											<select>
-												<option>5th STD</option>
-												<option>6th STD</option>
-												<option>7th STD</option>
+											<select>{% for class in classes %}
+                                                <option>{{ class.class_name}}</option>
+                                                {% endfor %}
 											</select>
 										</div>
 										<div class="col-sm-4">
 											<label>SECTION</label>
 											<select>
-												<option>PTH05A</option>
-												<option>PTH05B</option>
-												<option>PTH06A</option>
-												<option>PTH06B</option>
+												{% for section in sections %}
+                                                <option>{{ section.section_name }}</option>
+                                                {% endfor %}
 											</select>
 										</div>
 										<div class="col-sm-4">
@@ -328,43 +326,44 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for timetable in timetables %}
 												<tr>
-													<td>09-10 AM</td>
-													<td>
-														<span>Lecture: MTH101</span>
-														<span>Room: 601</span>
-														<span>Teacher: John</span>
+													<td>{{ timetable.time_slot }}</td>
+                                                    <td>{% if timetable.day == 'Monday' %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+													</td>{% if timetable.day == 'Tuesday' %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
 													</td>
-													<td>
-														<span>Lecture: PHY101</span>
-														<span>Room: 303</span>
-														<span>Teacher: Lennore</span>
+													<td>{% if timetable.day == 'Wednesday' %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
 													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 302</span>
-														<span>Teacher: John</span>
+													<td>{% if timetable.day == 'Thursday' %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
 													</td>
-													<td>
-														<span>Lecture: PHY101</span>
-														<span>Room: 303</span>
-														<span>Teacher: Lennore</span>
-													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 202</span>
-														<span>Teacher: John</span>
-													</td>
-													<td>
-														<span>Lecture: MTH101</span>
-														<span>Room: 601</span>
-														<span>Teacher: John</span>
+													<td>{% if timetable.day == 'Friday' %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
 													</td>
 													<td class="action-link">
 														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
 														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
 										<div class="table-action-box">

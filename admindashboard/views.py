@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from studentdashboard.models import Student,parent
 from teacherdashboard.models import teachers
 import datetime
-from .models import Class,ClassSection,Subject
+from .models import Class,ClassSection,Subject,TimeTable
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
@@ -120,15 +120,29 @@ def admin_add_section(request):
 
 
 def admin_add_subject(request):
-    return render(request, 'admin-add-subject.html')
+    subject = Subject.objects.all()
+    teach = teachers.objects.all()
+    clas = Class.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
 
 
 def admin_create_timetable(request):
-    return render(request, 'admin-create-timetable.html')
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    timetable = TimeTable.objects.all()
+    return render(request, 'admin-create-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas, 'sections' : section, 'timetables' : timetable})
 
 
 def admin_class_tintetable(request):
-    return render(request, 'admin-class-timetable.html')
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    timetable = TimeTable.objects.all()
+    return render(request, 'admin-class-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas, 'sections' : section, 'timetables' : timetable})
+
 
 
 def admin_attendace(request):
@@ -314,3 +328,101 @@ def add_subject(request):
     teach = teachers.objects.all()
     clas = Class.objects.all()
     return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+
+def edit_subject(request):
+    name = request.POST['name']
+    code = request.POST['code']
+    subject_class = request.POST['class']
+    teacher = request.POST['teacher']
+    description = request.POST['description']
+    subject_id = request.POST['subject_id']
+
+    s =Subject.objects.get(id=subject_id)
+    s.name = name
+    s.subject_class = subject_class
+    s.teacher = teacher
+    s.code = code
+    if description != '' :
+        s.description=description
+    s.save()
+
+
+    subject = Subject.objects.all()
+    teach = teachers.objects.all()
+    clas = Class.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+
+def delete_subject(request):
+    subject_id = request.POST['subject_id']
+    s = Subject.objects.get(id=subject_id)
+    s.delete()
+
+    subject = Subject.objects.all()
+    teach = teachers.objects.all()
+    clas = Class.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+
+
+def add_timetable(request):
+    day = request.POST['day']
+    slot = request.POST['slot']
+    class_name = request.POST['class']
+    section = request.POST['section']
+    room = request.POST['room']
+    teacher = request.POST['teacher']
+    subject = request.POST['subject']
+
+    t = TimeTable(day=day, time_slot=slot,class_name=class_name,class_section=section,classroom=room,teacher=teacher,subject_name=subject)
+    t.save()
+
+
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    timetable = TimeTable.objects.all()
+    return render(request, 'admin-create-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas, 'sections' : section, 'timetables' : timetable})
+
+
+def edit_timetable(request):
+    timetable_id = request.POST['timetable_id']
+    day = request.POST['day']
+    slot = request.POST['slot']
+    class_name = request.POST['class']
+    section = request.POST['section']
+    room = request.POST['room']
+    teacher = request.POST['teacher']
+    subject = request.POST['subject']
+
+    t = TimeTable.objects.get(id=timetable_id)
+    t.day=day
+    t.time_slot=slot
+    t.class_name=class_name
+    t.class_section=section
+    t.teacher=teacher
+    t.classroom = room
+    t.subject_name = subject
+    t.save()
+
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    timetable = TimeTable.objects.all()
+    return render(request, 'admin-create-timetable.html',
+                  {'teachers': teacher, 'subjects': subjects, 'classes': clas, 'sections': section,
+                   'timetables': timetable})
+
+def delete_timetable(request):
+    _id = request.POST['timetable_id']
+    s = TimeTable.objects.get(id=_id)
+    s.delete()
+
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    timetable = TimeTable.objects.all()
+    return render(request, 'admin-create-timetable.html',
+                  {'teachers': teacher, 'subjects': subjects, 'classes': clas, 'sections': section,
+                   'timetables': timetable})
