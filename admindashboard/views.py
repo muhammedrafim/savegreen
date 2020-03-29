@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from studentdashboard.models import Student,parent
 from teacherdashboard.models import teachers
 import datetime
+from .models import Class
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
@@ -107,7 +108,9 @@ def admin_add_announcement(request):
 
 
 def admin_add_class(request):
-    return render(request, 'admin-add-class.html')
+    teacher = teachers.objects.all()
+    clas = Class.objects.all()
+    return render(request, 'admin-add-class.html', {'teachers' : teacher , 'classes' : clas})
 
 
 def admin_add_section(request):
@@ -175,3 +178,79 @@ def add_teacher(request):
     t.save()
     teacher = teachers.objects.all()
     return render(request, "admin-teacher-list.html", {'teachers':teacher})
+
+def edit_teacher(request):
+    firstname = request.POST['firstname']
+    middlename = request.POST['middlename']
+    lastname = request.POST['lastname']
+    address = request.POST['address']
+    degree = request.POST['degree']
+    college = request.POST['college']
+    email = request.POST['email']
+    phone = request.POST['contact']
+    teacer_id = request.POST['teacherid']
+
+    t = teachers.objects.get(id=teacer_id)
+    t.firstname = firstname
+    t.middlename = middlename
+    t.lastname = lastname
+    t.address=address
+    t.highest_degree = degree
+    t.highest_degree_university = college
+    t.email = email
+    t.phone_number =phone
+    t.save()
+
+    teacher = teachers.objects.all()
+    return render(request, "admin-teacher-list.html", {"teachers" : teacher})
+
+
+def delete_teacher(request):
+    teacher_id = request.POST.get('teacher_id')
+
+    t = teachers.objects.get(id=teacher_id)
+    t.delete()
+    teacher = teachers.objects.all()
+    return render(request, "admin-teacher-list.html", {"teachers" : teacher})
+
+
+def add_class(request):
+    class_name = request.POST['class']
+    class_code = request.POST['code']
+    class_teacher = request.POST['teacher']
+    description = request.POST['description']
+
+    c = Class(class_name=class_name,class_code=class_code,class_teacher=class_teacher,description=description)
+    c.save()
+    classes = Class.objects.all()
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-class.html", {'classes' : classes , 'teachers' : teacher})
+
+
+def edit_class(request):
+    class_name = request.POST['class']
+    class_code = request.POST['code']
+    class_teacher = request.POST['teacher']
+    description = request.POST['description']
+    class_id = request.POST['class_id']
+
+    c = Class.objects.get(id=class_id)
+    c.class_name = class_name
+    c.class_code = class_code
+    c.class_teacher = class_teacher
+    if description != "":
+        c.description = description
+    c.save()
+
+    classes = Class.objects.all()
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-class.html", {'classes' : classes , 'teachers' : teacher})
+
+def delete_class(request):
+    class_id = request.POST['class_id']
+    c = Class.objects.get(id=class_id)
+    c.delete()
+
+    classes = Class.objects.all()
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-class.html", {'classes': classes, 'teachers': teacher})

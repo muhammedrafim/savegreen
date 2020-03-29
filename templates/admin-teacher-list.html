@@ -351,7 +351,8 @@
 				
 				
 				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
+            {% for teacher in teachers %}
+				<div id="deleteteacher_{{ teacher.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -361,14 +362,20 @@
 							</div>
 							<div class="modal-body">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
+                                    <form action="delete_teacher" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                    <input type="hidden" value="{{ teacher.id }}" name="teacher_id" >
+									<input type="submit" value="YES" class="add_teacher_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
+                                           </form>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 				
 				
 				<!--Edit details modal-->
@@ -376,6 +383,9 @@
 				<div id="editteacher_{{ teacher.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
+                        <form action="edit_teacher" method="post" enctype="multipart/form-data">
+                            <input type="hidden" value="{{ teacher.id }}" name="teacherid">
+                            {% csrf_token %}
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -424,6 +434,8 @@
 								</div>
 							</div>
 						</div>
+
+                        </form>
 					</div>
 				</div>
             {% endfor %}

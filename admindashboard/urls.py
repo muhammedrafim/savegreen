@@ -21,5 +21,10 @@ urlpatterns = [
     path('dashboard/edit_student/<student_id>/', views.edit_student , name='edit_student'),
     path('dashboard/delete_student/<student_id>', views.delete_student, name='delete_student'),
     path('dashboard/add_teacher', views.add_teacher),
+    path('dashboard/edit_teacher', views.edit_teacher, name='edit_Teacher'),
+    path('dashboard/delete_teacher', views.delete_teacher, name='delete_teacher'),
+    path('dashboard/add_class', views.add_class , name='add_class'),
+    path('dashboard/edit_class', views.edit_class, name = 'edit_class'),
+    path('dashboard/delete_class', views.delete_class, name='delete_class'),
 
 ]

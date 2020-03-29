@@ -22,7 +22,25 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
-
+<style>
+         .add_announcemnt_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+ .add_announcemnt_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+        </style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -286,29 +304,33 @@
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD ANNOUNCEMENT</h6>
 									<div class="inner-item">
+                                        <form action="add_announcement" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+
 										<div class="dash-form">
 											<label class="clear-top-margin"><i class="fa fa-cogs"></i>TYPE</label>
-											<select>
+											<select name="type">
 												<option>-- Select --</option>
 												<option>Academic</option>
 												<option>Administrative</option>
 												<option>Sports</option>
 											</select>
 											<label><i class="fa fa-user-secret"></i>FOR</label>
-											<select>
+											<select name="for">
 												<option>-- Select --</option>
 												<option>All</option>
 												<option>Teacher</option>
 												<option>Student</option>
 											</select>
 											<label><i class="fa fa-code"></i>SUBJECT</label>
-											<input type="text" placeholder="Subject" />
+											<input type="text" name="subject" placeholder="Subject" />
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-											<textarea placeholder="Enter Description Here"></textarea>
+											<textarea name="description" placeholder="Enter Description Here"></textarea>
 											<div>
-												<a href="#"><i class="fa fa-paper-plane"></i> CREATE</a>
+												<input type="submit" value="CREATE" class="add_announcemnt_submit">
 											</div>
 										</div>
+                                        </form>
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
