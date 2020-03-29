@@ -23,6 +23,25 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
 
+        <style>
+           .add_section_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+ .add_section_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+</style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -286,23 +305,28 @@
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD SECTION</h6>
 									<div class="inner-item">
+                                        <form action="add_section" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+
 										<div class="dash-form">
 											<label class="clear-top-margin"><i class="fa fa-book"></i>SECTION</label>
-											<input type="text" placeholder="A" />
+											<input type="text" name="section" placeholder="A" />
 											<label><i class="fa fa-code"></i>SECTION CLASS</label>
-											<select>
+											<select name="class">
 												<option>-- Select --</option>
-												<option>STD 5</option>
-												<option>STD 6</option>
+                                                {% for class in classes %}
+                                                <option>{{ class.class_name }}</option>
+                                            {% endfor %}
 											</select>
 											<label><i class="fa fa-user-secret"></i>SECTION CODE</label>
-											<input type="text" placeholder="PTH05A" />
+											<input type="text" name="code" placeholder="PTH05A" />
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-											<textarea placeholder="Enter Description Here"></textarea>
+											<textarea name="description" placeholder="Enter Description Here"></textarea>
 											<div>
-												<a href="#"><i class="fa fa-paper-plane"></i> CREATE</a>
+												<input class="add_section_submit" type="submit" value="CREATE">
 											</div>
 										</div>
+                                        </form>
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
@@ -323,46 +347,18 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for section in sections %}
 												<tr>
-													<td>5 STD</td>
-													<td>A</td>
-													<td>PTH05A</td>
-													<td>Section Desc</td>
+													<td>{{ section.class_name }}</td>
+													<td>{{ section.section_name }}</td>
+													<td>{{ section.section_code }}</td>
+													<td>{{ section.description }}</td>
 													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editsection_{{ section.id }}"><i class="fa fa-edit"></i></a>
+														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deletesection_{{ section.id }}"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												<tr>
-													<td>5 STD</td>
-													<td>B</td>
-													<td>PTH05B</td>
-													<td>Description</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>4 STD</td>
-													<td>A</td>
-													<td>PTH04A</td>
-													<td>Section Desc</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>4 STD</td>
-													<td>B</td>
-													<td>PTH04B</td>
-													<td>Description</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
+                                            {%  endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -379,7 +375,8 @@
 				</div>
 				
 				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
+            {% for section in sections %}
+				<div id="deletesection_{{ section.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -388,20 +385,29 @@
 								<h4 class="modal-title"><i class="fa fa-trash"></i>DELETE SECTION</h4>
 							</div>
 							<div class="modal-body">
+                                <form method="post" action="delete_section" enctype="multipart/form-data">
+                                    {% csrf_token %}
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
+                                    <input type="hidden" value="{{ section.id }}" name="section_id">
+									<input type="submit" value="YES" class="add_section_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
+                                </form>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 				
 				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
+            {% for section in sections %}
+				<div id="editsection_{{ section.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
+                        <form method="post" action="edit_section" enctype="multipart/form-data">
+                            {%  csrf_token %}
+                        <input type="hidden" value="{{ section.id }}" name="section_id">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -410,36 +416,38 @@
 							<div class="modal-body dash-form">
 								<div class="col-sm-4">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>SECTION</label>
-									<input type="text" placeholder="SECTION" value="A" />
+									<input type="text" name="section" placeholder="SECTION" value="{{ section.section_name }}" />
 								</div>
 								<div class="col-sm-4">
 									<label class="clear-top-margin"><i class="fa fa-code"></i>SECTION CODE</label>
-									<input type="text" placeholder="SECTION CODE" value="PTH05A" />
+									<input type="text" placeholder="SECTION CODE" name="code" value="{{ section.section_code }}" />
 								</div>
 								<div class="col-sm-4">
 									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>SECTION CLASS</label>
-									<select>
-										<option>-- Select --</option>
-										<option>5 STD</option>
-										<option>6 STD</option>
+									<select name="class">
+										<option>{{ section.class_name }}</option>
+										{% for class in classes %}
+                                            <option>{{ class.class_name }}</option>
+                                            {% endfor %}
 									</select>
 								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-12">
 									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-									<textarea placeholder="Enter Description Here"></textarea>
+									<textarea name="description" placeholder="{{ section.description }}"></textarea>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="modal-footer">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+									<input type="submit" value="SAVE" class="add_section_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+            {% endfor %}
 				
 			</div>
 		</div>

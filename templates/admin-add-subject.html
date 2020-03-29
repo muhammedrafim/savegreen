@@ -22,7 +22,24 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
-
+ <style> .add_subject_submit {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+.add_subject_submit:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+        </style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -286,29 +303,34 @@
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD SUBJECT</h6>
 									<div class="inner-item">
-										<div class="dash-form">
+                                        <form method="post" action="add_subject" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="dash-form">
 											<label class="clear-top-margin"><i class="fa fa-book"></i>NAME</label>
-											<input type="text" placeholder="Basic Mathematics" />
+											<input type="text" name="name" placeholder="Basic Mathematics" />
 											<label><i class="fa fa-code"></i>SUBJECT CODE</label>
-											<input type="text" placeholder="MTH101" />
+											<input type="text" name="code" placeholder="MTH101" />
 											<label><i class="fa fa-code"></i>CLASS</label>
-											<select>
+											<select name="class">
 												<option>-- Select --</option>
-												<option>STD 5</option>
-												<option>STD 6</option>
+												{% for class in classes %}
+                                                <option>{{ class.class_name }}</option>
+                                                {% endfor %}
 											</select>
 											<label><i class="fa fa-code"></i>TEACHER</label>
-											<select>
+											<select name="teacher">
 												<option>-- Select --</option>
-												<option>Lennore Doe</option>
-												<option>John Doe</option>
+                                                {% for teacher in teachers %}
+												<option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+                                                {% endfor %}
 											</select>
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-											<textarea placeholder="Enter Description Here"></textarea>
+											<textarea name="description" placeholder="Enter Description Here"></textarea>
 											<div>
-												<a href="#"><i class="fa fa-paper-plane"></i> CREATE</a>
+												<input class="add_subject_submit" type="submit" value="CREATE">
 											</div>
 										</div>
+                                        </form>
 										<div class="clearfix"></div>
 									</div>
 									<div class="clearfix"></div>
@@ -330,28 +352,19 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for subject in subjects %}
 												<tr>
-													<td>Mathematics</td>
-													<td>MTH101</td>
-													<td>PTH05A</td>
-													<td>Lennore Doe</td>
-													<td>Desc</td>
+													<td>{{ subject.name }}</td>
+													<td>{{ subject.code }}</td>
+													<td>{{ subject.class }}</td>
+													<td>{{ subject.teacher }}</td>
+													<td>{{ subject.description }}</td>
 													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editsubject_{{ subject.id }}"><i class="fa fa-edit"></i></a>
+														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deletesubject_{{ subject.id }}"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												<tr>
-													<td>Biology</td>
-													<td>BIO101</td>
-													<td>PTH05A</td>
-													<td>John Doe</td>
-													<td>Description</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
 									</div>
@@ -368,7 +381,8 @@
 				</div>
 				
 				<!-- Delete Modal -->
-				<div id="deleteDetailModal" class="modal fade" role="dialog">
+               {% for subject in subjects %}
+				<div id="deletesubject_{{ subject.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
 						<div class="modal-content">
@@ -377,21 +391,29 @@
 								<h4 class="modal-title"><i class="fa fa-trash"></i>DELETE SUBJECT</h4>
 							</div>
 							<div class="modal-body">
-								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>YES</a>
+                                <form method="post" enctype="multipart/form-data" action="delete_subject">
+                                    {% csrf_token %}
+                                    <div class="table-action-box">
+                                        <input type="hidden" value="{{ subject.id }}" name="subject_id">
+									<input class="add_subject_submit" type="submit" value="YES">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
+                                </form>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+				{% endfor %}
 				<!--Edit details modal-->
-				<div id="editDetailModal" class="modal fade" role="dialog">
+
+                {% for subject in subjects %}
+				<div id="editsubject_{{ subject.id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->
-						<div class="modal-content">
+						<form action="edit_subject" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT SUBJECT DETAILS</h4>
@@ -399,44 +421,49 @@
 							<div class="modal-body dash-form">
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>NAME</label>
-									<input type="text" placeholder="Name" value="Mathematics" />
+									<input type="text" name="name" placeholder="Name" value="Mathematics" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-code"></i>CODE</label>
-									<input type="text" placeholder="Code" value="MTH101" />
+									<input type="text" name="code" placeholder="Code" value="MTH101" />
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-									<select>
-										<option>-- Select --</option>
-										<option>5 STD</option>
-										<option>6 STD</option>
+									<select name="class">
+										<option>{{ subject.subject_class }}</option>
+                                        {% for class in classes %}
+                                            <option>{{ class.class_name }}</option>
+                                            {% endfor %}
 									</select>
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>TEACHER</label>
-									<select>
-										<option>-- Select --</option>
-										<option>Lennore</option>
-										<option>John</option>
+									<select name="teacher">
+										<option>{{ subject.teacher }}</option>
+                                        {% for teacher in teachers %}
+                                            <<option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+										{% endfor %}
 									</select>
 								</div>
 								<div class="clearfix"></div>
 								<div class="col-sm-12">
 									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-									<textarea placeholder="Enter Description Here"></textarea>
+									<textarea name="description" placeholder="Enter Description Here"></textarea>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<div class="modal-footer">
 								<div class="table-action-box">
-									<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+									<input type="hidden"  value="{{ subject.id }}" name="subject_id">
+                                    <input type="submit" value="SAVE" class="add_subject_submit">
 									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
 								</div>
 							</div>
 						</div>
+                        </form>
 					</div>
 				</div>
+            {% endfor %}
 				
 			</div>
 		</div>

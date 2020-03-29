@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from studentdashboard.models import Student,parent
 from teacherdashboard.models import teachers
 import datetime
-from .models import Class
+from .models import Class,ClassSection,Subject
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
@@ -114,7 +114,9 @@ def admin_add_class(request):
 
 
 def admin_add_section(request):
-    return render(request, 'admin-add-section.html')
+    classes = Class.objects.all()
+    sections = ClassSection.objects.all()
+    return render(request, 'admin-add-section.html', {'classes': classes,'sections' : sections})
 
 
 def admin_add_subject(request):
@@ -254,3 +256,61 @@ def delete_class(request):
     classes = Class.objects.all()
     teacher = teachers.objects.all()
     return render(request, "admin-add-class.html", {'classes': classes, 'teachers': teacher})
+
+
+def add_section(request):
+    class_name = request.POST['class']
+    code = request.POST['code']
+    section = request.POST['section']
+    description = request.POST['description']
+
+    c = ClassSection(description=description,section_name=section,section_code=code,class_name=class_name)
+    c.save()
+    classes = Class.objects.all()
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+
+def edit_section(request):
+    class_name = request.POST['class']
+    code = request.POST['code']
+    section  = request.POST['section']
+    description = request.POST['description']
+    section_id = request.POST['section_id']
+
+    c = ClassSection.objects.get(id=section_id)
+    c.class_name = class_name
+    c.section_code = code
+    c.section_name = section
+    if description != "":
+        c.description = description
+    c.save()
+
+    classes = Class.objects.all()
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+
+
+def delete_section(request):
+    section_id = request.POST['section_id']
+    c = ClassSection.objects.get(id=section_id)
+    c.delete()
+
+    classes = Class.objects.all()
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+
+
+def add_subject(request):
+    name = request.POST['name']
+    code = request.POST['code']
+    subject_class = request.POST['class']
+    teacher = request.POST['teacher']
+    description = request.POST['description']
+
+    s = Subject(name=name,code=code,subject_class=subject_class,teacher=teacher,description=description)
+    s.save()
+
+    subject = Subject.objects.all()
+    teach = teachers.objects.all()
+    clas = Class.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})

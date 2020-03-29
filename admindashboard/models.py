@@ -12,3 +12,16 @@ class Class(models.Model):
     class_code = models.TextField()
     class_teacher = models.TextField()
     description = models.TextField()
+
+class ClassSection(models.Model):
+    class_name = models.TextField()
+    section_name = models.TextField()
+    section_code = models.TextField()
+    description = models.TextField()
+
+class Subject(models.Model):
+    name = models.TextField()
+    code = models.TextField()
+    teacher = models.TextField()
+    subject_class = models.TextField()
+    description = models.TextField()
