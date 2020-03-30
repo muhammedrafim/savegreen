@@ -1,5 +1,6 @@
 from django.db import models
-
+from admindashboard.models import ClassSection,Class,Subject
+from teacherdashboard.models import teachers
 # Create your models here.
 
 class parent(models.Model):
@@ -37,5 +38,15 @@ class Student(models.Model):
     last_std = models.TextField()
     last_marks_obtained = models.TextField()
     sports_intreseted = models.TextField()
+    attendence_blocked = models.TextField()
     parent = models.ForeignKey(parent,on_delete=models.CASCADE)
 
+class attendance(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+    class_details = models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+    section = models.ForeignKey(ClassSection,on_delete=models.DO_NOTHING)
+    subject = models.ForeignKey(Subject,on_delete=models.DO_NOTHING)
+    is_present = models.BooleanField()
+    remarks = models.TextField()
+    teacher_id = models.ForeignKey(teachers,on_delete=models.DO_NOTHING)
+    date_marked = models.DateField()

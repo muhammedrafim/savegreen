@@ -286,16 +286,21 @@
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
 									<div class="inner-item dash-search-form">
-										<div class="col-sm-4">
+                                    <form action="search_timetable" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="col-sm-4">
 											<label>CLASS</label>
-											<select>{% for class in classes %}
+											<select name="class">
+                                                <option>All</option>
+                                                {% for class in classes %}
                                                 <option>{{ class.class_name}}</option>
                                                 {% endfor %}
 											</select>
 										</div>
 										<div class="col-sm-4">
 											<label>SECTION</label>
-											<select>
+											<select name="section">
+                                                <option>All</option>
 												{% for section in sections %}
                                                 <option>{{ section.section_name }}</option>
                                                 {% endfor %}
@@ -305,12 +310,13 @@
 											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
 										</div>
 										<div class="clearfix"></div>
+                                    </form>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-edit"></i>EDIT TIMETABLE</h6>
+									<h6 class="item-title"><i class="fa fa-edit"></i>VIEW TIMETABLE</h6>
 									<div class="inner-item">
 										<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
 											<thead>
@@ -321,55 +327,63 @@
 													<th><i class="fa fa-calendar"></i>WEDNESDAY</th>
 													<th><i class="fa fa-calendar"></i>THURSDAY</th>
 													<th><i class="fa fa-calendar"></i>FRIDAY</th>
-													<th><i class="fa fa-calendar"></i>SATURDAY</th>
-													<th><i class="fa fa-tasks"></i>ACTION</th>
+
 												</tr>
 											</thead>
 											<tbody>
-                                            {% for timetable in timetables %}
+                                            {% for time in time_slots %}
 												<tr>
-													<td>{{ timetable.time_slot }}</td>
-                                                    <td>{% if timetable.day == 'Monday' %}
+													<td>{{ time.time_slot }}</td>
+
+
+                                                    <td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Monday' and timetable.time_slot == time.time_slot %}
 														<span>Lecture: {{ timetable.subject_name }}</span>
 														<span>Room: {{ timetable.classroom }}</span>
 														<span>Teacher: {{ timetable.teacher }}</span>
                                                         {% endif %}
-													</td>{% if timetable.day == 'Tuesday' %}
+                                                        {% endfor %}
+                                                    </td>
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Tuesday' and timetable.time_slot == time.time_slot %}
 														<span>Lecture: {{ timetable.subject_name }}</span>
 														<span>Room: {{ timetable.classroom }}</span>
 														<span>Teacher: {{ timetable.teacher }}</span>
                                                         {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>{% if timetable.day == 'Wednesday' %}
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Wednesday' and timetable.time_slot == time.time_slot %}
 														<span>Lecture: {{ timetable.subject_name }}</span>
 														<span>Room: {{ timetable.classroom }}</span>
 														<span>Teacher: {{ timetable.teacher }}</span>
                                                         {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>{% if timetable.day == 'Thursday' %}
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Thursday' and timetable.time_slot == time.time_slot %}
 														<span>Lecture: {{ timetable.subject_name }}</span>
 														<span>Room: {{ timetable.classroom }}</span>
 														<span>Teacher: {{ timetable.teacher }}</span>
                                                         {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>{% if timetable.day == 'Friday' %}
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Friday' and timetable.time_slot == time.time_slot %}
 														<span>Lecture: {{ timetable.subject_name }}</span>
 														<span>Room: {{ timetable.classroom }}</span>
 														<span>Teacher: {{ timetable.teacher }}</span>
                                                         {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-													</td>
+
+
+
 												</tr>
                                             {% endfor %}
 											</tbody>
 										</table>
-										<div class="table-action-box">
-											<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
-											<a href="#" class="cancel"><i class="fa fa-ban"></i>CANCEL</a>
-										</div>
+
 									</div>
 								</div>
 							</div>

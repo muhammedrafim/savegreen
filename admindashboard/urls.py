@@ -35,6 +35,7 @@ urlpatterns = [
     path('dashboard/add_timetable', views.add_timetable, name='add_subject'),
     path('dashboard/edit_timetable', views.edit_timetable, name = 'edit_subject'),
     path('dashboard/delete_timetable', views.delete_timetable, name='delete_subject'),
+    path('dashboard/search_timetable', views.search_timetable, name='search_timetable')
 
 
 ]

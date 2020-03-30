@@ -1,5 +1,5 @@
 from django.db import models
-
+from teacherdashboard.models import teachers
 # Create your models here.
 class Announcement(models.Model):
     type = models.TextField()

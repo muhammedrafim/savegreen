@@ -249,41 +249,40 @@
 							<div class="col-lg-12">
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
-									<div class="inner-item dash-search-form">
+									<form method="post" action="attendence_search" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                    <div class="inner-item dash-search-form">
 										<div class="col-md-3 col-sm-6">
 											<label>CLASS</label>
-											<select>
-												<option>5th STD</option>
-												<option>6th STD</option>
-												<option>7th STD</option>
+											<select name="class">
+                                                {% for class in classes %}
+												<option>{{ class.class_name }}</option>
+                                                {% endfor %}
 											</select>
 										</div>
 										<div class="col-md-3 col-sm-6">
 											<label>SECTION</label>
-											<select>
-												<option>PTH05A</option>
-												<option>PTH05B</option>
-												<option>PTH06A</option>
-												<option>PTH06B</option>
+											<select name="section">
+												{% for section in sections %}
+                                                <option>{{ section.section_code }}</option>
+                                                {% endfor %}
 											</select>
 										</div>
 										<div class="clearfix visible-sm"></div>
 										<div class="col-md-3 col-sm-6">
 											<label>COURSE CODE</label>
-											<select>
-												<option>MTH101</option>
-												<option>MTH102</option>
-												<option>MTH103</option>
-												<option>MTH104</option>
+											<select name="subject">
+                                                {% for subject in subjects %}
+												<option>{{ subject.code }}</option>
+												{% endfor %}
 											</select>
 										</div>
 										<div class="col-md-3 col-sm-6">
 											<label>TIME</label>
-											<select>
-												<option>09- 10 AM</option>
-												<option>10 - 11 AM</option>
-												<option>11- 12 PM</option>
-												<option>12 - 01 PM</option>
+											<select name="time_slot">
+												{% for time in timetables %}
+                                                 <option>{{ time.time_slot }}</option>
+                                                {% endfor %}
 											</select>
 										</div>
 										<div class="clearfix"></div>
@@ -292,6 +291,7 @@
 										</div>
 										<div class="clearfix"></div>
 									</div>
+                                    </form>
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -310,58 +310,24 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            <form action="mark_attendence" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {% for student in students %}
 												<tr>
-													<td>PTH050A01</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
+
+													<td>{{ student.roll_number }}</td>
+													<td>{{ student.firstname }} {{ student.middlename }} {{ student.lastname }}</td>
+													<td>{{ subject_code }}</td>
 													<td>
-														<select class="datatable-select">
+														<select name="ispresent" class="datatable-select">
 															<option>Present</option>
 															<option>Absent</option>
 														</select>
 													</td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-													<td class="text-success">NO</td>
+													<td><input type="text" name="remarks" placeholder="Remarks" class="datatable-input"/></td>
+													<td class="{% if student.attendence_blocked == 'No' %}text-success {% else %} text-danger {% endif %}">{{ student.attendence_blocked }}</td>
 												</tr>
-												<tr>
-													<td>PTH050A02</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td>
-														<select class="datatable-select">
-															<option>Present</option>
-															<option>Absent</option>
-														</select>
-													</td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-													<td class="text-success">NO</td>
-												</tr>
-												<tr>
-													<td>PTH050A03</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
-													<td>
-														<select class="datatable-select">
-															<option>Present</option>
-															<option>Absent</option>
-														</select>
-													</td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-													<td class="text-danger">YES (Fee over due)</td>
-												</tr>
-												<tr>
-													<td>PTH050A04</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td>
-														<select class="datatable-select">
-															<option>Present</option>
-															<option>Absent</option>
-														</select>
-													</td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-													<td class="text-success">NO</td>
-												</tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
 										<div class="table-action-box">

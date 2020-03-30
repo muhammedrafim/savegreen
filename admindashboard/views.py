@@ -4,6 +4,7 @@ from studentdashboard.models import Student,parent
 from teacherdashboard.models import teachers
 import datetime
 from .models import Class,ClassSection,Subject,TimeTable
+from django.contrib.auth.models import User,auth
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
@@ -130,7 +131,7 @@ def admin_create_timetable(request):
     teacher = teachers.objects.all()
     subjects = Subject.objects.all()
     clas = Class.objects.all()
-    section = ClassSection.objects.all()
+    section = ClassSection.objects.all().distinct('section_name')
     timetable = TimeTable.objects.all()
     return render(request, 'admin-create-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas, 'sections' : section, 'timetables' : timetable})
 
@@ -139,9 +140,10 @@ def admin_class_tintetable(request):
     teacher = teachers.objects.all()
     subjects = Subject.objects.all()
     clas = Class.objects.all()
-    section = ClassSection.objects.all()
+    section = ClassSection.objects.all().distinct('section_name')
     timetable = TimeTable.objects.all()
-    return render(request, 'admin-class-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas, 'sections' : section, 'timetables' : timetable})
+    time_slot = TimeTable.objects.all().distinct('time_slot')
+    return render(request, 'admin-class-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas,'time_slots':time_slot, 'sections' : section, 'timetables' : timetable})
 
 
 
@@ -183,6 +185,8 @@ def add_teacher(request):
     college = request.POST['college']
     year = request.POST['year']
     cgpa = request.POST['cgpa']
+    username = request.POST['username']
+    password = request.POST['password']
 
 
     dob_ = datetime.datetime.strptime(dob, '%d/%m/%Y').strftime('%Y-%m-%d')
@@ -190,8 +194,12 @@ def add_teacher(request):
                  phone_number=phone, alternate_phone=alternate_phone, address=address, address_alternate=address_alternate, image=photo,
                  country=country, state=state, pincode=pincode, highest_degree=highest_degree, highest_degree_university=highest_college,
                  highest_degree_cgpa=highest_cgpa, highest_degree_yearpassed=highest_year,degree=degree,university=college,
-                 yearpassed=year,cgpa=cgpa)
+                 yearpassed=year,cgpa=cgpa,username=username)
     t.save()
+    last_name = middlename+" "+lastname
+    user = User.objects.create_user(username=username,password=password,email=email, first_name= firstname,last_name=last_name)
+    user.save()
+
     teacher = teachers.objects.all()
     return render(request, "admin-teacher-list.html", {'teachers':teacher})
 
@@ -426,3 +434,26 @@ def delete_timetable(request):
     return render(request, 'admin-create-timetable.html',
                   {'teachers': teacher, 'subjects': subjects, 'classes': clas, 'sections': section,
                    'timetables': timetable})
+
+
+def search_timetable(request):
+    class_name = request.POST['class']
+    section = request.POST['section']
+    if class_name == 'All' :
+            if section == 'All':
+                timetable = TimeTable.objects.all()
+            else :
+                timetable = TimeTable.objects.all().filter(class_section=section)
+    else :
+        if section == 'All':
+            timetable = TimeTable.objects.all().filter(class_name=class_name)
+        else:
+            timetable = TimeTable.objects.all().filter(class_name=class_name,class_section=section)
+    teacher = teachers.objects.all()
+    subjects = Subject.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    time_slot = TimeTable.objects.all().distinct('time_slot')
+    return render(request, 'admin-class-timetable.html', {'teachers' : teacher, 'subjects':subjects , 'classes' : clas,'time_slots':time_slot, 'sections' : section, 'timetables' : timetable})
+
+

@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from studentdashboard.models import Student
+from .models import teachers
+from admindashboard.models import Class,ClassSection,Subject,TimeTable
 # Create your views here.
 def teacher_dashboard(request):
     return render(request, "teacher-dashboard.html")
@@ -14,7 +16,12 @@ def download_assignment(request):
 
 
 def mark_student_attendance(request):
-    return render(request, "teacher-mark-student-attendence.html")
+    students = Student.objects.all()
+    clas = Class.objects.all()
+    section = ClassSection.objects.all()
+    subject = Subject.objects.all()
+    timetable = TimeTable.objects.all().distinct('time_slot')
+    return render(request, "teacher-mark-student-attendence.html", {'students':students,'classes':clas,'sections':section,'subjects':subject,'timetables':timetable})
 
 
 def view_student_attendace(request):
