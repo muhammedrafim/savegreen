@@ -314,14 +314,14 @@
 											<select name="class">
 												<option>-- Select --</option>
 												{% for class in classes %}
-                                                <option>{{ class.class_name }}</option>
+                                                <option value="{{ class.id }}">{{ class.class_name }}</option>
                                                 {% endfor %}
 											</select>
 											<label><i class="fa fa-code"></i>TEACHER</label>
 											<select name="teacher">
 												<option>-- Select --</option>
                                                 {% for teacher in teachers %}
-												<option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+												<option value="{{ teacher.id }}">{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
                                                 {% endfor %}
 											</select>
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
@@ -356,8 +356,8 @@
 												<tr>
 													<td>{{ subject.name }}</td>
 													<td>{{ subject.code }}</td>
-													<td>{{ subject.subject_class }}</td>
-													<td>{{ subject.teacher }}</td>
+													<td>{{ subject.subject_class.class_name }}</td>
+													<td>{{ subject.teacher.firstname }} {{ subject.teacher.middlename }} {{ subject.teacher.lastname }}</td>
 													<td>{{ subject.description }}</td>
 													<td class="action-link">
 														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editsubject_{{ subject.id }}"><i class="fa fa-edit"></i></a>
@@ -430,18 +430,18 @@
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
 									<select name="class">
-										<option>{{ subject.subject_class }}</option>
+										<option value="{{ subject.subject_class.id }}">{{ subject.subject_class.class_name }}</option>
                                         {% for class in classes %}
-                                            <option>{{ class.class_name }}</option>
+                                            <option value="{{ class.id }}">{{ class.class_name }}</option>
                                             {% endfor %}
 									</select>
 								</div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>TEACHER</label>
 									<select name="teacher">
-										<option>{{ subject.teacher }}</option>
+										<option value="{{ subject.teacher.id }}">{{ subject.teacher.firstname }} {{ subject.teacher.middlename }} {{ subject.teacher.lastname }}</option>
                                         {% for teacher in teachers %}
-                                            <<option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+                                            <<option value="{{ teacher.id }}">{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
 										{% endfor %}
 									</select>
 								</div>

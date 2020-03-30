@@ -316,8 +316,8 @@
 											<select name="teacher">
                                             <option>-- Select --</option>
                                                   {% for teacher in teachers %}
-                                                      <option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
-                                                {% endfor %}
+                                                      <option value="{{ teacher.id }}"> {{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }} </option>
+                                                  {% endfor %}
 											</select>
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
 											<textarea name="description" placeholder="Enter Description Here"></textarea>
@@ -350,7 +350,7 @@
 												<tr>
 													<td>{{ class.class_name }}</td>
 													<td>{{ class.class_code }}</td>
-													<td>{{ class.class_teacher }}</td>
+													<td>{{ class.class_teacher.firstname}} {{ class.class_teacher.middlename }} {{ class.class_teacher.lastname }}</td>
 													<td>{{ class.description }}</td>
 													<td class="action-link">
 														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editclass_{{ class.id }}"><i class="fa fa-edit"></i></a>
@@ -424,9 +424,9 @@
 								<div class="col-sm-4">
 									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>CLASS TEACHER</label>
 									<select name="teacher" >
-										<option>{{ class.class_teacher }}</option>
+										<option value="{{ class.class_teacher.id }}">{{ class.class_teacher.firstname }} {{ class.class_teacher.middlename }} {{ class.class_teacher.lastname }}</option>
                                         {% for teacher in teachers %}
-                                            <option>{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+                                            <option value="{{ teacher.id }}">{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
                                             {% endfor %}
 									</select>
 								</div>

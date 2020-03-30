@@ -244,7 +244,9 @@ def add_class(request):
     class_teacher = request.POST['teacher']
     description = request.POST['description']
 
-    c = Class(class_name=class_name,class_code=class_code,class_teacher=class_teacher,description=description)
+
+    teach = teachers.objects.get(id=class_teacher)
+    c = Class(class_name=class_name,class_code=class_code,class_teacher=teach,description=description)
     c.save()
     classes = Class.objects.all()
     teacher = teachers.objects.all()
@@ -258,10 +260,11 @@ def edit_class(request):
     description = request.POST['description']
     class_id = request.POST['class_id']
 
+    teach = teachers.objects.get(id=class_teacher)
     c = Class.objects.get(id=class_id)
     c.class_name = class_name
     c.class_code = class_code
-    c.class_teacher = class_teacher
+    c.class_teacher = teach
     if description != "":
         c.description = description
     c.save()
@@ -286,7 +289,8 @@ def add_section(request):
     section = request.POST['section']
     description = request.POST['description']
 
-    c = ClassSection(description=description,section_name=section,section_code=code,class_name=class_name)
+    cl_id = Class.objects.get(id=class_name)
+    c = ClassSection(description=description,section_name=section,section_code=code,class_name=cl_id)
     c.save()
     classes = Class.objects.all()
     sections = ClassSection.objects.all()
@@ -299,8 +303,9 @@ def edit_section(request):
     description = request.POST['description']
     section_id = request.POST['section_id']
 
+    cl_id = Class.objects.get(id=class_name)
     c = ClassSection.objects.get(id=section_id)
-    c.class_name = class_name
+    c.class_name = cl_id
     c.section_code = code
     c.section_name = section
     if description != "":
@@ -329,7 +334,10 @@ def add_subject(request):
     teacher = request.POST['teacher']
     description = request.POST['description']
 
-    s = Subject(name=name,code=code,subject_class=subject_class,teacher=teacher,description=description)
+    teach = teachers.objects.get(id=teacher)
+    class_obj = Class.objects.get(id=subject_class)
+
+    s = Subject(name=name,code=code,subject_class=class_obj,teacher=teach,description=description)
     s.save()
 
     subject = Subject.objects.all()
@@ -345,10 +353,13 @@ def edit_subject(request):
     description = request.POST['description']
     subject_id = request.POST['subject_id']
 
+
+    teach = teachers.objects.get(id=teacher)
+    class_obj = Class.objects.get(id=subject_class)
     s =Subject.objects.get(id=subject_id)
     s.name = name
-    s.subject_class = subject_class
-    s.teacher = teacher
+    s.subject_class = class_obj
+    s.teacher = teach
     s.code = code
     if description != '' :
         s.description=description

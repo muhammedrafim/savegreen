@@ -1,5 +1,5 @@
 from django.db import models
-from admindashboard.models import ClassSection,Class,Subject
+#from admindashboard.models import ClassSection,Class,Subject
 # Create your models here.
 class teachers(models.Model):
     firstname = models.TextField(max_length=15)
