@@ -39,7 +39,7 @@ class Student(models.Model):
     last_std = models.TextField()
     last_marks_obtained = models.TextField()
     sports_intreseted = models.TextField()
-    attendence_blocked = models.TextField()
+    attendence_blocked = models.TextField(default='No')
     login_details = models.ForeignKey(User,on_delete=models.CASCADE)
     parent = models.ForeignKey(parent,on_delete=models.CASCADE)
 

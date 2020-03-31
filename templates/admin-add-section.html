@@ -320,6 +320,12 @@
 											</select>
 											<label><i class="fa fa-user-secret"></i>SECTION CODE</label>
 											<input type="text" name="code" placeholder="PTH05A" />
+                                            <label><i class="fa fa-user"></i>SECTION TEACHER</label>
+                                            <select name="teacher">
+                                                {% for teacher in teachers %}
+                                                <option value="{{ teacher.id }}">{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+                                                {% endfor %}
+                                            </select>
 											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
 											<textarea name="description" placeholder="Enter Description Here"></textarea>
 											<div>
@@ -342,6 +348,7 @@
 													<th><i class="fa fa-book"></i>CLASS</th>
 													<th><i class="fa fa-cogs"></i>SECTION</th>
 													<th><i class="fa fa-code"></i>SECTION CODE</th>
+                                                    <th><i class="fa fa-secret"></i>SECTION TEACHER</th>
 													<th><i class="fa fa-info-circle"></i>DESCRIPTION</th>
 													<th><i class="fa fa-sliders"></i>ACTION</th>
 												</tr>
@@ -352,6 +359,7 @@
 													<td>{{ section.class_name.class_name }}</td>
 													<td>{{ section.section_name }}</td>
 													<td>{{ section.section_code }}</td>
+                                                    <td>{{ section.section_teacher.firstname }} {{ section.section_teacher.middlename }} {{ section.section_teacher.lastname }}</td>
 													<td>{{ section.description }}</td>
 													<td class="action-link">
 														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editsection_{{ section.id }}"><i class="fa fa-edit"></i></a>
@@ -432,6 +440,15 @@
 									</select>
 								</div>
 								<div class="clearfix"></div>
+                                <div class="col-sm-4">
+									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>CLASS TEACHER</label>
+									<select name="teacher" >
+										<option value="{{ section.section_teacher.id }}">{{ section.section_teacher.firstname }} {{ section.section_teacher.middlename }} {{ section.section_teacher.lastname }}</option>
+                                        {% for teacher in teachers %}
+                                            <option value="{{ teacher.id }}">{{ teacher.firstname }} {{ teacher.middlename }} {{ teacher.lastname }}</option>
+                                            {% endfor %}
+									</select>
+								</div>
 								<div class="col-sm-12">
 									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
 									<textarea name="description" placeholder="{{ section.description }}"></textarea>

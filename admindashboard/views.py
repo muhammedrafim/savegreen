@@ -128,8 +128,9 @@ def admin_add_class(request):
 
 def admin_add_section(request):
     classes = Class.objects.all()
+    teacher = teachers.objects.all()
     sections = ClassSection.objects.all()
-    return render(request, 'admin-add-section.html', {'classes': classes,'sections' : sections})
+    return render(request, 'admin-add-section.html', {'classes': classes,'teachers' : teacher ,'sections' : sections})
 
 
 def admin_add_subject(request):
@@ -255,37 +256,28 @@ def delete_teacher(request):
 def add_class(request):
     class_name = request.POST['class']
     class_code = request.POST['code']
-    class_teacher = request.POST['teacher']
     description = request.POST['description']
-
-
-    teach = teachers.objects.get(id=class_teacher)
-    c = Class(class_name=class_name,class_code=class_code,class_teacher=teach,description=description)
+    c = Class(class_name=class_name,class_code=class_code,description=description)
     c.save()
     classes = Class.objects.all()
-    teacher = teachers.objects.all()
-    return render(request, "admin-add-class.html", {'classes' : classes , 'teachers' : teacher})
+    return render(request, "admin-add-class.html", {'classes' : classes })
 
 
 def edit_class(request):
     class_name = request.POST['class']
     class_code = request.POST['code']
-    class_teacher = request.POST['teacher']
     description = request.POST['description']
     class_id = request.POST['class_id']
 
-    teach = teachers.objects.get(id=class_teacher)
     c = Class.objects.get(id=class_id)
     c.class_name = class_name
     c.class_code = class_code
-    c.class_teacher = teach
     if description != "":
         c.description = description
     c.save()
 
     classes = Class.objects.all()
-    teacher = teachers.objects.all()
-    return render(request, "admin-add-class.html", {'classes' : classes , 'teachers' : teacher})
+    return render(request, "admin-add-class.html", {'classes' : classes })
 
 def delete_class(request):
     class_id = request.POST['class_id']
@@ -293,8 +285,7 @@ def delete_class(request):
     c.delete()
 
     classes = Class.objects.all()
-    teacher = teachers.objects.all()
-    return render(request, "admin-add-class.html", {'classes': classes, 'teachers': teacher})
+    return render(request, "admin-add-class.html", {'classes': classes, })
 
 
 def add_section(request):
@@ -302,13 +293,16 @@ def add_section(request):
     code = request.POST['code']
     section = request.POST['section']
     description = request.POST['description']
+    teacher = request.POST['teacher']
 
+    teach = teachers.objects.get(id=teacher)
     cl_id = Class.objects.get(id=class_name)
-    c = ClassSection(description=description,section_name=section,section_code=code,class_name=cl_id)
+    c = ClassSection(description=description,section_name=section,section_teacher=teach, section_code=code,class_name=cl_id)
     c.save()
     classes = Class.objects.all()
     sections = ClassSection.objects.all()
-    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections,'teachers' : teacher })
 
 def edit_section(request):
     class_name = request.POST['class']
@@ -316,19 +310,24 @@ def edit_section(request):
     section  = request.POST['section']
     description = request.POST['description']
     section_id = request.POST['section_id']
+    teacher = request.POST['teacher']
+
+    teach = teachers.objects.get(id=teacher)
 
     cl_id = Class.objects.get(id=class_name)
     c = ClassSection.objects.get(id=section_id)
     c.class_name = cl_id
     c.section_code = code
     c.section_name = section
+    c.section_teacher=teach
     if description != "":
         c.description = description
     c.save()
 
     classes = Class.objects.all()
     sections = ClassSection.objects.all()
-    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes ,'teachers' : teacher , 'sections' : sections})
 
 
 def delete_section(request):
@@ -338,7 +337,8 @@ def delete_section(request):
 
     classes = Class.objects.all()
     sections = ClassSection.objects.all()
-    return render(request, "admin-add-section.html", {'classes' : classes , 'sections' : sections})
+    teacher = teachers.objects.all()
+    return render(request, "admin-add-section.html", {'classes' : classes ,'teachers' : teacher , 'sections' : sections})
 
 
 def add_subject(request):

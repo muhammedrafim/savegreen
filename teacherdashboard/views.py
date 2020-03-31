@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from studentdashboard.models import Student,attendance
 from .models import teachers
 from admindashboard.models import Class,ClassSection,Subject,TimeTable
+import datetime
 # Create your views here.
 def teacher_dashboard(request):
     return render(request, "teacher-dashboard.html")
@@ -18,21 +19,16 @@ def download_assignment(request):
 def mark_student_attendance(request):
     teacher = request.user
     teach = teachers.objects.get(username=teacher.username)
-    clas = Class.objects.filter(class_teacher=teach)
-    section = ClassSection.objects.all().filter(class_name__in=clas)
+    section = ClassSection.objects.get(section_teacher=teach)
+    clas = Class.objects.all().filter(id=section.class_name.id)
     subject = Subject.objects.all().filter(subject_class__in=clas)
-    students = Student.objects.all().filter(class_name__in=clas)
+    students = Student.objects.all().filter(class_name__in=clas,class_division=section)
     timetable = TimeTable.objects.all().distinct('time_slot')
     return render(request, "teacher-mark-student-attendence.html", {'students':students,'classes':clas,'sections':section,'subjects':subject,'timetables':timetable})
 
 
 def view_student_attendace(request):
-    t = request.user
-    teach = teachers.objects.get(username=t.username)
-    att = attendance.objects.all().filter(teacher_id=teach)
-
-    return render(request, "teacher-view-student-attendence.html", {'attendence':att})
-
+    return render(request,'teacher-attendence-list.html')
 
 def add_student_mark(request):
     return render(request , "teacher-add-student-marks.html")
@@ -57,10 +53,11 @@ def teacher_marks_report(request):
 def mark_attendence(request):
     t = request.user
     teach = teachers.objects.get(username=t.username)
-    clas = Class.objects.get(class_teacher=teach)
-    section = ClassSection.objects.get(class_name=clas)
-    stud = Student.objects.all().filter(class_name=clas)
-    date = request.POST['date']
+    section = ClassSection.objects.get(section_teacher=teach)
+    stud = Student.objects.all().filter(class_name=section.class_name,class_division=section)
+    clas = Class.objects.get(id=section.class_name.id)
+    datemarked = request.POST.get('datemark')
+    dob = datetime.datetime.strptime(datemarked, '%m/%d/%Y').strftime('%Y-%m-%d')
     remarks = request.POST['remarks']
     for s in stud:
         student = Student.objects.get(id=request.POST['student_'+str(s.id)])
@@ -69,6 +66,15 @@ def mark_attendence(request):
             flag = True
         else:
             flag=False
-        att  = attendance(teacher_id=teach,class_details=clas,section=section,student=student,date_marked=date,remarks=remarks,is_present=flag)
+        att  = attendance(teacher_id=teach,class_details=clas,section=section,student=student,date_marked=dob,remarks=remarks,is_present=flag)
         att.save()
-    return redirect('teacher_attendence_view')
+    return redirect('teacher_attendence_list')
+
+
+def attendence_list(request):
+    t = request.user
+    teach = teachers.objects.get(username=t.username)
+    datemarked = request.POST['date']
+    dob = datetime.datetime.strptime(datemarked, '%m/%d/%Y').strftime('%Y-%m-%d')
+    att = attendance.objects.all().filter(teacher_id=teach,date_marked=dob)
+    return render(request, "teacher-view-student-attendence.html", {'attendence':att})

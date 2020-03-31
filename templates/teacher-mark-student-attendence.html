@@ -22,6 +22,27 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
 
+
+<style>
+           .submit-btn {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+ .submit-btn:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+</style>
+
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -253,13 +274,10 @@
                                         {% csrf_token %}
                                     <div class="inner-item dash-search-form">
 										<div class="col-md-3 col-sm-6">
-                                            <input type="text" value="{% for class in sections %} {{ class.class_name.class_name }}{{ class.section_name }}{% endfor %}">
+                                            <input type="text" value="{{ sections.class_name.class_name }}{{ sections.section_name }}">
                                         </div>
                                         <div class="col-md-3 col-sm-6">
-                                            <input type="text" placeholder="YYYY/MM/DD" name="date">
-                                            <input type="hidden" value="{% for class in classes %}{{ class.id }}{% endfor %} }}" name="class">
-
-                                            <input type="hidden" value="{% for class in sections %}{{ class.id }}{% endfor %} }}" name="section">
+											<input type = "text" name="datemark" placeholder="MM/DD/YYYY" id="startDate" />
                                         </div>
 										<div class="clearfix"></div>
 									</div>
@@ -301,7 +319,7 @@
 											</tbody>
 										</table>
 										<div class="table-action-box">
-											<input type="submit" value="MARK">
+											<input type="submit" value="MARK" class="submit-btn">
 											<a href="#" class="cancel"><i class="fa fa-ban"></i>CANCEL</a>
 										</div>
 

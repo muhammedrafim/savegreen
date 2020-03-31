@@ -10,11 +10,11 @@ class Announcement(models.Model):
 class Class(models.Model):
     class_name = models.TextField()
     class_code = models.TextField()
-    class_teacher = models.ForeignKey(teachers,on_delete=models.DO_NOTHING)
     description = models.TextField()
 
 class ClassSection(models.Model):
-    class_name = models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+    class_name = models.ForeignKey(Class,on_delete=models.CASCADE)
+    section_teacher = models.ForeignKey(teachers,on_delete=models.DO_NOTHING)
     section_name = models.TextField()
     section_code = models.TextField()
     description = models.TextField()
@@ -22,8 +22,8 @@ class ClassSection(models.Model):
 class Subject(models.Model):
     name = models.TextField()
     code = models.TextField()
-    teacher = models.ForeignKey(teachers,on_delete=models.DO_NOTHING)
-    subject_class = models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+    teacher = models.ForeignKey(teachers,on_delete=models.CASCADE)
+    subject_class = models.ForeignKey(Class,on_delete=models.CASCADE)
     description = models.TextField()
 
 class TimeTable(models.Model):

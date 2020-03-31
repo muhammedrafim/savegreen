@@ -1,5 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html>
     <head>
 
@@ -11,7 +10,7 @@
 
         <!-- Styles -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-		 <link href="{% static 'css/chartist.min.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'css/chartist.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet" media="screen">
@@ -22,25 +21,6 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
-<style>
-           .add_class_submit {
-	color: #fff;
-	background: #27AE60;
-	display: inline-block;
-	font-size: 13px;
-	font-weight: 700;
-	margin-top: 25px;
-	padding: 10px 30px;
-	text-decoration: none;
-	border: 1px solid transparent;
-                width: 150px;
-}
- .add_class_submit:hover {
-	color: #27AE60;
-	background: transparent;
-	border: 1px solid #27AE60;
-}
-</style>
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -61,7 +41,7 @@
 							<span class="badge nav-badge">3</span>
 						</a>
 						<ul class="dropdown-menu notification-list">
-							<li>							
+							<li>
 								<div class="list-msg">
 									<div class="col-xs-2 icon clear-padding">
 										<i class="fa fa-trophy"></i>
@@ -97,7 +77,7 @@
 									<div class="clearfix"></div>
 								</div>
 							</li>
-							<li>							
+							<li>
 								<div class="list-msg">
 									<div class="col-xs-2 icon clear-padding">
 										<i class="fa fa-trophy"></i>
@@ -182,38 +162,38 @@
 				</ul>
 			</div>
 		</div>
-        	
+
 		<div class="parent-wrapper" id="outer-wrapper">
 			<!-- SIDE MENU -->
 			<div class="sidebar-nav-wrapper" id="sidebar-wrapper">
 				<ul class="sidebar-nav">
 					<li>
-						<a href="admin-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
+						<a href="teacher-dashboard.html"><i class="fa fa-home menu-icon"></i> HOME</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-users menu-icon"></i> STUDENTS <span class="caret"></span>
+							<i class="fa fa-file-code-o menu-icon"></i> ASSIGNMENTS <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-student.html"><i class="fa fa-caret-right"></i>ADD</a>
+							<li>
+								<a href="teacher-create-assignment.html"><i class="fa fa-caret-right"></i>CREATE</a>
 							</li>
 							<li>
-								<a href="admin-student-list.html"><i class="fa fa-caret-right"></i>ALL STUDENT  </a>
+								<a href="teacher-assignment-download.html"><i class="fa fa-caret-right"></i>DOWNLOAD</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-user-secret menu-icon"></i> TEACHERS <span class="caret"></span>
+							<i class="fa fa-bar-chart menu-icon"></i> ATTENDENCE <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-teacher.html"><i class="fa fa-caret-right"></i>ADD</a>
+							<li>
+								<a href="teacher-mark-student-attendence.html"><i class="fa fa-caret-right"></i>MARK</a>
 							</li>
 							<li>
-								<a href="admin-teacher-list.html"><i class="fa fa-caret-right"></i>ALL TEACHER</a>
+								<a href="teacher-view-student-attendence.html"><i class="fa fa-caret-right"></i>VIEW</a>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
@@ -221,63 +201,29 @@
 					<li>
 						<a href="message.html"><i class="fa fa-envelope menu-icon"></i> MY MESSAGES</a>
 					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-address-card menu-icon"></i> MARKS <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="teacher-add-student-marks.html"><i class="fa fa-caret-right"></i>CREATE</a>
+							</li>
+							<li>
+								<a href="teacher-view-student-marks.html"><i class="fa fa-caret-right"></i>VIEW</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</li>
 					<li>
-						<a href="admin-add-announcement.html"><i class="fa fa-bullhorn menu-icon"></i> ANNOUNCEMENTS</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-file-o menu-icon"></i> CLASSES <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-class.html"><i class="fa fa-caret-right"></i>ADD CLASS</a>
-							</li>
-							<li>
-								<a href="admin-add-section.html"><i class="fa fa-caret-right"></i>ADD SECTION</a>
-							</li>
-							<li>
-								<a href="admin-add-class.html"><i class="fa fa-caret-right"></i>VIEW SECTIONS</a>
-							</li>
-							<li>
-								<a href="admin-add-section.html"><i class="fa fa-caret-right"></i>VIEW CLASSES</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-book menu-icon"></i> SUBJECTS <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-add-subject.html"><i class="fa fa-caret-right"></i>ADD</a>
-							</li>
-							<li>
-								<a href="admin-add-subject.html"><i class="fa fa-caret-right"></i>VIEW SUBJECTS</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-calendar menu-icon"></i> TIMETABLE <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>							
-								<a href="admin-create-timetable.html"><i class="fa fa-caret-right"></i>CREATE</a>
-							</li>
-							<li>
-								<a href="admin-class-timetable.html"><i class="fa fa-caret-right"></i>VIEW</a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
+						<a href="teacher-timetable.html"><i class="fa fa-calendar menu-icon"></i> TIME TABLE</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-address-card menu-icon"></i> REPORTS <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>							
+							<li>
 								<a href="teacher-attendence-report.html"><i class="fa fa-caret-right"></i>ATTENDENCE</a>
 							</li>
 							<li>
@@ -288,70 +234,37 @@
 					</li>
 				</ul>
 			</div>
-			
 			<!-- MAIN CONTENT -->
 			<div class="main-content" id="content-wrapper">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<h5 class="page-title"><i class="fa fa-sliders"></i>ALL CALSSES</h5>
+							<h5 class="page-title"><i class="fa fa-eye"></i>VIEW ATTENDENCE</h5>
 							<div class="section-divider"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
-							<div class="col-sm-4">
+							<div class="col-lg-12">
 								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-plus-circle"></i>ADD CLASS</h6>
-									<div class="inner-item">
-                                        <form action="add_class" method="post" enctype="multipart/form-data">
+									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
+									<div class="inner-item dash-search-form">
+                                        <form method="post" enctype="multipart/form-data" action="teacher_attendence_view">
                                             {% csrf_token %}
-
-										<div class="dash-form">
-											<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-											<input type="text" name="class" placeholder="5 STD" />
-											<label><i class="fa fa-code"></i>CLASS CODE</label>
-											<input type="text" name="code" placeholder="PTH05" />
-											<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-											<textarea name="description" placeholder="Enter Description Here"></textarea>
-											<div>
-												<input type="submit" value="CREATE" class="add_class_submit">
-											</div>
+                                            <div class="col-md-4 col-sm-6">
+                                            <label class="top-margin">DATE</label>
+											<input type = "text" name="date" placeholder="MM/DD/YYYY" id="startDate" />
 										</div>
-                                             </form>
+										<div class="clearfix visible-sm"></div>
+										<div class="col-md-4 col-sm-6">
+                                            <label class="top-margin"></label>
+											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
+										</div>
+										<div class="col-sm-3">
+										</div>
 										<div class="clearfix"></div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-							<div class="col-sm-8">
-								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-sliders"></i>ALL CLASSES</h6>
-									<div class="inner-item">
-										<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
-											<thead>
-												<tr>
-													<th><i class="fa fa-book"></i>CLASS</th>
-													<th><i class="fa fa-code"></i>CLASS CODE</th>
-													<th><i class="fa fa-info-circle"></i>DESCRIPTION</th>
-													<th><i class="fa fa-sliders"></i>ACTION</th>
-												</tr>
-											</thead>
-											<tbody>
-                                            {% for class in classes %}
-												<tr>
-													<td>{{ class.class_name }}</td>
-													<td>{{ class.class_code }}</td>
-													<td>{{ class.description }}</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editclass_{{ class.id }}"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteclass_{{ class.id }}"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												{% endfor %}
-											</tbody>
-										</table>
-									</div>
+                                        </form>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -361,81 +274,13 @@
 					<a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
 				</div>
 				<div class="dash-footer col-lg-12">
-					<p>Copyright Pathshala</p>
+
 				</div>
-				
-				<!-- Delete Modal -->
-            {% for class in classes %}
-				<div id="deleteclass_{{ class.id }}" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"><i class="fa fa-trash"></i>DELETE CLASS</h4>
-							</div>
-							<div class="modal-body">
-                                <form action="delete_class" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="table-action-box">
-                                    <input type="hidden" value="{{ class.id }}" name="class_id">
-									<input type="submit" value="YES" class="add_class_submit">
-									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
-								</div>
-                                         </form>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-            {% endfor %}
-				
-				<!--Edit details modal-->
-            {% for class in classes %}
-				<div id="editclass_{{ class.id }}" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-                    <form method="post" action="edit_class" enctype="multipart/form-data">
-                        {% csrf_token %}
-                            <input type="hidden" value="{{ class.id }}" name="class_id">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title"><i class="fa fa-edit"></i>EDIT CLASS DETAILS</h4>
-							</div>
-							<div class="modal-body dash-form">
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-									<input type="text" name="class" placeholder="CLASS" value="{{ class.class_name }}" />
-								</div>
-								<div class="col-sm-4">
-									<label class="clear-top-margin"><i class="fa fa-code"></i>CLASS CODE</label>
-									<input type="text" name="code" placeholder="CLASS CODE" value="{{ class.class_code }}" />
-								</div>
-								<div class="clearfix"></div>
-								<div class="col-sm-12">
-									<label><i class="fa fa-info-circle"></i>DESCRIPTION</label>
-									<textarea name="description" placeholder="{{ class.description }}" ></textarea>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="modal-footer">
-								<div class="table-action-box">
-									<input type="submit" class="add_class_submit" value="SAVE">
-									<a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
-								</div>
-							</div>
-						</div>
-                    </form>
-					</div>
-				</div>
-            {% endfor %}
-				
 			</div>
 		</div>
-	
+
 		<!-- Scripts -->
-        <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
+           <script src="{% static 'js/jQuery_v3_2_0.min.js' %}"></script>
 		<script src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'plugins/owl.carousel.min.js' %}"></script>
@@ -443,6 +288,6 @@
 		<script src="{% static 'plugins/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'plugins/dataTables.responsive.min.js' %}"></script>
         <script src="{% static 'js/jsdash.js' %}"></script>
-		
-' %}    </body>
+
+    </body>
 </html>
