@@ -1,5 +1,5 @@
 {% load static %}<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -237,6 +237,7 @@
 			</div>
 			<!-- MAIN CONTENT -->
 			<div class="main-content" id="content-wrapper">
+                <form action="mark_attendence" method="post" enctype="multipart/form-data">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
@@ -249,50 +250,20 @@
 							<div class="col-lg-12">
 								<div class="dash-item first-dash-item">
 									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
-									<form method="post" action="attendence_search" enctype="multipart/form-data">
                                         {% csrf_token %}
                                     <div class="inner-item dash-search-form">
 										<div class="col-md-3 col-sm-6">
-											<label>CLASS</label>
-											<select name="class">
-                                                {% for class in classes %}
-												<option>{{ class.class_name }}</option>
-                                                {% endfor %}
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>SECTION</label>
-											<select name="section">
-												{% for section in sections %}
-                                                <option>{{ section.section_code }}</option>
-                                                {% endfor %}
-											</select>
-										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label>COURSE CODE</label>
-											<select name="subject">
-                                                {% for subject in subjects %}
-												<option>{{ subject.code }}</option>
-												{% endfor %}
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>TIME</label>
-											<select name="time_slot">
-												{% for time in timetables %}
-                                                 <option>{{ time.time_slot }}</option>
-                                                {% endfor %}
-											</select>
-										</div>
-										<div class="clearfix"></div>
-										<div class="col-sm-3">
-											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
-										</div>
+                                            <input type="text" value="{% for class in sections %} {{ class.class_name.class_name }}{{ class.section_name }}{% endfor %}">
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <input type="text" placeholder="YYYY/MM/DD" name="date">
+                                            <input type="hidden" value="{% for class in classes %}{{ class.id }}{% endfor %} }}" name="class">
+
+                                            <input type="hidden" value="{% for class in sections %}{{ class.id }}{% endfor %} }}" name="section">
+                                        </div>
 										<div class="clearfix"></div>
 									</div>
-                                    </form>
-								</div>
+                                </div>
 							</div>
 							<div class="col-lg-12">
 								<div class="dash-item">
@@ -303,43 +274,44 @@
 												<tr>
 													<th><i class="fa fa-puzzle-piece"></i>ROLL #</th>
 													<th><i class="fa fa-user"></i>NAME</th>
-													<th><i class="fa fa-code"></i>SUBJECT</th>
 													<th><i class="fa fa-check"></i>STATUS</th>
 													<th><i class="fa fa-edit"></i>REMARKS</th>
 													<th><i class="fa fa-ban"></i>ATTENDENCE BLOCKED?</th>
 												</tr>
 											</thead>
 											<tbody>
-                                            <form action="mark_attendence" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
                                                 {% for student in students %}
 												<tr>
 
 													<td>{{ student.roll_number }}</td>
 													<td>{{ student.firstname }} {{ student.middlename }} {{ student.lastname }}</td>
-													<td>{{ subject_code }}</td>
+
 													<td>
-														<select name="ispresent" class="datatable-select">
+														<select name="ispresent_{{ student.id }}" class="datatable-select">
 															<option>Present</option>
 															<option>Absent</option>
 														</select>
 													</td>
+                                                  <input type="hidden" name="student_{{ student.id }}" value="{{ student.id }}">
 													<td><input type="text" name="remarks" placeholder="Remarks" class="datatable-input"/></td>
 													<td class="{% if student.attendence_blocked == 'No' %}text-success {% else %} text-danger {% endif %}">{{ student.attendence_blocked }}</td>
 												</tr>
                                             {% endfor %}
+
 											</tbody>
 										</table>
 										<div class="table-action-box">
-											<a href="#" class="save"><i class="fa fa-check"></i>MARK</a>
+											<input type="submit" value="MARK">
 											<a href="#" class="cancel"><i class="fa fa-ban"></i>CANCEL</a>
 										</div>
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+            </form>
 				<div class="menu-togggle-btn">
 					<a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
 				</div>

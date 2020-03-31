@@ -317,7 +317,6 @@
 												<tr>
 													<th><i class="fa fa-puzzle-piece"></i>ROLL #</th>
 													<th><i class="fa fa-user"></i>NAME</th>
-													<th><i class="fa fa-code"></i>SUBJECT</th>
 													<th><i class="fa fa-check"></i>STATUS</th>
 													<th><i class="fa fa-user"></i>MARKED BY</th>
 													<th><i class="fa fa-edit"></i>REMARKS</th>
@@ -325,56 +324,22 @@
 												</tr>
 											</thead>
 											<tbody>
+
+                                                    {% for att in attendence %}
 												<tr>
-													<td>PTH050A01</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
-													<td class="text-success">Present</td>
-													<td>John Doe</td>
-													<td>-</td>
+													<td>{{ att.student.roll_number }}</td>
+													<td>{{ att.student.firstname }} {{ att.student.middlename }} {{ att.student.lastname }}</td>
+													<td class="{% if att.is_present %} text-success {% else %} text-danger{% endif %}">
+                                                    {% if att.is_present %} Present {% else %} Absent{% endif %}
+                                                    </td>
+													<td>{{att.teacher_id.firstname}} {{ att.teacher_id.middlename }} {{ att.teacher_id.lastname }}</td>
+													<td>{{ att.remarks }}</td>
 													<td class="action-link">
 														<a class="edit" href="#" title="Edit"><i class="fa fa-edit"></i></a>
 														<a class="delete" href="#" title="Delete"><i class="fa fa-remove"></i></a>
 													</td>
 												</tr>
-												<tr>
-													<td>PTH050A02</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td class="text-danger">Absent</td>
-													<td>John Doe</td>
-													<td>-</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>PTH050A03</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
-													<td>Absent</td>
-													<td>John Doe</td>
-													<td>Attendence was blocked</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>PTH050A04</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td class="text-success">
-														Present
-													</td>
-													<td>John Doe</td>
-													<td>-</td>
-													<td class="action-link">
-														<a class="edit" href="#" title="Edit"><i class="fa fa-edit"></i></a>
-														<a class="delete" href="#" title="Delete"><i class="fa fa-remove"></i></a>
-													</td>
-												</tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
 										<div class="table-action-box">

@@ -359,6 +359,17 @@
 												<input type="file" name="student_photo" placeholder="90890" />
 											</div>
 
+											<div class="col-sm-3">
+												<label><i class="fa fa-envelope-o"></i>USER NAME</label>
+												<input type="text" name="username" placeholder="username" />
+											</div>
+
+											<div class="col-sm-3">
+												<label><i class="fa fa-envelope-o"></i>PASSWORD</label>
+												<input type="password" name="password" placeholder="password" />
+											</div>
+
+
 										</div>
 										<div class="clearfix"></div>
 									</div>
@@ -443,14 +454,18 @@
 											</div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
-                                                <input type="text" name="student_class">
-											</div>
+                                                <select name="student_class">
+                                                    {% for class in classes %}
+                                                    <option value="{{ class.id }}">{{ class.class_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
 											<div class="col-sm-3">
 												<label class="clear-top-margin"><i class="fa fa-cogs"></i>SECTION</label>
 												<select name="student_division">
-													<option>-- Select --</option>
-													<option>A</option>
-													<option>B</option>
+													{% for section in sections %}
+                                                    <option value="{{ section.id }}">{{ section.section_name }}</option>
+                                                    {% endfor %}
 												</select>
 											</div>
 											<div class="col-sm-3">

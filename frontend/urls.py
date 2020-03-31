@@ -20,6 +20,8 @@ urlpatterns = [
     path('academic-calendar.html', views.academic_calendar),
     path('curriculum.html', views.curriculum),
     path('event/<event_id>/',views.eventdetail, name='event'),
-    path('gallery/<gallery_id>/', views.showgallery, name='gallery')
+    path('gallery/<gallery_id>/', views.showgallery, name='gallery'),
+    path('login',views.login , name='login'),
+    path('logout', views.logout, name='logout')
 
 ]

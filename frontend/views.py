@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail ,Gallery,maingalleryimages
 from django.core.paginator import Paginator
 from studentdashboard.models import Student
+from django.contrib.auth.models import auth,User
 
 def index(request):
     eventnews = EventsNews.objects.all()
@@ -75,3 +77,26 @@ def showgallery(request, gallery_id):
     images = maingalleryimages.objects.all().filter(gallery_id =gallery_id)
     print(images)
     return render(request, 'viewgallery.html', {"images": images} )
+
+
+def login(request):
+    if request.method == 'POST' :
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            users = User.objects.get(username=username)
+            if users.groups.filter(name='students').exists():
+                auth.login(request,user)
+                return redirect('student_dashboard')
+            elif users.groups.filter(name='teachers').exists():
+                auth.login(request,user)
+                return redirect('teacher_dashboard')
+    else :
+        return render(request,'login.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('login')

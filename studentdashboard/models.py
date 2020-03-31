@@ -1,6 +1,7 @@
 from django.db import models
 from admindashboard.models import ClassSection,Class,Subject
 from teacherdashboard.models import teachers
+from django.contrib.auth.models import User
 # Create your models here.
 
 class parent(models.Model):
@@ -31,22 +32,22 @@ class Student(models.Model):
     phone_number = models.DecimalField(max_digits=12,decimal_places=0)
     image = models.ImageField(upload_to='students')
     registration_id = models.TextField()
-    class_name = models.TextField()
-    class_division = models.TextField()
+    class_name = models.ForeignKey(Class,on_delete=models.CASCADE)
+    class_division = models.ForeignKey(ClassSection,on_delete=models.CASCADE)
     roll_number = models.IntegerField()
     last_school = models.TextField()
     last_std = models.TextField()
     last_marks_obtained = models.TextField()
     sports_intreseted = models.TextField()
     attendence_blocked = models.TextField()
+    login_details = models.ForeignKey(User,on_delete=models.CASCADE)
     parent = models.ForeignKey(parent,on_delete=models.CASCADE)
 
 class attendance(models.Model):
-    student = models.ForeignKey(Student,on_delete=models.DO_NOTHING)
-    class_details = models.ForeignKey(Class,on_delete=models.DO_NOTHING)
-    section = models.ForeignKey(ClassSection,on_delete=models.DO_NOTHING)
-    subject = models.ForeignKey(Subject,on_delete=models.DO_NOTHING)
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    class_details = models.ForeignKey(Class,on_delete=models.CASCADE)
+    section = models.ForeignKey(ClassSection,on_delete=models.CASCADE)
     is_present = models.BooleanField()
     remarks = models.TextField()
-    teacher_id = models.ForeignKey(teachers,on_delete=models.DO_NOTHING)
+    teacher_id = models.ForeignKey(teachers,on_delete=models.CASCADE)
     date_marked = models.DateField()

@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from studentdashboard.models import Student,parent
 from teacherdashboard.models import teachers
 import datetime
 from .models import Class,ClassSection,Subject,TimeTable
-from django.contrib.auth.models import User,auth
+from django.contrib.auth.models import User,auth,Group
 # Create your views here.
 def admindashboard(request):
     return render(request, 'admin-dashboard.html')
@@ -47,15 +47,25 @@ def add_student(request):
     last_class = request.POST.get('last_std')
     last_mark = request.POST['last_mark']
     sports = request.POST['sports']
+    username = request.POST['username']
+    password = request.POST['password']
 
+    last_name = middlename+" "+lastname
+    user = User.objects.create_user(username=username,password=password,email=student_email,first_name=firstname,last_name=last_name)
+    user.save()
     dob = datetime.datetime.strptime(student_dob, '%d/%m/%Y').strftime('%Y-%m-%d')
-
+    c = Class.objects.get(id=student_class)
+    sec = ClassSection.objects.get(id=student_division)
     s = Student(firstname=firstname, middlename=middlename,lastname=lastname,gender=gender_student, dateofbirth=dob,phone_number=student_phone,
-               email=student_email,religion=student_religion,image=student_photo,registration_id=student_registration, class_name=student_class,
-               class_division=student_division, roll_number=student_roll_no, last_std=last_class, last_school=last_school, last_marks_obtained=last_mark,
-                sports_intreseted=sports,parent=p)
+               email=student_email,religion=student_religion,image=student_photo,registration_id=student_registration, class_name=c,
+               class_division=sec, roll_number=student_roll_no, last_std=last_class, last_school=last_school, last_marks_obtained=last_mark,
+                sports_intreseted=sports,parent=p,login_details=user)
     s.save()
-    return HttpResponse(content="document.alert('ok')")
+
+    group = Group.objects.get(name='students')
+    user = User.objects.get(username=username)
+    group.user_set.add(user)
+    return redirect('student-list')
 
 
 def edit_student(request, student_id):
@@ -83,7 +93,9 @@ def edit_student(request, student_id):
 
 
 def admin_add_student(request):
-    return render(request, 'admin-add-student.html')
+    clas = Class.objects.all()
+    sections = ClassSection.objects.all()
+    return render(request, 'admin-add-student.html',{'classes' : clas, 'sections':sections})
 
 
 def admin_studentlist(request):
@@ -159,7 +171,7 @@ def delete_student(request, student_id):
     s = Student.objects.get(id=student_id)
     s.delete()
     student = Student.objects.all()
-    return render(request, 'admin-student-list.html', {'students': student} )
+    return redirect('/dashboard/admin_dashboard.html')
 
 def add_teacher(request):
     firstname = request.POST['firstname']
@@ -199,7 +211,9 @@ def add_teacher(request):
     last_name = middlename+" "+lastname
     user = User.objects.create_user(username=username,password=password,email=email, first_name= firstname,last_name=last_name)
     user.save()
-
+    group = Group.objects.get(name='teachers')
+    user = User.objects.get(username=username)
+    group.user_set.add(user)
     teacher = teachers.objects.all()
     return render(request, "admin-teacher-list.html", {'teachers':teacher})
 
