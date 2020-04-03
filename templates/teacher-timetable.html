@@ -136,9 +136,9 @@
 							</li>
 						</ul>
 					</li>
-					<li class="user dropdown">
+				<li class="user dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<span><img src="assets/img/parent/parent2.jpg" alt="user">JOHN DOE<span class="caret"></span></span>
+							<span><img src="{{ teachers.image.url }}" alt="user">{{ teachers.firstname }} {{ teachers.middlename }} {{ teachers.lastname }}<span class="caret"></span></span>
 						</a>
 						<ul class="dropdown-menu notification-list">
 							<li>
@@ -155,7 +155,7 @@
 							</li>
 							<li>
 								<div class="all-notifications">
-									<a href="#">LOGOUT</a>
+									<a href="{% url 'logout' %}">LOGOUT</a>
 								</div>
 							</li>
 						</ul>
@@ -259,198 +259,60 @@
 													<th><i class="fa fa-calendar"></i>WEDNESDAY</th>
 													<th><i class="fa fa-calendar"></i>THURSDAY</th>
 													<th><i class="fa fa-calendar"></i>FRIDAY</th>
-													<th><i class="fa fa-calendar"></i>SATURDAY</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody>   {% for time in time_slots %}
 												<tr>
-													<td>09-10 AM</td>
-													<td>
-														<span>Lecture: MTH101</span>
-														<span>Room: 601</span>
-														<span>Class: Std 5</span>
+													<td>{{ time.time_slot }}</td>
+
+
+                                                    <td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Monday' and timetable.time_slot == time.time_slot %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </td>
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Tuesday' and timetable.time_slot == time.time_slot %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>
-														
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Wednesday' and timetable.time_slot == time.time_slot %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 302</span>
-														<span>Class: Std 6</span>
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Thursday' and timetable.time_slot == time.time_slot %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>
-														<span>Lecture: PHY101</span>
-														<span>Room: 303</span>
-														<span>Class: Std 5</span>
+													<td>  {% for timetable in timetables %}
+                                                        {% if timetable.day == 'Friday' and timetable.time_slot == time.time_slot %}
+														<span>Lecture: {{ timetable.subject_name }}</span>
+														<span>Room: {{ timetable.classroom }}</span>
+														<span>Teacher: {{ timetable.teacher }}</span>
+                                                        {% endif %}
+                                                        {% endfor %}
 													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 202</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														
-													</td>
+
+
+
 												</tr>
-												
-												<tr>
-													<td>010-11 AM</td>
-													<td>
-														
-													</td>
-													<td>
-														<span>Lecture: MTH101</span>
-														<span>Room: 601</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														
-													</td>
-													<td>
-														
-													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 202</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 302</span>
-														<span>Class: Std 6</span>
-													</td>
-												</tr>
-												
-												<tr>
-													<td>11-12 AM</td>
-													<td>
-														<span>Lecture: MTH101</span>
-														<span>Room: 601</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														
-													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 302</span>
-														<span>Class: Std 6</span>
-													</td>
-													<td>
-														<span>Lecture: PHY101</span>
-														<span>Room: 303</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														<span>Lecture: BIO101</span>
-														<span>Room: 202</span>
-														<span>Class: Std 5</span>
-													</td>
-													<td>
-														
-													</td>
-												</tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12 clear-padding-xs">
-							<div class="col-lg-12">
-								<div class="dash-item">
-									<h6 class="item-title"><i class="fa fa-book"></i>COURSE DETAILS</h6>
-									<div class="inner-item">
-										<div class="item-header">
-											<div class="col-xs-2">
-												<h6>COURSE CODE</h6>
-											</div>
-											<div class="col-xs-4">
-												<h6>DESCRIPTION</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>LECTURE</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>PRACTICLE</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>CREDITS</h6>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-										<div class="tbl-row">
-											<div class="col-xs-2">
-												<h6>MTH101</h6>
-											</div>
-											<div class="col-xs-4">
-												<h6>Basic Mathematics</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>3</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>2</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>4</h6>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-										<div class="tbl-row">
-											<div class="col-xs-2">
-												<h6>PHY101</h6>
-											</div>
-											<div class="col-xs-4">
-												<h6>Current & Electricity</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>3</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>2</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>4</h6>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-										<div class="tbl-row">
-											<div class="col-xs-2">
-												<h6>MTH101</h6>
-											</div>
-											<div class="col-xs-4">
-												<h6>Basic Mathematics</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>3</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>2</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>4</h6>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-										<div class="tbl-row">
-											<div class="col-xs-2">
-												<h6>PHY101</h6>
-											</div>
-											<div class="col-xs-4">
-												<h6>Current & Electricity</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>3</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>2</h6>
-											</div>
-											<div class="col-xs-2">
-												<h6>4</h6>
-											</div>
-											<div class="clearfix"></div>
-										</div>
 									</div>
 								</div>
 							</div>

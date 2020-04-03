@@ -24,6 +24,7 @@ class Subject(models.Model):
     code = models.TextField()
     teacher = models.ForeignKey(teachers,on_delete=models.CASCADE)
     subject_class = models.ForeignKey(Class,on_delete=models.CASCADE)
+    subject_section = models.ForeignKey(ClassSection,on_delete=models.CASCADE)
     description = models.TextField()
 
 class TimeTable(models.Model):

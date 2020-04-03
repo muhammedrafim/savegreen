@@ -21,6 +21,27 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+
+<style>
+           .submit-btn {
+	color: #fff;
+	background: #27AE60;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin-top: 25px;
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 1px solid transparent;
+                width: 150px;
+}
+ .submit-btn:hover {
+	color: #27AE60;
+	background: transparent;
+	border: 1px solid #27AE60;
+}
+</style>
+
     </head>
     <body>
 		<div class="row dashboard-top-nav">
@@ -135,9 +156,9 @@
 							</li>
 						</ul>
 					</li>
-					<li class="user dropdown">
+                    <li class="user dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<span><img src="assets/img/parent/parent2.jpg" alt="user">JOHN DOE<span class="caret"></span></span>
+							<span><img src="{{ teachers.image.url }}" alt="user">{{ teachers.firstname }} {{ teachers.middlename }} {{ teachers.lastname }}<span class="caret"></span></span>
 						</a>
 						<ul class="dropdown-menu notification-list">
 							<li>
@@ -154,7 +175,7 @@
 							</li>
 							<li>
 								<div class="all-notifications">
-									<a href="#">LOGOUT</a>
+									<a href="{% url 'logout' %}">LOGOUT</a>
 								</div>
 							</li>
 						</ul>
@@ -246,55 +267,14 @@
 					<div class="row">
 						<div class="col-lg-12 clear-padding-xs">
 							<div class="col-lg-12">
-								<div class="dash-item first-dash-item">
-									<h6 class="item-title"><i class="fa fa-search"></i>MAKE SELECTION</h6>
-									<div class="inner-item dash-search-form">
-										<div class="col-md-3 col-sm-6">
-											<label>CLASS</label>
-											<select>
-												<option>5th STD</option>
-												<option>6th STD</option>
-												<option>7th STD</option>
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>SECTION</label>
-											<select>
-												<option>PTH05A</option>
-												<option>PTH05B</option>
-												<option>PTH06A</option>
-												<option>PTH06B</option>
-											</select>
-										</div>
-										<div class="clearfix visible-sm"></div>
-										<div class="col-md-3 col-sm-6">
-											<label>COURSE CODE</label>
-											<select>
-												<option>MTH101</option>
-												<option>MTH102</option>
-												<option>MTH103</option>
-												<option>MTH104</option>
-											</select>
-										</div>
-										<div class="col-md-3 col-sm-6">
-											<label>MARKS TYPE</label>
-											<select>
-												<option>Class Assessment</option>
-												<option>Mid Term</option>
-												<option>End Term</option>
-											</select>
-										</div>
-										<div class="clearfix"></div>
-										<div class="col-sm-3">
-											<button type="submit" class="submit-btn"><i class="fa fa-search"></i>SELECT</button>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12">
 								<div class="dash-item">
 									<h6 class="item-title"><i class="fa fa-info-circle"></i>ADD MARKS</h6>
+                                <form action="add_marks" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                <input type="hidden" name="class" value="{{ class.id }}">
+                                <input type="hidden" name="section" value="{{ section.id }}">
+                                <input type="hidden" name="type" value="{{ type }}">
+                                <input type="hidden" name="subject" value="{{ subject.id }}">
 									<div class="inner-item">
 										<table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
 											<thead>
@@ -309,57 +289,27 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            {% for student in students %}
 												<tr>
-													<td>PTH050A01</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
+													<td>{{ student.roll_number }}</td>
+													<td>{{ student.firstname }} {{ student.middlename }} {{ student.lastname }}</td>
+													<td>{{ subject.code }}</td>
 													<td>
-														Mid Term
+														{{ type }}
 													</td>
-													<td><input type="text" placeholder="Marks Obtained" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Max Marks" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-												</tr>
-												<tr>
-													<td>PTH050A02</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td>
-														Mid Term
-													</td>
-													<td><input type="text" placeholder="Marks Obtained" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Max Marks" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-												</tr>
-												<tr>
-													<td>PTH050A03</td>
-													<td>John Doe</td>
-													<td>MTH101</td>
-													<td>
-														Mid Term
-													</td>
-													<td><input type="text" placeholder="Marks Obtained" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Max Marks" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-												</tr>
-												<tr>
-													<td>PTH050A04</td>
-													<td>Lennore Doe</td>
-													<td>MTH101</td>
-													<td>
-														Mid Term
-													</td>
-													<td><input type="text" placeholder="Marks Obtained" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Max Marks" class="datatable-input"/></td>
-													<td><input type="text" placeholder="Remarks" class="datatable-input"/></td>
-												</tr>
+													<td><input type="text" name="marks_{{ student.id }}" placeholder="Marks Obtained" class="datatable-input"/></td>
+													<td><input type="text" name="max_marks_{{ student.id }}" placeholder="Max Marks" class="datatable-input"/></td>
+													<td><input type="text" name="remarks_{{ student.id }}" placeholder="Remarks" class="datatable-input"/></td>
+                                                </tr>
+                                            {% endfor %}
 											</tbody>
 										</table>
 										<div class="table-action-box">
-											<a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
-											<a href="#" class="cancel"><i class="fa fa-ban"></i>CANCEL</a>
+											<button type="submit" class="submit-btn">SAVE</button>
+											<a href="{% url 'teacher_dashboard' %}" class="cancel"><i class="fa fa-ban"></i>CANCEL</a>
 										</div>
 									</div>
+                                </form>
 								</div>
 							</div>
 						</div>

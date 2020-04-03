@@ -137,7 +137,8 @@ def admin_add_subject(request):
     subject = Subject.objects.all()
     teach = teachers.objects.all()
     clas = Class.objects.all()
-    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+    section = ClassSection.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach,'sections':section, "classes": clas})
 
 
 def admin_create_timetable(request):
@@ -347,17 +348,20 @@ def add_subject(request):
     subject_class = request.POST['class']
     teacher = request.POST['teacher']
     description = request.POST['description']
+    section = request.POST['section']
 
     teach = teachers.objects.get(id=teacher)
     class_obj = Class.objects.get(id=subject_class)
+    sec = ClassSection.objects.get(id=section)
 
-    s = Subject(name=name,code=code,subject_class=class_obj,teacher=teach,description=description)
+    s = Subject(name=name,code=code,subject_class=class_obj,subject_section=sec,teacher=teach,description=description)
     s.save()
 
     subject = Subject.objects.all()
     teach = teachers.objects.all()
     clas = Class.objects.all()
-    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas,'sections':sections})
 
 def edit_subject(request):
     name = request.POST['name']
@@ -369,12 +373,15 @@ def edit_subject(request):
 
 
     teach = teachers.objects.get(id=teacher)
+    print(subject_class)
     class_obj = Class.objects.get(id=subject_class)
+    sec =ClassSection.objects.get(id=request.POST['section'])
     s =Subject.objects.get(id=subject_id)
     s.name = name
     s.subject_class = class_obj
     s.teacher = teach
     s.code = code
+    s.subject_section=sec
     if description != '' :
         s.description=description
     s.save()
@@ -383,7 +390,8 @@ def edit_subject(request):
     subject = Subject.objects.all()
     teach = teachers.objects.all()
     clas = Class.objects.all()
-    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas,'sections':sections})
 
 def delete_subject(request):
     subject_id = request.POST['subject_id']
@@ -393,7 +401,8 @@ def delete_subject(request):
     subject = Subject.objects.all()
     teach = teachers.objects.all()
     clas = Class.objects.all()
-    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas})
+    sections = ClassSection.objects.all()
+    return render(request, "admin-add-subject.html",{"subjects" : subject,"teachers" : teach, "classes": clas,'sections':sections})
 
 
 def add_timetable(request):

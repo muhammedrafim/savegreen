@@ -51,3 +51,14 @@ class attendance(models.Model):
     remarks = models.TextField()
     teacher_id = models.ForeignKey(teachers,on_delete=models.CASCADE)
     date_marked = models.DateField()
+
+class marks(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
+    class_name = models.ForeignKey(Class,on_delete=models.CASCADE)
+    section = models.ForeignKey(ClassSection,on_delete=models.CASCADE)
+    exam_type = models.TextField()
+    marks_obtained = models.TextField()
+    total_marks = models.TextField()
+    remarks = models.TextField()
+    marked_by = models.ForeignKey(teachers,on_delete=models.CASCADE)

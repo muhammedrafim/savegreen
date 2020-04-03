@@ -317,6 +317,13 @@
                                                 <option value="{{ class.id }}">{{ class.class_name }}</option>
                                                 {% endfor %}
 											</select>
+                                            <label><i class="fa fa-code"></i>SECTION</label>
+											<select name="section">
+												<option>-- Select --</option>
+												{% for class in sections %}
+                                                <option value="{{ class.id }}">{{ class.section_name }}</option>
+                                                {% endfor %}
+											</select>
 											<label><i class="fa fa-code"></i>TEACHER</label>
 											<select name="teacher">
 												<option>-- Select --</option>
@@ -346,6 +353,7 @@
 													<th><i class="fa fa-book"></i>NAME</th>
 													<th><i class="fa fa-code"></i>CODE</th>
 													<th><i class="fa fa-cogs"></i>CLASS</th>
+                                                    <th><i class="fa fa-cogs"></i>SECTION</th>
 													<th><i class="fa fa-user-secret"></i>TEACHER</th>
 													<th><i class="fa fa-info-circle"></i>DESCRIPTION</th>
 													<th><i class="fa fa-sliders"></i>ACTION</th>
@@ -357,6 +365,7 @@
 													<td>{{ subject.name }}</td>
 													<td>{{ subject.code }}</td>
 													<td>{{ subject.subject_class.class_name }}</td>
+                                                    <td>{{ subject.subject_section.section_name }}</td>
 													<td>{{ subject.teacher.firstname }} {{ subject.teacher.middlename }} {{ subject.teacher.lastname }}</td>
 													<td>{{ subject.description }}</td>
 													<td class="action-link">
@@ -436,6 +445,17 @@
                                             {% endfor %}
 									</select>
 								</div>
+
+								<div class="col-sm-3">
+									<label class="clear-top-margin"><i class="fa fa-book"></i>SECTION</label>
+									<select name="section">
+										<option value="{{ subject.subject_section.id}}">{{ subject.subject_section.section_name }}</option>
+                                        {% for class in sections %}
+                                            <option value="{{ class.id }}">{{ class.section_name }}</option>
+                                            {% endfor %}
+									</select>
+								</div>
+                                <div class="clearfix"></div>
 								<div class="col-sm-3">
 									<label class="clear-top-margin"><i class="fa fa-user-secret"></i>TEACHER</label>
 									<select name="teacher">
