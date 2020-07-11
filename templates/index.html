@@ -25,11 +25,85 @@
 }
             .left-event-items .grid .event-item:last-child {
 	border: 0;
+
+}
+            .map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }
         </style>
 
     </head>
     <body>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+<script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyBIzEO9_QSfcZ0nUbtj-JGO8DNIPDUep30",
+  authDomain: "savegreen-885e0.firebaseapp.com",
+  databaseURL: "https://savegreen-885e0.firebaseio.com",
+  projectId: "savegreen-885e0",
+  storageBucket: "savegreen-885e0.appspot.com",
+  messagingSenderId: "283130365789",
+  appId: "1:283130365789:web:0da986f1c5d00981c14ab4"
+};
+    firebase.initializeApp(firebaseConfig);
+    const messaging=firebase.messaging();
+
+    function IntitalizeFireBaseMessaging() {
+        messaging
+            .requestPermission()
+            .then(function () {
+                console.log("Notification Permission");
+                return messaging.getToken();
+            })
+            .then(function (token) {
+                console.log("Token : "+token);
+                document.getElementById("token").innerHTML=token;
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            });
+    }
+
+    messaging.onMessage(function (payload) {
+        console.log(payload);
+        const notificationOption={
+            body:payload.notification.body,
+            icon:payload.notification.icon
+        };
+
+        if(Notification.permission==="granted"){
+            var notification=new Notification(payload.notification.title,notificationOption);
+
+            notification.onclick=function (ev) {
+                ev.preventDefault();
+                window.open(payload.notification.click_action,'_blank');
+                notification.close();
+            }
+        }
+
+    });
+    messaging.onTokenRefresh(function () {
+        messaging.getToken()
+            .then(function (newtoken) {
+                console.log("New Token : "+ newtoken);
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            })
+    })
+    IntitalizeFireBaseMessaging();
+</script>
         <div class="row nav-row trans-menu">
             <div class="container nav-container">
 				<div class="top-navbar">
@@ -60,32 +134,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">PATHSHALA</a>
+                        <a class="navbar-brand" href="index.html">SAVE GREEN SOCIETY</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
                         <ul class="nav navbar-nav">
                             <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
-                            <li><a href="academic.html" ><i class="fa fa-graduation-cap"></i>ACADEMICS </a></li>
-                            <li><a href="admission.html"><i class="fa fa-users"></i>ADMISSIONS</a></li>
 							<li class="dropdown">
                                 <a href="events.html" ><i class="fa fa-calendar-check-o"></i>EVENTS</a>
-                            </li>
-							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-dashboard"></i>DASHBOARD <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'login' %}"><i class="fa fa-user-secret"></i>ADMIN</a></li>
-									<li><a href="dashboard/teacher-dashboard.html"><i class="fa fa-user"></i>TEACHER</a></li>
-                                    <li><a href="dashboard/student-dashboard.html"><i class="fa fa-child"></i>STUDENT</a></li>
-                                </ul>
-                            </li>
-							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-file"></i>PAGES <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="gallery.html"><i class="fa fa-picture-o"></i>CAMPUS GALLERY</a></li>
-									<li><a href="about.html"><i class="fa fa-info-circle"></i>ABOUT</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-phone-square"></i>CONTACT US</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -110,7 +166,6 @@
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR YOUR CHILD</h2>
                             <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
                         </div>
                     </div>
 
@@ -119,8 +174,7 @@
                         <div class="carousel-caption">
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>LET YOUR CHILD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
-                            <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                            <p>We here at <strong>SAVE GREEN SOCIETY</strong> provides best education <br /> to your little one</p>
                         </div>
                     </div>
 					<div class="item">
@@ -129,7 +183,6 @@
                             <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR CHILD</h2>
 							<p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
                         </div>
                     </div>
                 </div>
@@ -173,42 +226,27 @@
 					<h1>EVENTS - NEWS</h1>
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
 				</div>
-				<div class="col-sm-12">
-					<div class="event-tab-link-box">
-						<div class="pull-mid">
-							<ul class="nav nav-tabs">
-                                {% for type in eventtypes %}
-								<li data-filter=".{{type.eventtype }}">
-									<a data-toggle="tab"><i class="{% if type.eventtype == 'ACADEMIC' %} fa fa-graduation-cap {%endif %}
-                                        {% if type.eventtype == 'ADMISSION' %} fa fa-users{% endif %}
-                                        {% if type.eventtype == 'SPORTS' %}fa fa-trophy {% endif %} "></i><span> {{type.eventtype}} </span></a>
-								</li>
-                                {% endfor %}
-							</ul>
-						</div>
-					</div>
-				</div>
 				<div class="clearfix"></div>
 				<div class="tab-content">
 
 					 <div class="tab-pane active" >
-                        <div class="col-md-8 left-event-items grid">
+                        <div class="col-md-8 left-event-items">
                             {% for event in eventnews %}
                                 <div class="event-item {{event.eventtype}}" >
 									<div class="col-sm-7">
 										<div class="event-date">
 
-											<p><span>{{ event.date.day }}</span> {{ event.date | date:"M"}}</p>
+											<p><span>{{ event.datetime.day }}</span> {{ event.datetime | date:"M"}}</p>
 										</div>
 										<h3>{{ event.title }}</h3>
 										<h6><i class="fa fa-map-marker"></i>{{event.location}}</h6>
-										<p>{{event.description}}</p>
+										<p>{{event.details}}</p>
 									</div>
 									<div class="col-sm-5 event-item-img">
 										<div class="event-img">
-											<img src="{{ event.image.url }}"  style="max-height: 210px;width: 100%" alt="event" />
+											<img src="{{ event.displayImage.url }}"  style="max-height: 210px;width: 100%" alt="event" />
 											<div class="event-detail-link">
-												<a href="events.html">VIEW DETAILS</a>
+												<a href="{% url 'event' event.id %}" >VIEW DETAILS</a>
 											</div>
 										</div>
 									</div>
@@ -246,8 +284,8 @@
 			<div class="container">
 				<div class="section-row-header-center">
 					<h6><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h6>
-					<h1>MEET OUR TEACHERS</h1>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+					<h1>MEET OUR STAFFS</h1>
+					<p>Our staffs are the great pillar of our organizations</p>
 				</div>
 				<div class="owl-carousel" id="ourTeacher">
                     {% for teacher in teachers %}
@@ -257,7 +295,7 @@
 							<p class="teacher-desc">{{ teacher.description }}
 							</p>
 							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{{ teacher.image.url }}" style="height: 73px;width: 100%" alt="teacher" />
+								<img src="{{ teacher.image.url }}" style="height: 150px;width: 100%" alt="teacher" />
 							</div>
 							<div class="col-xs-8 teacher-details">
 								<p><strong>{{ teacher.name }}</strong></p>
@@ -280,46 +318,59 @@
 		</div>
 		
 		<!-- News Section -->
-		<div class="row section-row">
-			<div class="container">
-				<div class="section-row-header-center">
-					<h6><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h6>
-					<h1>LATEST NEWS</h1>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-				</div>
-                {% for news in news %}
-                    <div class="{% if forloop.counter > 3 %}test{% endif %}" style="{% if forloop.counter > 3 %}display: none {% endif %}">
-				<div class="col-sm-6 col-md-4">
-					<div class="news-item-container">
-						<div class="news-img">
-							<img src="{{ news.image.url }}" style="height: 281px; width: 100%" alt="news"/>
-							<div class="news-item-date">
-								<h6><i class="fa fa-calendar"></i>{{ news.date.day }}, {{ news.date|date:"M" }}</h6>
+
+		<!-- Parent testimonial section -->
+		<!-- Facts section -->
+        <div class="row section-row">
+            <div class="container">
+				<div class="fact-wrapper">
+					<div class="col-md-5 fact-item">
+						<p class="lg-icon"><i class="fa fa-trophy"></i></p>
+						<p>PATHSHALA won best School award in 2016</p>
+						<h1>WINNER BEST SCHOOL AWARD</h1>
+						<p>It is a long established fact that a reader will be distracted by the content of a page when looking at its layout. It is a long established fact that a reader will be distracted by the content.</p>
+					</div>
+					<div class="col-md-7 fact-item">
+						<div class="fact-item-list">
+							<div class="col-xs-3">
+								<i class="fa fa-star"></i>
 							</div>
+							<div class="col-xs-9">
+								<h2>14+ <br />COMPETITION WON</h2>
+								<p>It is a long established fact that a reader will be distracted.</p>
+							</div>
+							<div class="clearfix"></div>
 						</div>
-						<div class="news-item" style="height: 220px">
-							<h5>{{ news.title }}</h5>
-							<p style="max-height: 100px;max-width: 250px;font-size: 12px">{{news.description}}</p>
-							<a href="events.html"><i class="fa fa-paper-plane"></i>VIEW DETAILS</a>
+						<div class="fact-item-list">
+							<div class="col-xs-3">
+								<i class="fa fa-clock-o"></i>
+							</div>
+							<div class="col-xs-9">
+								<h2>1000+ <br />VOLUNTEER HOURS</h2>
+								<p>It is a long established fact that a reader will be distracted.</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="fact-item-list">
+							<div class="col-xs-3">
+								<i class="fa fa-graduation-cap"></i>
+							</div>
+							<div class="col-xs-9">
+								<h2>100% <br />SUCCESS RATE</h2>
+								<p>It is a long established fact that a reader will be distracted.</p>
+							</div>
+							<div class="clearfix"></div>
 						</div>
 					</div>
-				</div>
-                    </div>
-
-                {% endfor %}
-
-                <div class="clearfix visible-lg visible-md visible-sm"></div>
-				<div class="view-all-link" id="show">
-					<a><i class="fa fa-paper-plane"></i>VIEW ALL</a>
+					<div class="clearfix"></div>
 				</div>
 			</div>
-		</div>
-		
-		<!-- Parent testimonial section -->
+        </div>
+
 		<div class="row parent-test-row section-row">
 			<div class="container">
 				<div class="section-row-header-center">
-					<h1>WHAT PARENTS SAY</h1>
+					<h1>WHAT CUSTOMERS SAY</h1>
 				</div>
 				<div class="owl-carousel" id="parentTestimonial">
 					<div class="parent-test-item">
@@ -397,56 +448,17 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- Facts section -->
-        <div class="row section-row">
-            <div class="container">
-				<div class="fact-wrapper">
-					<div class="col-md-5 fact-item">
-						<p class="lg-icon"><i class="fa fa-trophy"></i></p>
-						<p>PATHSHALA won best School award in 2016</p>
-						<h1>WINNER BEST SCHOOL AWARD</h1>
-						<p>It is a long established fact that a reader will be distracted by the content of a page when looking at its layout. It is a long established fact that a reader will be distracted by the content.</p>
-					</div>
-					<div class="col-md-7 fact-item">
-						<div class="fact-item-list">
-							<div class="col-xs-3">
-								<i class="fa fa-star"></i>
-							</div>
-							<div class="col-xs-9">
-								<h2>14+ <br />COMPETITION WON</h2>
-								<p>It is a long established fact that a reader will be distracted.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="fact-item-list">
-							<div class="col-xs-3">
-								<i class="fa fa-clock-o"></i>
-							</div>
-							<div class="col-xs-9">
-								<h2>1000+ <br />VOLUNTEER HOURS</h2>
-								<p>It is a long established fact that a reader will be distracted.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="fact-item-list">
-							<div class="col-xs-3">
-								<i class="fa fa-graduation-cap"></i>
-							</div>
-							<div class="col-xs-9">
-								<h2>100% <br />SUCCESS RATE</h2>
-								<p>It is a long established fact that a reader will be distracted.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
+        <div style="height: 70px">
+        <div style="color: black" class="section-row-header-center">
+					<h1>OUR LOCATION</h1>
 				</div>
-			</div>
-        </div>
-	
+            </div>
+  <div class="map-responsive"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62608.29896884926!2d75.77115745533682!3d11.260035512392943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65938563d4747%3A0x32150641ca32ecab!2sKozhikode%2C%20Kerala!5e0!3m2!1sen!2sin!4v1594384347553!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+        <div style="height: 20px"></div>
+
 		<!-- Know More Info & Admission apply row -->
-		<div class="row apply-know-row">
+<!--		<div class="row apply-know-row">
 			<div class="container">
 				<div class="col-sm-6 admission-row">
 					<h3>ADMISSIONS ARE OPEN</h3>
@@ -462,42 +474,25 @@
 				</div>
 			</div>
 		</div>
-		
+	-->
 		<!-- Footer Section -->
 		<div class="row footer-row">
 			<div class="container">
 				<div class="school-logo">
 					<i class="fa fa-graduation-cap"></i>
-					<h3>PATHSHALA</h3>
+					<h3>SAVE GREEN</h3>
 					<h6>BETTER WAY TO LEARN & GROW</h6>
 				</div>
-				<div class="col-md-4 col-sm-6 footer-item">
+				<div class="col-md-6 col-sm-6 footer-item" style="justify-content: center">
 					<h5>CONTACT US</h5>
 					<p><i class="fa fa-map-marker"></i>3768 Seabury Ct, Burlington, NC, 27215</p>
 					<p><i class="fa fa-mobile"></i> +1 8910000891</p>
 					<p><i class="fa fa-envelope"></i>email@pathshala.com</p>
 				</div>
-				<div class="col-md-2 col-sm-6 footer-item">
-					<h5>QUICK LINKS</h5>
-					<div class="quick-link-box">
-						<a href="#"><i class="fa fa-graduation-cap"></i>Academics</a>
-						<a href="#"><i class="fa fa-users"></i>Admission</a>
-						<a href="#"><i class="fa fa-calendar"></i>Events</a>
-						<a href="#"><i class="fa fa-thumbs-up"></i>Campus Life</a>
-					</div>
-				</div>
-				<div class="clearfix visible-sm"></div>
-				<div class="col-md-3 col-sm-6 footer-item">
-					<h5>SCHOOL TIMINGS</h5>
+				<div class="col-md-6 col-sm-6 footer-item">
+					<h5>OFFICE TIMINGS TIMINGS</h5>
 					<p><i class="fa fa-clock-o"></i> MON - FRI 9:00 AM - 3:00 PM</p>
 					<p><i class="fa fa-clock-o"></i> SAT 9:00 AM - 1:00 PM</p>
-				</div>
-				<div class="col-md-3 col-sm-6 footer-item">
-					<h5>SUBSCRIBE</h5>
-					<div class="footer-subscribe">
-						<i class="fa fa-envelope"></i></a><input type="text" placeholder="example@pathshala.com" />
-					</div>
-					<a href="#" class="subscribe-link"><i class="fa fa-paper-plane"></i>SUBMIT</a>
 				</div>
 			</div>
 			<div class="footer-social-row">

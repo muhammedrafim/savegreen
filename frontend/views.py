@@ -1,33 +1,29 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import EventsNews, FeaturedEventsNews,  Teachers,  News, AcademicCalendar,Imagegallery, EventDetail ,Gallery,maingalleryimages
+from .models import EventsNews, FeaturedEventsNews,  Staffs,  News, AcademicCalendar,Imagegallery, EventDetail ,Gallery,maingalleryimages
 from django.core.paginator import Paginator
-from studentdashboard.models import Student
 from django.contrib.auth.models import auth,User
 
 def index(request):
-    eventnews = EventsNews.objects.all()
+    eventnews = EventDetail.objects.all().order_by('-id')[:3]
     eventtypes = EventsNews.objects.all().distinct('eventtype')
     featuredevent = FeaturedEventsNews.objects.all()
-    teachers = Teachers.objects.all()
+    teachers = Staffs.objects.all()
     news = News.objects.all()
     return render(request, "index.html", {'eventnews': eventnews,'news': news, 'eventtypes': eventtypes,'featuredevent':featuredevent, 'teachers': teachers})
-def academic(request):
-    teachers = Teachers.objects.all()
-    return render(request,"academic.html", {'teachers':teachers})
 def preschool(request):
-    st = Student.objects.all()
-    return render(request,"preschool.html", {'student': st[1]})
+    #st = Student.objects.all()
+    return render(request,"preschool.html", )
 def preschoolsummer(request):
     return render(request,"preschool-summer-camp.html")
 def admission(request):
     return render(request,"admission.html")
 
 def events(request):
-    events = EventDetail.objects.all()
+    events = EventDetail.objects.all().order_by('-id')
     featuredevent = FeaturedEventsNews.objects.all()
-    paginator = Paginator(events, 3)
+    paginator = Paginator(events, 5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,"events.html", {'posts' : posts, 'featuredevent': featuredevent})
@@ -38,9 +34,6 @@ def eventssingle(request):
 def gallery(request):
     _gallery = Gallery.objects.all()
     return render(request, "gallery.html" , {"gallery": _gallery})
-def about(request):
-    teachers = Teachers.objects.all()
-    return render(request, "about.html",{"teachers" : teachers})
 def contact(request):
     return render(request, "contact.html")
 

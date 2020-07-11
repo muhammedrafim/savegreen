@@ -16,9 +16,9 @@ class FeaturedEventsNews(models.Model):
     location = models.TextField()
     description = models.TextField()
 
-class Teachers(models.Model):
+class Staffs(models.Model):
     name = models.TextField()
-    subject = models.TextField()
+    designation = models.TextField()
     qualification = models.TextField()
     description = models.TextField()
     image = models.ImageField(upload_to='pics')
@@ -27,6 +27,8 @@ class Teachers(models.Model):
     linkedin = models.URLField()
     mobile = models.IntegerField()
 
+    def __str__(self):
+        return self.name
 class News(models.Model):
     title = models.TextField()
     date = models.DateField()
@@ -45,7 +47,9 @@ class EventDetail(models.Model):
     description = models.TextField()
     details = models.TextField()
     displayImage = models.ImageField(upload_to='pics')
-
+    videourl = models.TextField(max_length=500)
+    def __str__(self):
+        return self.title
 class Imagegallery(models.Model):
     image = models.ImageField(upload_to='pics')
     event = models.ForeignKey(EventDetail, on_delete=models.CASCADE)

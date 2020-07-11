@@ -153,29 +153,9 @@
                         <ul class="nav navbar-nav">
                             <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>HOME</a></li>
 							<li class="dropdown">
-                                <a href="{% url 'academic' %}" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
-
-                            </li>
-                            <li><a href="{% url 'admission' %}"><i class="fa fa-users"></i>ADMISSIONS</a></li>
-							<li class="dropdown">
                                 <a href="{% url 'events' %}" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-calendar-check-o"></i>EVENTS</a>
                             </li>
-							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-dashboard"></i>DASHBOARD <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="dashboard/admin-dashboard.html"><i class="fa fa-user-secret"></i>ADMIN</a></li>
-									<li><a href="dashboard/teacher-dashboard.html"><i class="fa fa-user"></i>TEACHER</a></li>
-                                    <li><a href="dashboard/student-dashboard.html"><i class="fa fa-child"></i>STUDENT</a></li>
-                                </ul>
-                            </li>
-							<li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-file"></i>PAGES <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'gallerys' %}"><i class="fa fa-picture-o"></i>CAMPUS GALLERY</a></li>
-									<li><a href="{% url 'about' %}"><i class="fa fa-info-circle"></i>ABOUT</a></li>
-                                    <li><a href="{% url 'contact' %}"><i class="fa fa-phone-square"></i>CONTACT US</a></li>
-                                </ul>
-                            </li>
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -202,7 +182,13 @@
 						</h5>
 						<p> {{events.description}}</p>
 						<!-- Slideshow container -->
-                                <div class="slideshow-container">
+                    {% if events.videourl != "" %}
+                         <div class="embed-responsive embed-responsive-16by9">
+<<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ events.videourl }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                     {% endif %}
+                        <div style="height: 20px"></div>
+                        <div class="slideshow-container">
                                 {% for image in images %}
                                   <!-- Full-width images with number and caption text -->
                                   <div class="mySlides">
