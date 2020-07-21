@@ -14,7 +14,7 @@
 		<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" media="screen">
 		<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" media="screen">
         <link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
         <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
@@ -47,6 +47,50 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
 <script>
+     function subscribe() {
+   registration.pushManager.getSubscription().then(
+       function(existing_subscription) {
+         // Check if Subscription is available
+         if (existing_subscription) {
+           endpoint = existing_subscription.toJSON()['endpoint']
+           if (storage.getItem(endpoint) === 'failed') {
+             postSubscribeObj('subscribe', existing_subscription);
+           }
+           return existing_subscription;
+         }
+         // If not, register one using the
+         // registration object we got when
+         // we registered the service worker
+         registration.pushManager.subscribe({
+           userVisibleOnly: true
+         }).then(
+           function(new_subscription) {
+             postSubscribeObj('subscribe', new_subscription);
+           }
+         );
+       }
+     )
+ }
+ function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+     function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
     const firebaseConfig = {
   apiKey: "AIzaSyBIzEO9_QSfcZ0nUbtj-JGO8DNIPDUep30",
   authDomain: "savegreen-885e0.firebaseapp.com",
@@ -56,6 +100,7 @@
   messagingSenderId: "283130365789",
   appId: "1:283130365789:web:0da986f1c5d00981c14ab4"
 };
+
     firebase.initializeApp(firebaseConfig);
     const messaging=firebase.messaging();
 
@@ -68,7 +113,31 @@
             })
             .then(function (token) {
                 console.log("Token : "+token);
-                document.getElementById("token").innerHTML=token;
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+                 $.ajax({
+                     method:"post",
+        url: '/fcm/v1/devices/',
+        data:{"dev_id": makeid(10), "reg_id":token, "name":"test device"},
+        dataType: 'json',
+        success: function (data) {
+       //   if (data.is_taken) {
+          //  alert("A user with this username already exists.");
+         // }
+            console.log(data);
+           // alert("success");
+        }
+      });
+
+
             })
             .catch(function (reason) {
                 console.log(reason);
@@ -78,31 +147,68 @@
     messaging.onMessage(function (payload) {
         console.log(payload);
         const notificationOption={
-            body:payload.notification.body,
-            icon:payload.notification.icon
+            body:payload.data.message,
+            icon:payload.data.icon,
         };
 
         if(Notification.permission==="granted"){
-            var notification=new Notification(payload.notification.title,notificationOption);
+            var notification=new Notification(payload.data.title,notificationOption);
 
             notification.onclick=function (ev) {
                 ev.preventDefault();
-                window.open(payload.notification.click_action,'_blank');
+                window.open(payload.data.click,'_blank');
                 notification.close();
             }
         }
 
     });
     messaging.onTokenRefresh(function () {
+
         messaging.getToken()
             .then(function (newtoken) {
+
                 console.log("New Token : "+ newtoken);
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+                 $.ajax({
+                     method:"post",
+        url: '/fcm/v1/devices/',
+        data:{"dev_id": makeid(10), "reg_id":newtoken, "name":"test device"},
+        dataType: 'json',
+        success: function (data) {
+       //   if (data.is_taken) {
+          //  alert("A user with this username already exists.");
+         // }
+          console.log(data);
+        }
+      });
+
             })
             .catch(function (reason) {
                 console.log(reason);
             })
     })
     IntitalizeFireBaseMessaging();
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+console.log(makeid(5));
+
 </script>
         <div class="row nav-row trans-menu">
             <div class="container nav-container">
@@ -113,9 +219,6 @@
 								<a href="#"><i class="fa fa-twitter"></i></a>
 								<a href="#"><i class="fa fa-google-plus"></i></a>
 								<a href="#"><i class="fa fa-linkedin"></i></a>
-						</div>
-						<div class="top-nav-login-btn pull-right">
-							<a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i>LOGIN</a>
 						</div>
 						<!--<div class="top-navbar-search pull-right">
 							<i class="fa fa-search"></i>
@@ -164,8 +267,8 @@
                         <img src="{% static 'img/slider/slide4.jpg' %}" alt="slide1">
                         <div class="carousel-caption">
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR YOUR CHILD</h2>
-                            <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
+                            <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR ENVIROMENT</h2>
+                            <p>We here at <strong>SAVE GREEN</strong> provides best services <br /> to everyone</p>
                         </div>
                     </div>
 
@@ -173,16 +276,16 @@
                         <img src="{% static 'img/slider/slide5.jpg' %}" alt="slide2">
                         <div class="carousel-caption">
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>LET YOUR CHILD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
-                            <p>We here at <strong>SAVE GREEN SOCIETY</strong> provides best education <br /> to your little one</p>
+                            <h2>LET THE WORLD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
+                            <p>We here at <strong>SAVE GREEN SOCIETY</strong> provides best products <br /> to your everyone</p>
                         </div>
                     </div>
 					<div class="item">
                         <img src="{% static 'img/slider/slide6.jpg' %}" alt="slide2">
                         <div class="carousel-caption">
                             <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR CHILD</h2>
-							<p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
+                            <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR ENVIROMENT</h2>
+							<p>We here at <strong>SAVE GREEN</strong> provides best opportunity <br /> to your everyone</p>
                         </div>
                     </div>
                 </div>
@@ -206,10 +309,10 @@
 					<img src="{% static 'img/principal1.jpg' %}" alt="Our Principal"/>
 				</div>
 				<div class="col-sm-7 principal-intro">
-					<h6><i class="fa fa-star-o"></i><span>MEET OUR STAR</span><i class="fa fa-star-o"></i></h6>
-					<h3>MEET OUR PRESIDENT</h3>
-					<p> Mr. Mayin Haji is our Mahal President, He gives us the inspiration adn courge to move forward to achieve our goals</p>
-					<h6 class="principal-name">Mr MAYIN HAJI</h6>
+					<h6><i class="fa fa-star-o"></i><span>OUR HISTORY</span><i class="fa fa-star-o"></i></h6>
+					<h3>SAVE GREEN SOCIETY</h3>
+					<p> Our aim is to provide enviroment friendly products and services</p>
+					<h6 class="principal-name"></h6>
 					<div>
 						<a href="#" class="know-more-btn"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
 					</div>
