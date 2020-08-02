@@ -193,8 +193,7 @@
                                   <!-- Full-width images with number and caption text -->
                                   <div class="mySlides">
                                     <div class="numbertext" style="color: #0b0b0b">{{ forloop.counter }}/ {{ images.count }}</div>
-                                    <img src="{{image.image.url}}" style="width:100%;max-height: 600px;">
-                                    <div class="text">Caption Text</div>
+                                      <a href="{{image.image.url}}"> <img  src="{{image.image.url}}" style="width:100%;max-height: 600px;"> </a>
                                   </div>
                                     {% endfor %}
 
@@ -221,19 +220,22 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="col-md-4 right-event-items">
-					<div class="event-item">
-						<img src="{%  static 'img/news/news-lg3.jpg' %}" alt="event" />
-					</div>
-					<div class="featured-event">
-						<div class="event-date">
-							<p><span>10</span> SEP</p>
-						</div>
-						<h3>Inter School Sports Meet</h3>
-						<h6><i class="fa fa-map-marker"></i>Playground</h6>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-						<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
-					</div>
+					 {% for event in featuredevent %}
+                           <div class="event-item">
+								<img src="{% static 'img/featured.jpg' %}" style="opacity: 0.7" alt="event" />
+							</div>
+							<div class="featured-event" style="color: black">
+								<div class="event-date" style="color: black">
+									<p style="color: black"><span style="color: black">{{ event.date.day }}</span>{{ event.date | date:"M"}}</p>
+								</div>
+								<h3 >{{ event.title }}</h3>
+								<h6 style="color: black"><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
+								<p style="color: black">{{ event.description }}</p>
+								<a href="#contact-form" style="color: black"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
+							</div>
 
+						</div>
+                     {% endfor %}
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -241,39 +243,22 @@
 		
 		<!-- Footer Section -->
 		<div class="row footer-row">
-			<div class="container">
+			<div class="container" id="contact-form">
 				<div class="school-logo">
 					<i class="fa fa-graduation-cap"></i>
-					<h3>PATHSHALA</h3>
+					<h3>SAVE GREEN</h3>
 					<h6>BETTER WAY TO LEARN & GROW</h6>
 				</div>
-				<div class="col-md-4 col-sm-6 footer-item">
+				<div class="col-md-6 col-sm-6 footer-item" style="justify-content: center">
 					<h5>CONTACT US</h5>
 					<p><i class="fa fa-map-marker"></i>3768 Seabury Ct, Burlington, NC, 27215</p>
 					<p><i class="fa fa-mobile"></i> +1 8910000891</p>
 					<p><i class="fa fa-envelope"></i>email@pathshala.com</p>
 				</div>
-				<div class="col-md-2 col-sm-6 footer-item">
-					<h5>QUICK LINKS</h5>
-					<div class="quick-link-box">
-						<a href="#"><i class="fa fa-graduation-cap"></i>ACADEMICS</a>
-						<a href="#"><i class="fa fa-users"></i>ADMISSION</a>
-						<a href="#"><i class="fa fa-calendar"></i>EVENTS</a>
-						<a href="#"><i class="fa fa-thumbs-up"></i>CAMPUS LIFE</a>
-					</div>
-				</div>
-				<div class="clearfix visible-sm"></div>
-				<div class="col-md-3 col-sm-6 footer-item">
-					<h5>SCHOOL TIMINGS</h5>
+				<div class="col-md-6 col-sm-6 footer-item">
+					<h5>OFFICE TIMINGS TIMINGS</h5>
 					<p><i class="fa fa-clock-o"></i> MON - FRI 9:00 AM - 3:00 PM</p>
 					<p><i class="fa fa-clock-o"></i> SAT 9:00 AM - 1:00 PM</p>
-				</div>
-				<div class="col-md-3 col-sm-6 footer-item">
-					<h5>SUBSCRIBE</h5>
-					<div class="footer-subscribe">
-						<i class="fa fa-envelope"></i></a><input type="text" placeholder="example@pathshala.com" />
-					</div>
-					<a href="#" class="subscribe-link"><i class="fa fa-paper-plane"></i>SUBMIT</a>
 				</div>
 			</div>
 			<div class="footer-social-row">
@@ -283,7 +268,6 @@
 				<a href="#"><i class="fa fa-linkedin"></i></a>
 			</div>
 		</div>
-		
 		<!-- Login Modal -->
 		<!-- Modal -->
 		<div class="modal fade" id="loginModal" role="dialog">

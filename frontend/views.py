@@ -29,6 +29,7 @@ def events(request):
     return render(request,"events.html", {'posts' : posts, 'featuredevent': featuredevent})
 
 def eventssingle(request):
+
     return render(request, "event-single.html")
 
 def gallery(request):
@@ -60,9 +61,11 @@ def curriculum(request):
 
 
 def eventdetail(request, event_id):
+    featuredevent = FeaturedEventsNews.objects.all()
+
     event = EventDetail.objects.get(id=event_id)
     images = Imagegallery.objects.all().filter(event_id=event_id)
-    return render(request , 'event-single.html', {"events": event ,"images" : images })
+    return render(request , 'event-single.html', {"events": event ,"images" : images,"featuredevent":featuredevent })
 
 
 def showgallery(request, gallery_id):

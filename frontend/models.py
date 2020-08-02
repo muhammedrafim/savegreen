@@ -58,7 +58,7 @@ class EventDetail(models.Model):
     description = models.TextField()
     details = models.TextField()
     displayImage = models.ImageField(upload_to='pics')
-    videourl = models.TextField(max_length=500)
+    videourl = models.TextField(max_length=500,default="")
 
     def __str__(self):
         return self.title
@@ -67,7 +67,7 @@ class EventDetail(models.Model):
 def sendmsg(sender,instance,**kwargs):
     Device = get_device_model()
 
-    Device.objects.all().send_message({'message': 'New Event Added ','title':'SAVEGREEN AWCS','icon':'http://127.0.0.1:8000/static/img/slider/slide4.jpg','click':'http://127.0.0.1:8000/home/event/'+str(instance.id)})
+    Device.objects.all().send_message({'message': instance.title,'title':'SAVEGREEN AWCS','icon':'http://127.0.0.1:8000/static/img/slider/slide4.jpg','click':'http://127.0.0.1:8000/home/event/'+str(instance.id)})
 
 
 

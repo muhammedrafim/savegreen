@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="">
-        <title>Pathshala - Responsive Education Template</title>
+        <title>SAVE GREEN | HOME</title>
 
         <!-- Styles -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
@@ -237,14 +237,14 @@ console.log(makeid(5));
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">SAVE GREEN SOCIETY</a>
+                        <a class="navbar-brand" style="color:black;" href="index.html">SAVE GREEN SOCIETY</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
+                            <li><a href="index.html" ><i class="fa fa-home"></i>HOME</a></li>
 							<li class="dropdown">
-                                <a href="events.html" ><i class="fa fa-calendar-check-o"></i>EVENTS</a>
+                                <a href="events.html"  id="122" ><i class="fa fa-calendar-check-o"></i>EVENTS</a>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -264,28 +264,28 @@ console.log(makeid(5));
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="{% static 'img/slider/slide4.jpg' %}" alt="slide1">
+                        <img src="{% static 'img/slider/slide4.jpg' %}" style="opacity: 0.7;" alt="slide1">
                         <div class="carousel-caption">
-							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR ENVIROMENT</h2>
-                            <p>We here at <strong>SAVE GREEN</strong> provides best services <br /> to everyone</p>
+							<h4 style="color: black" ><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                            <h2 style="color: black" >CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR ENVIROMENT</h2>
+                            <p style="color: black" >We here at <strong>SAVE GREEN</strong> provides best services <br /> to everyone</p>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="{% static 'img/slider/slide5.jpg' %}" alt="slide2">
+                        <img src="{% static 'img/slider/slide5.jpg' %}" style="opacity: 0.7;" alt="slide2">
                         <div class="carousel-caption">
-							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>LET THE WORLD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
-                            <p>We here at <strong>SAVE GREEN SOCIETY</strong> provides best products <br /> to your everyone</p>
+							<h4 style="color: black" ><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                            <h2 style="color: black">LET THE WORLD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
+                            <p style="color: black" >We here at <strong>SAVE GREEN SOCIETY</strong> provides best products <br /> to your everyone</p>
                         </div>
                     </div>
 					<div class="item">
-                        <img src="{% static 'img/slider/slide6.jpg' %}" alt="slide2">
+                        <img src="{% static 'img/slider/slide6.jpg' %}" style="opacity: 0.7;" alt="slide2">
                         <div class="carousel-caption">
-                            <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR ENVIROMENT</h2>
-							<p>We here at <strong>SAVE GREEN</strong> provides best opportunity <br /> to your everyone</p>
+                            <h4 style="color: black" ><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                            <h2 style="color: black" >GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR ENVIROMENT</h2>
+							<p style="color: black" >We here at <strong>SAVE GREEN</strong> provides best opportunity <br /> to your everyone</p>
                         </div>
                     </div>
                 </div>
@@ -327,7 +327,7 @@ console.log(makeid(5));
 				<div class="section-row-header-center">
 					<h6><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h6>
 					<h1>EVENTS - NEWS</h1>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+					<p></p>
 				</div>
 				<div class="clearfix"></div>
 				<div class="tab-content">
@@ -363,16 +363,16 @@ console.log(makeid(5));
                        <div class="col-md-4 right-event-items">
                            {% for event in featuredevent %}
                            <div class="event-item">
-								<img src="{% static 'img/news/news-lg3.jpg' %}" alt="event" />
+								<img src="{% static 'img/featured.jpg' %}" style="opacity: 0.7" alt="event" />
 							</div>
-							<div class="featured-event">
-								<div class="event-date">
-									<p><span>{{ event.date.day }}</span>{{ event.date | date:"M"}}</p>
+							<div class="featured-event" style="color: black">
+								<div class="event-date" style="color: black">
+									<p style="color: black"><span style="color: black">{{ event.date.day }}</span>{{ event.date | date:"M"}}</p>
 								</div>
-								<h3>{{ event.title }}</h3>
-								<h6><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
-								<p>{{ event.description }}</p>
-								<a href="#"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
+								<h3 >{{ event.title }}</h3>
+								<h6 style="color: black"><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
+								<p style="color: black">{{ event.description }}</p>
+								<a href="#contact-form" style="color: black"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
 							</div>
 
 						</div>
@@ -383,45 +383,345 @@ console.log(makeid(5));
 		</div>
 
 		<!-- Our Teaacher section -->
-		<div class="row section-row teacher-row">
+<div class="row section-row teacher-row">
 			<div class="container">
 				<div class="section-row-header-center">
-					<h6><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h6>
-					<h1>MEET OUR STAFFS</h1>
-					<p>Our staffs are the great pillar of our organizations</p>
+					<h6 style="color: green"><i class="fa fa-star-o"></i>OUR STARS<i class="fa fa-star-o"></i></h6>
+					<h1 style="color: green">MEET OUR MEMBERS</h1>
+					<p></p>
 				</div>
 				<div class="owl-carousel" id="ourTeacher">
-                    {% for teacher in teachers %}
                     <div class="teacher-item">
-						<h5><i class="fa fa-code"></i>{{teacher.subject.upper}}</h5>
+						<h5><i class="fa fa-code"></i>PRESIDENT</h5>
 						<div class="teacher-item-inner">
-							<p class="teacher-desc">{{ teacher.description }}
+							<p class="teacher-desc">
 							</p>
 							<div class="col-xs-4 clear-padding teacher-img">
-								<img src="{{ teacher.image.url }}" style="height: 150px;width: 100%" alt="teacher" />
+								<img src="{% static 'img/director/02.jpg' %}" style="height: 100%;width: 100%" alt="teacher" />
 							</div>
 							<div class="col-xs-8 teacher-details">
-								<p><strong>{{ teacher.name }}</strong></p>
-								<p><i>{{ teacher.qualification }}</i></p>
+								<p><strong>M P REJUL KUMAR</strong></p>
+								<p><i></i></p>
 								<p>
-									<a href="{{ teacher.facebook }}"><i class="fa fa-facebook"></i></a>
-									<a href="{{ teacher.google }}"><i class="fa fa-google-plus"></i></a>
-									<a href="{{ teacher.linkedin }}"><i class="fa fa-linkedin"></i></a>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
 								</p>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="teacher-know-more-link">
-							<a href="about.html"><i class="fa fa-paper-plane"></i> KNOW MORE</a>
+                            <p style="color: white">the</p>
 						</div>
 					</div>
-                    {% endfor %}
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>VICE PRESIDENT</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/mukunthan.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>P MUKUNTHAN</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>ONNETY SECRETARY</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/chandra.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>MULLERI CHANDRASHEKARAN NAYAR</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/lavina.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>LAVINA RAMESH</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                            <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/sajeesh.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>SAJEESH KUMAR</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+              <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/krranjith.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>KR RANJITH</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/shaiju.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>M T SHAIJU</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/rajan.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>M RAJAN</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/liju.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>LIJU SUMESH</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/naina.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>NAINA MURALEEDHARAN</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/deepa.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>DEEPA RANJITH</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/jagdish.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>K P JAGDISH</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+                    <div class="teacher-item">
+						<h5><i class="fa fa-code"></i>DIRECTOR</h5>
+						<div class="teacher-item-inner">
+							<p class="teacher-desc">
+							</p>
+							<div class="col-xs-4 clear-padding teacher-img">
+								<img src="{% static 'img/director/ramachandran.png' %}" style="height: 127px;width: 100%" alt="teacher" />
+							</div>
+							<div class="col-xs-8 teacher-details">
+								<p><strong>RAMACHANDRAN</strong></p>
+								<p><i></i></p>
+								<p>
+									<a href=""><i class="fa fa-facebook"></i></a>
+									<a href=""><i class="fa fa-google-plus"></i></a>
+									<a href=""><i class="fa fa-linkedin"></i></a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="teacher-know-more-link" >
+                            <div style="height: 15px"></div>
+						<p style="color: white">the</p>
+                        </div>
+					</div>
+
+
 				</div>
-			</div>	
+			</div>
 		</div>
+
+
 		
 		<!-- News Section -->
-
 		<!-- Parent testimonial section -->
 		<!-- Facts section -->
         <div class="row section-row">
@@ -470,7 +770,8 @@ console.log(makeid(5));
 			</div>
         </div>
 
-		<div class="row parent-test-row section-row">
+    <!-- Customer section -->
+<div class="row parent-test-row section-row">
 			<div class="container">
 				<div class="section-row-header-center">
 					<h1>WHAT CUSTOMERS SAY</h1>
@@ -551,9 +852,11 @@ console.log(makeid(5));
 				</div>
 			</div>
 		</div>
+
+
         <div style="height: 70px">
         <div style="color: black" class="section-row-header-center">
-					<h1>OUR LOCATION</h1>
+
 				</div>
             </div>
   <div class="map-responsive"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62608.29896884926!2d75.77115745533682!3d11.260035512392943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65938563d4747%3A0x32150641ca32ecab!2sKozhikode%2C%20Kerala!5e0!3m2!1sen!2sin!4v1594384347553!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -580,7 +883,7 @@ console.log(makeid(5));
 	-->
 		<!-- Footer Section -->
 		<div class="row footer-row">
-			<div class="container">
+			<div class="container" id="contact-form">
 				<div class="school-logo">
 					<i class="fa fa-graduation-cap"></i>
 					<h3>SAVE GREEN</h3>

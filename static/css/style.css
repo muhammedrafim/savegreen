@@ -387,7 +387,7 @@ img {
 .top-nav-social a:hover{
 }
 .trans-menu .navbar-default .navbar-nav>li>a {
-    color: #fff;
+    color: black;
     font-weight: 700;
     letter-spacing: 1px;
     font-size: 13px;
@@ -403,7 +403,7 @@ img {
 }
 .trans-menu .navbar-default .navbar-nav>li>a:hover{
     /*border-bottom: 2px solid #009DDC;*/
-    color: #009DDC;
+    color: white;
 }
 .trans-menu .navbar-default .navbar-brand {
     color: #fff;
@@ -411,6 +411,7 @@ img {
     letter-spacing: 1px;
 }
 .navbar{
+
     margin-bottom: 0;
 }
 .navbar .dropdown-menu{
@@ -996,6 +997,7 @@ img {
 	margin-top: 0;
 }
 .parent-test-item p {
+    font-weight: bold;
 	color: #fff;
 }
 .parent-img img{
@@ -1036,9 +1038,11 @@ img {
 /**************************** 9. TECHARES SECTION *****************************/
 .teacher-row {
 	background: url('./img/bg-img3.jpg');
+
 	background-attachment: fixed;
 	background-size: cover;
 	padding: 80px 0px;
+
 }
 .teacher-row h1,
 .teacher-row h6,
