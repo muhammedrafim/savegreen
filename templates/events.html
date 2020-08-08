@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="">
-        <title>Pathshala - Responsive Education Template</title>
+        <title>SAVE GREEN | EVENTS</title>
 
         <!-- Styles -->
         <link href="{%  static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
@@ -32,7 +32,6 @@
 								<a href="#"><i class="fa fa-linkedin"></i></a>
 						</div>
 						<div class="top-nav-login-btn pull-right">
-							<a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i>LOGIN</a>
 						</div>
 						<!--<div class="top-navbar-search pull-right">
 							<i class="fa fa-search"></i>
@@ -51,7 +50,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">PATHSHALA</a>
+                        <a class="navbar-brand" style="color: black" href="index.html">SAVE GREEN AWCS</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="pathshalaNavbarCollapse">
@@ -70,13 +69,17 @@
 		<!-- Page Title Section -->
 		<div class="row page-title page-title-events">
 			<div class="container">
-				<h2><i class="fa fa-calendar"></i>EVENTS</h2>
+				<h2 style="color: black"><i class="fa fa-calendar"></i>EVENTS</h2>
 			</div>
+                        <div style="height: 60px"></div>
+
 		</div>
 		
 		<!-- Events Section -->
 		<div class="row section-row evets-row">
 			<div class="container">
+                <div class="col-md-2"></div>
+
 				<div class="col-md-8 left-event-items">
                     {% for event in posts %}
                     <div class="event-item">
@@ -84,7 +87,7 @@
 							<div class="event-date">
 								<p><span>{{ event.datetime.day }}</span> {{ event.datetime|date:"M" }}</p>
 							</div>
-							<h3>{{ event.title }}</h3>
+							<h3><a style="color: black" href="{% url 'event' event.id %}">{{ event.title }}</a></h3>
 							<h6><i class="fa fa-map-marker"></i>{{ event.location }}</h6>
 							<p>{{ event.details }}</p>
 						</div>
@@ -121,7 +124,7 @@
                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
                     </div>
 				</div>
-				<div class="col-md-4 right-event-items">
+				<!--<div class="col-md-4 right-event-items">
                     {% for event in featuredevent %}
                            <div class="event-item">
 								<img src="{% static 'img/featured.jpg' %}" style="opacity: 0.7" alt="event" />
@@ -137,7 +140,7 @@
 							</div>
 
 						</div>
-                     {% endfor %}				</div>
+                     {% endfor %}				</div>-->
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -146,20 +149,19 @@
 		<div class="row footer-row">
 			<div class="container" id="contact-form">
 				<div class="school-logo">
-					<i class="fa fa-graduation-cap"></i>
-					<h3>SAVE GREEN</h3>
-					<h6>BETTER WAY TO LEARN & GROW</h6>
+					<i class="fa fa-leaf"></i>
+					<h3>SAVE GREEN AGRICULTURIST WELFARE CO-OPERATIVE</h3>
+					<h6></h6>
 				</div>
 				<div class="col-md-6 col-sm-6 footer-item" style="justify-content: center">
 					<h5>CONTACT US</h5>
-					<p><i class="fa fa-map-marker"></i>3768 Seabury Ct, Burlington, NC, 27215</p>
-					<p><i class="fa fa-mobile"></i> +1 8910000891</p>
-					<p><i class="fa fa-envelope"></i>email@pathshala.com</p>
+					<p><i class="fa fa-map-marker"></i>No. D. 3163, 17/1808A8, Il nd Floor,Anugraha Arcade, PAVAMANI ROAD, KOZHIKODE-673 004, </p>
+					<p><i class="fa fa-mobile"></i> Tel: 0495 2729070 </p>
+					<p><i class="fa fa-envelope"></i>savegreenawcs@gmail.com</p>
 				</div>
 				<div class="col-md-6 col-sm-6 footer-item">
 					<h5>OFFICE TIMINGS TIMINGS</h5>
-					<p><i class="fa fa-clock-o"></i> MON - FRI 9:00 AM - 3:00 PM</p>
-					<p><i class="fa fa-clock-o"></i> SAT 9:00 AM - 1:00 PM</p>
+					<p><i class="fa fa-clock-o"></i> MON - SAT 9:00 AM - 5:00 PM</p>
 				</div>
 			</div>
 			<div class="footer-social-row">

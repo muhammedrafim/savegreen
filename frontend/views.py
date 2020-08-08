@@ -23,7 +23,7 @@ def admission(request):
 def events(request):
     events = EventDetail.objects.all().order_by('-id')
     featuredevent = FeaturedEventsNews.objects.all()
-    paginator = Paginator(events, 5)
+    paginator = Paginator(events, 10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,"events.html", {'posts' : posts, 'featuredevent': featuredevent})
